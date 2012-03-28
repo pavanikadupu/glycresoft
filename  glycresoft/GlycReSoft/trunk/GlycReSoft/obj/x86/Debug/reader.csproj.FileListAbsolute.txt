@@ -1,0 +1,80 @@
+C:\Users\kaizikov\Desktop\playground\reader\reader\bin\Debug\reader.exe
+C:\Users\kaizikov\Desktop\playground\reader\reader\bin\Debug\reader.pdb
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\reader.Form1.resources
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\reader.Properties.Resources.resources
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\reader.exe
+C:\Users\kaizikov\Desktop\playground\reader\reader\obj\x86\Debug\reader.pdb
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\reader.exe
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\reader.pdb
+C:\Users\kaizikov\Desktop\playground\reader I\reader\bin\Debug\reader.exe
+C:\Users\kaizikov\Desktop\playground\reader I\reader\bin\Debug\reader.pdb
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\reader.Form1.resources
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\reader.Properties.Resources.resources
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\kaizikov\Desktop\playground\reader I\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\yan\Desktop\新建文件夹\reader I\reader\obj\x86\Debug\reader.exe
+C:\Users\yan\Desktop\新建文件夹\reader I\reader\obj\x86\Debug\reader.pdb
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\reader.exe
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\reader.pdb
+C:\Users\yan\Desktop\consta\reader I\reader\bin\Debug\reader.exe
+C:\Users\yan\Desktop\consta\reader I\reader\bin\Debug\reader.pdb
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\reader.Form1.resources
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\reader.Properties.Resources.resources
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\yan\Desktop\consta\reader I\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\reader.exe
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\reader.pdb
+D:\Chanllenge Project\consta\reader I\reader\bin\Debug\reader.exe
+D:\Chanllenge Project\consta\reader I\reader\bin\Debug\reader.pdb
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\reader.Form1.resources
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\reader.Properties.Resources.resources
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Chanllenge Project\consta\reader I\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\yan\Desktop\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\reader.exe
+C:\Users\yan\Desktop\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\reader.pdb
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\reader.exe
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\reader.pdb
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\bin\Debug\reader.exe
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\bin\Debug\reader.pdb
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\reader.Form1.resources
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\reader.Properties.Resources.resources
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Spring 2011\Challenge Project\Reader I\Reader\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+F:\Reader I\Reader\reader\obj\x86\Debug\reader.exe
+F:\Reader I\Reader\reader\obj\x86\Debug\reader.pdb
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\reader.exe
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\reader.pdb
+F:\GlycreSoft\Reader\reader\bin\Debug\reader.exe
+F:\GlycreSoft\Reader\reader\bin\Debug\reader.pdb
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\reader.Form1.resources
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\reader.Properties.Resources.resources
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\GlycreSoft\Reader\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\reader.exe
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\reader.pdb
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\reader.Form1.resources
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\reader.Properties.Resources.resources
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\bin\Debug\reader.exe
+C:\Users\yan\Desktop\GlycreSoft\Reader\reader\bin\Debug\reader.pdb
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\reader.exe
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\reader.pdb
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\reader.Form1.resources
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\reader.Properties.Resources.resources
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\bin\Debug\reader.exe
+C:\Documents and Settings\yant\Desktop\workspace\GlycreSoft\Reader\reader\bin\Debug\reader.pdb
+C:\Documents and Settings\emaxwell\Desktop\Challenge Project\GlycReSoft_unzip\Reader\reader\obj\x86\Debug\reader.exe
+C:\Documents and Settings\emaxwell\Desktop\Challenge Project\GlycReSoft_unzip\Reader\reader\obj\x86\Debug\reader.pdb
