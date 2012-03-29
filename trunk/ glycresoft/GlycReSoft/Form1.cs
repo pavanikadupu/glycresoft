@@ -631,7 +631,7 @@ namespace GlycreSoft
                 {
                     if (featureWeightForm.checkInput)
                     {
-                        featureWeight = new double[features];
+                        featureWeight = new double[8];
                         featureWeight[0] = Convert.ToDouble(featureWeightForm.textBox1.Text);
                         featureWeight[1] = Convert.ToDouble(featureWeightForm.textBox2.Text);
                         featureWeight[2] = Convert.ToDouble(featureWeightForm.textBox3.Text);
@@ -639,7 +639,7 @@ namespace GlycreSoft
                         featureWeight[4] = Convert.ToDouble(featureWeightForm.textBox5.Text);
                         featureWeight[5] = Convert.ToDouble(featureWeightForm.textBox6.Text);
                         featureWeight[6] = Convert.ToDouble(featureWeightForm.textBox7.Text);
-                        featureWeight[7] = Convert.ToDouble(featureWeightForm.textBox7.Text);
+                        featureWeight[7] = Convert.ToDouble(featureWeightForm.textBox8.Text);
                     }
                 }
 
@@ -980,7 +980,7 @@ namespace GlycreSoft
                     this.num_matches = 0;
                     this.sUnknownGAG = myTargetGAG;
                     StreamWriter unknowns = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_grouped"));
-                    StreamWriter scored = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_unsupervised_comparison"));
+                    StreamWriter scored = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_unsupervised"));
                     StreamWriter learned = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_supervised"));
                     replicatesIdx++;
                     unknowns.WriteLine("avgMonoMW\tNumAdductStates\tNumCharges\tNumScans\tDensity\tAvgA:A+2Ratio\tTotalVolume\tAvgSignalNoise\tCentroidScan");
@@ -1233,8 +1233,6 @@ namespace GlycreSoft
                             this.sUnknownGAG.Keys[idx].mCentroidScanError = (double)this.data.Rows[j].ItemArray[col_cent];
                         }
                     }
-                    // For the unsupervised comparison, need to make sure feature weights are set (to all 1s)
-                    featureWeight = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
                     this.scoreGAGs(scored, learned);
                     unknowns.Close();
                     scored.Close();
@@ -1266,7 +1264,7 @@ namespace GlycreSoft
             if (swml == null)
                 supervised = false;
 
-            Dictionary<double, double> scores = new Dictionary<double, double>();
+            Dictionary<double, int> scores = new Dictionary<double, int>();
             Dictionary<double, int> index = new Dictionary<double, int>();
 
             //List<double> outputs_list = new List<double>();
@@ -1287,7 +1285,7 @@ namespace GlycreSoft
             {
                 GAG g = (GAG)item.Key;
                 double mw = g.mMolecularWeight;
-                scores[mw] = 0.0;
+                scores[mw] = 0;
                 index[mw] = cidx;
                 if (supervised)
                 {
@@ -1331,7 +1329,7 @@ namespace GlycreSoft
                         cur_score = cur_pos + 1;
                     }
 
-                    scores[(double)row[0]] += featureWeight[i-1] * Convert.ToDouble(max_score - cur_score);
+                    scores[(double)row[0]] += max_score - cur_score;
                     int idx = -1;
                     if (index.ContainsKey((double)row[0]))
                         idx = index[(double)row[0]];
@@ -1343,10 +1341,10 @@ namespace GlycreSoft
                     cur_pos++;
                 }
             }
-            List<KeyValuePair<double, double>> scoresList = new List<KeyValuePair<double, double>>(scores);
+            List<KeyValuePair<double, int>> scoresList = new List<KeyValuePair<double, int>>(scores);
             scoresList.Sort(
-                delegate(KeyValuePair<double, double> firstPair,
-                KeyValuePair<double, double> nextPair)
+                delegate(KeyValuePair<double, int> firstPair,
+                KeyValuePair<double, int> nextPair)
                 {
                     return nextPair.Value.CompareTo(firstPair.Value);
                 }
@@ -1420,10 +1418,7 @@ namespace GlycreSoft
                     Hyp_MW = "NA";
                 }
                 string Match = lookback.match_string;
-                double weights_summation = 0.0;
-                foreach (var w in featureWeight)
-                    weights_summation += w;
-                double Score = val.Value / (double)(max_score * weights_summation);
+                double Score = val.Value / (double)(max_score * (this.data.Columns.Count - 1));
                 double avgSignalNoise = lookback.mSignalNoise.Average();
                 sw.WriteLine(output, String.Format("{0:0.0000}",Score), avgMonoMW, Match, ppm, Hyp_MW, NumMod, NumCharges, NumScans, Density, String.Format("{0:0.0000}", Plus2Error), AvgPlus2Ratio, TotalVolume, avgSignalNoise, String.Format("{0:0.0000}",CentroidScanError), CentroidScan);
             }
