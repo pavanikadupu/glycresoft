@@ -10,20 +10,14 @@
             </summary>
             
             <remarks>
-              This exception may be thrown by the <see cref="T:Accord.Math.Optimization.LbfgsOptimization">L-BFGS Optimizer</see>
+              This exception may be thrown by the <see cref="T:Accord.Math.Optimization.LBFGS">L-BFGS Optimizer</see>
               when the line search routine used by the optimization method fails.
             </remarks>
             
         </member>
-        <member name="M:Accord.Math.Optimization.LineSearchFailedException.#ctor">
-            <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
-            </summary>
-            
-        </member>
         <member name="M:Accord.Math.Optimization.LineSearchFailedException.#ctor(System.Int32,System.String)">
             <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
+            Initializes a new instance of the <see cref="T:Accord.ConvergenceException"/> class.
             </summary>
             
             <param name="info">The error code information of the line search routine.</param>
@@ -32,7 +26,7 @@
         </member>
         <member name="M:Accord.Math.Optimization.LineSearchFailedException.#ctor(System.String)">
             <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
+            Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
             </summary>
             
             <param name="message">Message providing some additional information.</param>
@@ -40,7 +34,7 @@
         </member>
         <member name="M:Accord.Math.Optimization.LineSearchFailedException.#ctor(System.String,System.Exception)">
             <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
+            Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
             </summary>
             
             <param name="message">Message providing some additional information.</param>
@@ -49,7 +43,7 @@
         </member>
         <member name="M:Accord.Math.Optimization.LineSearchFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
+            Initializes a new instance of the <see cref="T:Accord.Math.Optimization.LineSearchFailedException"/> class.
             </summary>
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
@@ -59,22 +53,6 @@
             <exception cref="T:System.Runtime.Serialization.SerializationException">
             The class name is null or <see cref="P:System.Exception.HResult"/> is zero (0).
             </exception>
-            
-        </member>
-        <member name="M:Accord.Math.Optimization.LineSearchFailedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-              When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the exception.
-            </summary>
-            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
-            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
-            <exception cref="T:System.ArgumentNullException">
-            The <paramref name="info"/> parameter is a null reference (Nothing in Visual Basic).
-            </exception>
-            <PermissionSet>
-            	<IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Read="*AllFiles*" PathDiscovery="*AllFiles*"/>
-            	<IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="SerializationFormatter"/>
-            </PermissionSet>
-            
         </member>
         <member name="P:Accord.Math.Optimization.LineSearchFailedException.Information">
             <summary>
@@ -83,32 +61,6 @@
             
             <value>The error code information returned by the line search routine.</value>
             
-        </member>
-        <member name="T:Accord.Math.Wavelets.IWavelet">
-            <summary>
-              Common interface for wavelets algorithms.
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Math.Wavelets.IWavelet.Forward(System.Double[])">
-            <summary>
-              1-D Forward Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.IWavelet.Forward(System.Double[0:,0:])">
-            <summary>
-              2-D Forward Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.IWavelet.Backward(System.Double[])">
-            <summary>
-              1-D Backward (Inverse) Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.IWavelet.Backward(System.Double[0:,0:])">
-            <summary>
-              2-D Backward (Inverse) Discrete Wavelet Transform.
-            </summary>
         </member>
         <member name="T:Accord.Math.Matrix">
             <summary>
@@ -140,10 +92,9 @@
             that operates mainly on multidimensional arrays and vectors.
             </summary>
             <summary>
-              Static class Matrix. Defines a set of extension methods
-              that operates mainly on multidimensional arrays and vectors.
+            Static class Matrix. Defines a set of extension methods
+            that operates mainly on multidimensional arrays and vectors.
             </summary>
-            
         </member>
         <member name="M:Accord.Math.Matrix.ToString(System.Double[0:,0:])">
             <summary>
@@ -167,7 +118,7 @@
             <param name="provider">
               The <see cref="T:Accord.Math.Formats.IMatrixFormatProvider"/> to be used
               when creating the resulting string. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>
               A <see cref="T:System.String"/> that represents this instance.
@@ -182,7 +133,7 @@
             <param name="provider">
               The <see cref="T:Accord.Math.Formats.IMatrixFormatProvider"/> to be used
               when creating the resulting string. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>
               A <see cref="T:System.String"/> that represents this instance.
@@ -200,7 +151,7 @@
             <param name="provider">
               The <see cref="T:Accord.Math.Formats.IMatrixFormatProvider"/> to be used
               when creating the resulting string. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>
               A <see cref="T:System.String"/> that represents this instance.
@@ -225,7 +176,7 @@
             <param name="provider">
               The <see cref="T:Accord.Math.Formats.IMatrixFormatProvider"/> to be used
               when creating the resulting string. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>
               A <see cref="T:System.String"/> that represents this instance.
@@ -243,7 +194,7 @@
             <param name="provider">
               The <see cref="T:Accord.Math.Formats.IMatrixFormatProvider"/> to be used
               when creating the resulting string. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>
               A <see cref="T:System.String"/> that represents this instance.
@@ -268,7 +219,7 @@
             <param name="str">The string representation of the matrix.</param>
             <param name="provider">
               The format provider to use in the conversion. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>A double-precision floating-point number matrix parsed
             from the given string using the given format provider.</returns>
@@ -282,7 +233,7 @@
             <param name="s">The string representation of the matrix.</param>
             <param name="provider">
               The format provider to use in the conversion. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <returns>A double-precision floating-point number matrix parsed
             from the given string using the given format provider.</returns>
@@ -297,7 +248,7 @@
             <param name="s">The string representation of the matrix.</param>
             <param name="provider">
               The format provider to use in the conversion. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <param name="matrix">A double-precision floating-point number matrix parsed
             from the given string using the given format provider.</param>
@@ -318,7 +269,7 @@
             <param name="s">The string representation of the matrix.</param>
             <param name="provider">
               The format provider to use in the conversion. Default is to use
-              <see cref="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
+              <see cref="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture"/>.
             </param>
             <param name="matrix">A double-precision floating-point number matrix parsed
             from the given string using the given format provider.</param>
@@ -467,7 +418,7 @@
               Combine vectors horizontally.
             </summary>
         </member>
-        <member name="M:Accord.Math.Matrix.Combine``1(``0[][0:,0:])">
+        <member name="M:Accord.Math.Matrix.Combine``1(``0[0:,0:][])">
             <summary>
               Combines matrices vertically.
             </summary>
@@ -1215,246 +1166,171 @@
               Transforms a vector into a single vector.
             </summary>
         </member>
-        <member name="M:Accord.Math.Matrix.Convolve(System.Double[],System.Double[])">
-            <summary>
-              Convolves an array with the given kernel.
-            </summary>
-            <param name="a">A floating number array.</param>
-            <param name="kernel">A convolution kernel.</param>
-        </member>
-        <member name="M:Accord.Math.Matrix.Convolve(System.Double[],System.Double[],System.Boolean)">
-            <summary>
-            Convolves an array with the given kernel.
-            </summary>
-            <param name="a">A floating number array.</param>
-            <param name="kernel">A convolution kernel.</param>
-            <param name="trim">
-              If <c>true</c> the resulting array will be trimmed to
-              have the same length as the input array. Default is false.</param>
-        </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
-              Computes the product <c>A*B</c> of two matrices <c>A</c> and <c>B</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <returns>The product <c>A*B</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <returns>The product of the multiplication of the given matrices.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[][],System.Double[][])">
             <summary>
-              Computes the product <c>A*B</c> of two matrices <c>A</c> and <c>B</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <returns>The product <c>A*B</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <returns>The product of the multiplication of the given matrices.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Single[][],System.Single[][])">
             <summary>
-              Computes the product <c>A*B</c> of two matrices <c>A</c> and <c>B</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <returns>The product <c>A*B</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <returns>The product of the multiplication of the given matrices.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Single[0:,0:],System.Single[0:,0:])">
             <summary>
-              Computes the product <c>A*B</c> of two matrices <c>A</c> and <c>B</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <returns>The product <c>A*B</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <returns>The product of the multiplication of the given matrices.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[0:,0:],System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
-              Computes the product <c>R = A*B</c> of two matrices <c>A</c>
-              and <c>B</c>, storing the result in matrix <c>R</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A*B</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <param name="result">The matrix to store results.</param>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[][],System.Double[][],System.Double[][])">
             <summary>
-              Computes the product <c>R = A*B</c> of two matrices <c>A</c>
-              and <c>B</c>, storing the result in matrix <c>R</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A*B</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <param name="result">The matrix to store results.</param>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Single[][],System.Single[][],System.Single[][])">
             <summary>
-              Computes the product <c>R = A*B</c> of two matrices <c>A</c>
-              and <c>B</c>, storing the result in matrix <c>R</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A*B</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <param name="result">The matrix to store results.</param>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Single[0:,0:],System.Single[0:,0:],System.Single[0:,0:])">
             <summary>
-              Computes the product <c>R = A*B</c> of two matrices <c>A</c>
-              and <c>B</c>, storing the result in matrix <c>R</c>.
+              Multiplies two matrices.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A*B</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-            
+            <param name="a">The left matrix.</param>
+            <param name="b">The right matrix.</param>
+            <param name="result">The matrix to store results.</param>
         </member>
         <member name="M:Accord.Math.Matrix.MultiplyByTranspose(System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
-              Computes the product <c>A*B'</c> of matrix <c>A</c> and transpose of <c>B</c>.
+              Computes A*B', where B' denotes the transpose of B.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The transposed right matrix <c>B</c>.</param>
-            <returns>The product <c>A*B'</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
         </member>
         <member name="M:Accord.Math.Matrix.MultiplyByTranspose(System.Double[0:,0:],System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
-              Computes the product <c>A*B'</c> of matrix <c>A</c> and
-              transpose of <c>B</c>, storing the result in matrix <c>R</c>.
+              Computes A*B', where B' denotes the transpose of B.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The transposed right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A*B'</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-               
         </member>
         <member name="M:Accord.Math.Matrix.TransposeAndMultiply(System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
-              Computes the product <c>A'*B</c> of matrix <c>A</c> transposed and matrix <c>B</c>.
+              Computes A'*B, where A' denotes the transpose of A.
             </summary>
-            <param name="a">The transposed left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <returns>The product <c>A'*B</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
         </member>
         <member name="M:Accord.Math.Matrix.TransposeAndMultiply(System.Double[0:,0:],System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
-              Computes the product <c>A'*B</c> of matrix <c>A</c> transposed and matrix <c>B</c>.
+              Computes A'*B, where A' denotes the transpose of A.
             </summary>
-            <param name="a">The transposed left matrix <c>A</c>.</param>
-            <param name="b">The right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A'*B</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-            
         </member>
         <member name="M:Accord.Math.Matrix.MultiplyByDiagonal(System.Double[0:,0:],System.Double[])">
             <summary>
-              Computes the product A*B of matrix <c>A</c> and diagonal matrix <c>B</c>.
+              Computes A*B, where B is a diagonal matrix.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The diagonal vector of right matrix <c>B</c>.</param>
-            <returns>The product <c>A*B</c> of the given matrices <c>A</c> and <c>B</c>.</returns>
-            
         </member>
         <member name="M:Accord.Math.Matrix.MultiplyByDiagonal(System.Double[0:,0:],System.Double[],System.Double[0:,0:])">
             <summary>
-              Computes the product A*B of matrix <c>A</c> and diagonal matrix <c>B</c>.
+              Computes A*B, where B is a diagonal matrix.
             </summary>
-            <param name="a">The left matrix <c>A</c>.</param>
-            <param name="b">The diagonal vector of right matrix <c>B</c>.</param>
-            <param name="result">The matrix <c>R</c> to store the product <c>R = A*B</c>
-              of the given matrices <c>A</c> and <c>B</c>.</param>
-            
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[],System.Double[0:,0:])">
             <summary>
-              Multiplies a row vector <c>v</c> and a matrix <c>A</c>,
-              giving the product <c>v'*A</c>.
+              Multiplies a row vector and a matrix.
             </summary>
-            <param name="rowVector">The row vector <c>v</c>.</param>
-            <param name="matrix">The matrix <c>A</c>.</param>
-            <returns>The product <c>v'*A</c>of the multiplication of the
-              given row vector <c>v</c> and matrix <c>A</c>.</returns>
-            
+            <param name="rowVector">A row vector.</param>
+            <param name="matrix">A matrix.</param>
+            <returns>The product of the multiplication of the given row vector and matrix.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[0:,0:],System.Double[])">
             <summary>
-              Multiplies a matrix <c>A</c> and a column vector <c>v</c>,
-              giving the product <c>A*v</c>
+              Multiplies a matrix and a vector (a*bT).
             </summary>
-            <param name="matrix">The matrix <c>A</c>.</param>
-            <param name="columnVector">The column vector <c>v</c>.</param>
-            <returns>The product <c>A*v</c> of the multiplication of the
-              given matrix <c>A</c> and column vector <c>v</c>.</returns>
-            
+            <param name="matrix">A matrix.</param>
+            <param name="columnVector">A column vector.</param>
+            <returns>The product of the multiplication of matrix a and column vector b.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[0:,0:],System.Double)">
             <summary>
-              Multiplies a matrix <c>A</c> by a scalar <c>x</c>.
+              Multiplies a matrix by a scalar.
             </summary>
-            <param name="matrix">The matrix <c>A</c>.</param>
-            <param name="x">The scalar <c>x</c>.</param>
-            <returns>The product <c>A*x</c> of the multiplication of the
-              given matrix <c>A</c> and scalar <c>x</c>.</returns>
-            
+            <param name="matrix">A matrix.</param>
+            <param name="scalar">A scalar.</param>
+            <returns>The product of the multiplication of the given matrix and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double[],System.Double)">
             <summary>
-              Multiplies a vector <c>v</c> by a scalar <c>x</c>.
+              Multiplies a vector by a scalar.
             </summary>
-            <param name="vector">The vector <c>v</c>.</param>
-            <param name="x">The scalar <c>x</c>.</param>
-            <returns>The product <c>v*x</c> of the multiplication of the 
-              given vector <c>v</c> and scalar <c>x</c>.</returns>
-            
+            <param name="vector">A vector.</param>
+            <param name="scalar">A scalar.</param>
+            <returns>The product of the multiplication of the given vector and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double,System.Double[0:,0:])">
             <summary>
-              Multiplies a scalar <c>x</c> by a matrix <c>A</c>.
+              Multiplies a matrix by a scalar.
             </summary>
-            <param name="x">The scalar <c>x</c>.</param>
-            <param name="matrix">The matrix <c>A</c>.</param>
-            <returns>The product <c>x*A</c> of the multiplication of the
-              given scalar <c>x</c> and matrix <c>A</c>.</returns>
-            
+            <param name="scalar">A scalar.</param>
+            <param name="matrix">A matrix.</param>
+            <returns>The product of the multiplication of the given vector and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Multiply(System.Double,System.Double[])">
             <summary>
-              Multiplies a scalar <c>x</c> by a vector <c>v</c>.
+              Multiplies a vector by a scalar.
             </summary>
-            <param name="x">The scalar <c>x</c>.</param>
-            <param name="vector">The vector <c>v</c>.</param>
-            <returns>The product <c>x*v</c> of the multiplication of the 
-              given scalar <c>x</c> and vector <c>v</c>.</returns>
-            
+            <param name="scalar">A scalar.</param>
+            <param name="vector">A vector.</param>
+            <returns>The product of the multiplication of the given scalar and vector.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.Double[],System.Double)">
             <summary>
               Divides a vector by a scalar.
             </summary>
             <param name="vector">A vector.</param>
-            <param name="x">A scalar.</param>
-            <returns>The division quotient of the given vector <c>a</c> and scalar <c>b</c>.</returns>
+            <param name="scalar">A scalar.</param>
+            <returns>The division quotient of the given vector and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.Single[],System.Single)">
             <summary>
               Divides a vector by a scalar.
             </summary>
             <param name="vector">A vector.</param>
-            <param name="x">A scalar.</param>
-            <returns>The division quotient of the given vector <c>a</c> and scalar <c>b</c>.</returns>
+            <param name="scalar">A scalar.</param>
+            <returns>The division quotient of the given vector and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.Double,System.Double[])">
             <summary>
               Elementwise divides a scalar by a vector.
             </summary>
             <param name="vector">A vector.</param>
-            <param name="x">A scalar.</param>
-            <returns>The division quotient of the given scalar <c>a</c> and vector <c>b</c>.</returns>
+            <param name="scalar">A scalar.</param>
+            <returns>The division quotient of the given scalar and vector.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.Double[0:,0:],System.Double[0:,0:])">
             <summary>
@@ -1462,14 +1338,14 @@
             </summary>
             <param name="a">The first matrix.</param>
             <param name="b">The second matrix (which will be inverted).</param>
-            <returns>The result from the division <c>AB^-1</c> of the given matrices.</returns>
+            <returns>The result from the division of the given matrices.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.Double[0:,0:],System.Double)">
             <summary>
               Divides a matrix by a scalar.
             </summary>
             <param name="matrix">A matrix.</param>
-            <param name="x">A scalar.</param>
+            <param name="scalar">A scalar.</param>
             <returns>The division quotient of the given matrix and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.UInt32[0:,0:],System.Single)">
@@ -1477,38 +1353,36 @@
               Divides a matrix by a scalar.
             </summary>
             <param name="matrix">A matrix.</param>
-            <param name="x">A scalar.</param>
+            <param name="scalar">A scalar.</param>
             <returns>The division quotient of the given matrix and scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Divide(System.Double,System.Double[0:,0:])">
             <summary>
               Elementwise divides a scalar by a matrix.
             </summary>
-            <param name="x">A scalar.</param>
+            <param name="scalar">A scalar.</param>
             <param name="matrix">A matrix.</param>
             <returns>The elementwise division of the given scalar and matrix.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.InnerProduct(System.Double[],System.Double[])">
             <summary>
-              Gets the inner product (scalar product) between two vectors (a'*b).
+              Gets the inner product (scalar product) between two vectors (aT*b).
             </summary>
             <param name="a">A vector.</param>
             <param name="b">A vector.</param>
             <returns>The inner product of the multiplication of the vectors.</returns>
             <remarks>
-             <para>
                In mathematics, the dot product is an algebraic operation that takes two
                equal-length sequences of numbers (usually coordinate vectors) and returns
                a single number obtained by multiplying corresponding entries and adding up
                those products. The name is derived from the dot that is often used to designate
                this operation; the alternative name scalar product emphasizes the scalar
-               (rather than vector) nature of the result.</para>
-             <para>
+               (rather than vector) nature of the result.
+               
                The principal use of this product is the inner product in a Euclidean vector space:
                when two vectors are expressed on an orthonormal basis, the dot product of their 
-               coordinate vectors gives their inner product.</para>  
+               coordinate vectors gives their inner product.
             </remarks>
-            
         </member>
         <member name="M:Accord.Math.Matrix.OuterProduct(System.Double[],System.Double[])">
             <summary>
@@ -1579,8 +1453,8 @@
             <summary>
               Adds a vector to a column or row of a matrix.
             </summary>
-            <param name="a">A matrix.</param>
-            <param name="b">A vector.</param>
+            <param name="matrix">A matrix.</param>
+            <param name="vector">A vector.</param>
             <param name="dimension">The dimension to add the vector to.</param>
         </member>
         <member name="M:Accord.Math.Matrix.Add(System.Double[],System.Double[])">
@@ -1608,7 +1482,7 @@
             <summary>
               Elementwise subtracts an element of a matrix from a scalar.
             </summary>
-            <param name="x">A scalar.</param>
+            <param name="scalar">A scalar.</param>
             <param name="matrix">A matrix.</param>
             <returns>The elementwise subtraction of scalar a and matrix b.</returns>
         </member>
@@ -1625,7 +1499,7 @@
               Subtracts a scalar from a vector.
             </summary>
             <param name="vector">A vector.</param>
-            <param name="x">A scalar.</param>
+            <param name="scalar">A scalar.</param>
             <returns>The subtraction of given scalar from all elements in the given vector.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Subtract(System.Double,System.Double[])">
@@ -1633,7 +1507,7 @@
               Subtracts a scalar from a vector.
             </summary>
             <param name="vector">A vector.</param>
-            <param name="x">A scalar.</param>
+            <param name="scalar">A scalar.</param>
             <returns>The subtraction of the given vector elements from the given scalar.</returns>
         </member>
         <member name="M:Accord.Math.Matrix.Power(System.Double[0:,0:],System.Int32)">
@@ -2037,192 +1911,6 @@
               Gets the nonnegative factor matrix H.
             </summary>
         </member>
-        <member name="T:Accord.Math.Optimization.LbfgsOptimization">
-            <summary>
-              Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS) method.
-            </summary>
-            <remarks>
-            <para>
-              The L-BFGS algorithm is a member of the broad family of quasi-Newton optimization
-              methods. L-BFGS stands for 'Limited memory BFGS'. Indeed, L-BFGS uses a limited
-              memory variation of the Broyden–Fletcher–Goldfarb–Shanno (BFGS) update to approximate
-              the inverse Hessian matrix (denoted by Hk). Unlike the original BFGS method which
-              stores a dense  approximation, L-BFGS stores only a few vectors that represent the
-              approximation implicitly. Due to its moderate memory requirement, L-BFGS method is
-              particularly well suited for optimization problems with a large number of variables.</para>
-            <para>
-              L-BFGS never explicitly forms or stores Hk. Instead, it maintains a history of the past
-              <c>m</c> updates of the position <c>x</c> and gradient <c>g</c>, where generally the history
-              <c>m</c>can be short, often less than 10. These updates are used to implicitly do operations
-              requiring the Hk-vector product.</para>
-              
-            <para>
-              The framework implementation of this method is based on the original FORTRAN source code
-              by Jorge Nocedal (see references below). The original FORTRAN source code of LBFGS (for
-              unconstrained problems) is available at http://www.netlib.org/opt/lbfgs_um.shar </para>
-            
-            <para>
-              References:
-              <list type="bullet">
-                <item><description><a href="http://www.netlib.org/opt/lbfgs_um.shar">
-                   Jorge Nocedal. Limited memory BFGS method for large scale optimization (Fortran source code). 1990.
-                   Available in http://www.netlib.org/opt/lbfgs_um.shar</a></description></item>
-                <item><description>
-                   Jorge Nocedal. Updating Quasi-Newton Matrices with Limited Storage. <i>Mathematics of Computation</i>,
-                   Vol. 35, No. 151, pp. 773--782, 1980.</description></item>
-                <item><description>
-                   Dong C. Liu, Jorge Nocedal. On the limited memory BFGS method for large scale optimization.</description></item>
-               </list></para>
-            </remarks>
-            
-        </member>
-        <member name="T:Accord.Math.Optimization.IOptimizationMethod">
-            <summary>
-              Common interface for function optimization methods.
-            </summary>
-            
-            <seealso cref="T:Accord.Math.Optimization.LbfgsOptimization"/>
-            
-        </member>
-        <member name="M:Accord.Math.Optimization.IOptimizationMethod.Optimize(System.Double[])">
-            <summary>
-              Optimizes the defined function. 
-            </summary>
-            
-            <param name="values">The initial guess values for the parameters.</param>
-            
-        </member>
-        <member name="P:Accord.Math.Optimization.IOptimizationMethod.Solution">
-            <summary>
-              Gets the solution found, the values of the parameters which
-              optimizes the function.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Optimization.LbfgsOptimization.#ctor(System.Int32)">
-            <summary>
-              Creates a new instance of the L-BFGS optimization algorithm.
-            </summary>
-            <param name="parameters">The number of free parameters in the optimization problem.</param>
-        </member>
-        <member name="M:Accord.Math.Optimization.LbfgsOptimization.#ctor(System.Int32,System.Func{System.Double[],System.Double},System.Func{System.Double[],System.Double[]})">
-            <summary>
-              Creates a new instance of the L-BFGS optimization algorithm.
-            </summary>
-            <param name="parameters">The number of free parameters in the function to be optimized.</param>
-            <param name="function">The function to be optimized.</param>
-            <param name="gradient">The gradient of the function.</param>
-        </member>
-        <member name="M:Accord.Math.Optimization.LbfgsOptimization.#ctor(System.Int32,System.Func{System.Double[],System.Double},System.Func{System.Double[],System.Double[]},System.Func{System.Double[]})">
-            <summary>
-              Creates a new instance of the L-BFGS optimization algorithm.
-            </summary>
-            <param name="parameters">The number of free parameters in the function to be optimized.</param>
-            <param name="function">The function to be optimized.</param>
-            <param name="gradient">The gradient of the function.</param>
-            <param name="diagonal">The diagonal of the Hessian.</param>
-        </member>
-        <member name="M:Accord.Math.Optimization.LbfgsOptimization.Optimize(System.Double[])">
-            <summary>
-              Optimizes the defined function. 
-            </summary>
-            <param name="values">The initial guess values for the parameters.</param>
-            <returns>The values of the parameters which optimizes the function.</returns>
-        </member>
-        <member name="M:Accord.Math.Optimization.LbfgsOptimization.mcsrch(System.Double[],System.Double@,System.Double[]@,System.Double*,System.Double@,System.Int32@,System.Double[])">
-            <summary>
-              Finds a step which satisfies a sufficient decrease and curvature condition.
-            </summary>
-        </member>
-        <member name="E:Accord.Math.Optimization.LbfgsOptimization.Progress">
-            <summary>
-              Occurs when progress is made during the optimization.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Function">
-            <summary>
-              Gets or sets the function to be optimized.
-            </summary>
-            <value>The function to be optimized.</value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Gradient">
-            <summary>
-              Gets or sets a function returning the gradient
-              vector of the function to be optimized for a
-              given value of its free parameters.
-            </summary>
-            <value>The gradient function.</value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Diagonal">
-            <summary>
-              Gets or sets a function returning the Hessian
-              diagonals to be used during optimization.
-            </summary>
-            <value>A function for the Hessian diagonal.</value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Parameters">
-            <summary>
-              Gets the number of variables (free parameters)
-              in the optimization problem.
-            </summary>
-            <value>The number of parameters.</value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Iterations">
-            <summary>
-              Gets the number of iterations performed in the last
-              call to <see cref="M:Accord.Math.Optimization.LbfgsOptimization.Optimize(System.Double[])"/>.
-            </summary>
-            <value>
-              The number of iterations performed
-              in the previous optimization.</value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Evaluations">
-            <summary>
-              Gets the number of function evaluations performed
-              in the last call to <see cref="M:Accord.Math.Optimization.LbfgsOptimization.Optimize(System.Double[])"/>.
-            </summary>
-            <value>
-              The number of evaluations performed
-              in the previous optimization.</value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Corrections">
-            <summary>
-              Gets or sets the number of corrections used in the L-BFGS
-              update. Recommended values are between 3 and 7. Default is 5.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Tolerance">
-            <summary>
-              Gets or sets the accuracy with which the solution
-              is to be found. Default value is 1e-10.
-            </summary>
-            <remarks>
-              The optimization routine terminates when ||G|| &lt; EPS max(1,||X||),
-              where ||.|| denotes the Euclidean norm and EPS is the value for this
-              property.
-            </remarks>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Precision">
-            <summary>
-              Gets or sets a tolerance value controlling the accuracy of the
-              line search routine. If the function and gradient evaluations are
-              inexpensive with respect to the cost of the iteration (which is
-              sometimes the case when solving very large problems) it may be
-              advantageous to set this to a small value. A typical small value
-              is 0.1. This value should be greater than 1e-4. Default is 0.9.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Solution">
-            <summary>
-            Gets the solution found, the values of the parameters which
-            optimizes the function.
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:Accord.Math.Optimization.LbfgsOptimization.Output">
-            <summary>
-              Gets the output of the function at the current solution.
-            </summary>
-        </member>
         <member name="T:Accord.Math.Formats.CSharpMatrixFormatProvider">
             <summary>
               Gets the matrix representation used in C# multi-dimensional arrays.
@@ -2234,13 +1922,13 @@
             Initializes a new instance of the <see cref="T:Accord.Math.Formats.CSharpMatrixFormatProvider"/> class.
             </summary>
         </member>
-        <member name="P:Accord.Math.Formats.CSharpMatrixFormatProvider.CurrentCulture">
+        <member name="F:Accord.Math.Formats.CSharpMatrixFormatProvider.CurrentCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the CultureInfo used by the current thread.
             </summary>
             
         </member>
-        <member name="P:Accord.Math.Formats.CSharpMatrixFormatProvider.InvariantCulture">
+        <member name="F:Accord.Math.Formats.CSharpMatrixFormatProvider.InvariantCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the invariant system culture.
             </summary>
@@ -2409,6 +2097,176 @@
         </member>
         <member name="P:Accord.Math.Decompositions.GeneralizedEigenvalueDecomposition.DiagonalMatrix">
             <summary>Returns the block diagonal eigenvalue matrix.</summary>
+        </member>
+        <member name="T:Accord.Math.Optimization.LBFGS">
+            <summary>
+              Limited-memory Broyden–Fletcher–Goldfarb–Shanno (L-BFGS) method.
+            </summary>
+            <remarks>
+            <para>
+              The L-BFGS algorithm is a member of the broad family of quasi-Newton optimization
+              methods. L-BFGS stands for 'Limited memory BFGS'. Indeed, L-BFGS uses a limited
+              memory variation of the Broyden–Fletcher–Goldfarb–Shanno (BFGS) update to approximate
+              the inverse Hessian matrix (denoted by Hk). Unlike the original BFGS method which
+              stores a dense  approximation, L-BFGS stores only a few vectors that represent the
+              approximation implicitly. Due to its moderate memory requirement, L-BFGS method is
+              particularly well suited for optimization problems with a large number of variables.</para>
+            <para>
+              L-BFGS never explicitly forms or stores Hk. Instead, it maintains a history of the past
+              <c>m</c> updates of the position <c>x</c> and gradient <c>g</c>, where generally the history
+              <c>m</c>can be short, often less than 10. These updates are used to implicitly do operations
+              requiring the Hk-vector product.</para>
+              
+            <para>
+              The framework implementation of this method is based on the original FORTRAN source code
+              by Jorge Nocedal (see references below). The original FORTRAN source code of LBFGS (for
+              unconstrained problems) is available at http://www.netlib.org/opt/lbfgs_um.shar </para>
+            
+            <para>
+              References:
+              <list type="bullet">
+                <item><description><a href="http://www.netlib.org/opt/lbfgs_um.shar">
+                   Jorge Nocedal. Limited memory BFGS method for large scale optimization (Fortran source code). 1990.
+                   Available in http://www.netlib.org/opt/lbfgs_um.shar</a></description></item>
+                <item><description>
+                   Jorge Nocedal. Updating Quasi-Newton Matrices with Limited Storage. <i>Mathematics of Computation</i>,
+                   Vol. 35, No. 151, pp. 773--782, 1980.</description></item>
+                <item><description>
+                   Dong C. Liu, Jorge Nocedal. On the limited memory BFGS method for large scale optimization.</description></item>
+               </list></para>
+            </remarks>
+            
+        </member>
+        <member name="T:Accord.Math.Optimization.IOptimizer">
+            <summary>
+              Common interface for function optimizers.
+            </summary>
+            
+            <seealso cref="T:Accord.Math.Optimization.LBFGS"/>
+            
+        </member>
+        <member name="M:Accord.Math.Optimization.IOptimizer.Optimize(System.Double[])">
+            <summary>
+              Optimizes the defined function. 
+            </summary>
+            
+            <param name="values">The initial guess values for the parameters.</param>
+            
+            <returns>The values of the parameters which optimizes the function.</returns>
+            
+        </member>
+        <member name="M:Accord.Math.Optimization.LBFGS.#ctor(System.Int32)">
+            <summary>
+              Creates a new instance of the L-BFGS optimization algorithm.
+            </summary>
+            <param name="parameters">The number of free parameters in the optimization problem.</param>
+        </member>
+        <member name="M:Accord.Math.Optimization.LBFGS.#ctor(System.Int32,System.Func{System.Double[],System.Double},System.Func{System.Double[],System.Double[]})">
+            <summary>
+              Creates a new instance of the L-BFGS optimization algorithm.
+            </summary>
+            <param name="parameters">The number of free parameters in the function to be optimized.</param>
+            <param name="function">The function to be optimized.</param>
+            <param name="gradient">The gradient of the function.</param>
+        </member>
+        <member name="M:Accord.Math.Optimization.LBFGS.#ctor(System.Int32,System.Func{System.Double[],System.Double},System.Func{System.Double[],System.Double[]},System.Func{System.Double[]})">
+            <summary>
+              Creates a new instance of the L-BFGS optimization algorithm.
+            </summary>
+            <param name="parameters">The number of free parameters in the function to be optimized.</param>
+            <param name="function">The function to be optimized.</param>
+            <param name="gradient">The gradient of the function.</param>
+            <param name="diagonal">The diagonal of the Hessian.</param>
+        </member>
+        <member name="M:Accord.Math.Optimization.LBFGS.Optimize(System.Double[])">
+            <summary>
+              Optimizes the defined function. 
+            </summary>
+            <param name="values">The initial guess values for the parameters.</param>
+            <returns>The values of the parameters which optimizes the function.</returns>
+        </member>
+        <member name="M:Accord.Math.Optimization.LBFGS.mcsrch(System.Double[],System.Double@,System.Double[]@,System.Double*,System.Double@,System.Int32@,System.Double[])">
+            <summary>
+              Finds a step which satisfies a sufficient decrease and curvature condition.
+            </summary>
+        </member>
+        <member name="E:Accord.Math.Optimization.LBFGS.Progress">
+            <summary>
+              Occurs when progress is made during the optimization.
+            </summary>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Function">
+            <summary>
+              Gets or sets the function to be optimized.
+            </summary>
+            <value>The function to be optimized.</value>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Gradient">
+            <summary>
+              Gets or sets a function returning the gradient
+              vector of the function to be optimized for a
+              given value of its free parameters.
+            </summary>
+            <value>The gradient function.</value>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Diagonal">
+            <summary>
+              Gets or sets a function returning the Hessian
+              diagonals to be used during optimization.
+            </summary>
+            <value>A function for the Hessian diagonal.</value>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Parameters">
+            <summary>
+              Gets the number of variables (free parameters)
+              in the optimization problem.
+            </summary>
+            <value>The number of parameters.</value>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Iterations">
+            <summary>
+              Gets the number of iterations performed in the last
+              call to <see cref="M:Accord.Math.Optimization.LBFGS.Optimize(System.Double[])"/>.
+            </summary>
+            <value>
+              The number of iterations performed
+              in the previous optimization.</value>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Evaluations">
+            <summary>
+              Gets the number of function evaluations performed
+              in the last call to <see cref="M:Accord.Math.Optimization.LBFGS.Optimize(System.Double[])"/>.
+            </summary>
+            <value>
+              The number of evaluations performed
+              in the previous optimization.</value>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Corrections">
+            <summary>
+              Gets or sets the number of corrections used in the L-BFGS
+              update. Recommended values are between 3 and 7. Default is 5.
+            </summary>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Tolerance">
+            <summary>
+              Gets or sets the accuracy with which the solution
+              is to be found.
+            </summary>
+            <remarks>
+              The optimization routine terminates when ||G|| &lt; EPS max(1,||X||),
+              where ||.|| denotes the Euclidean norm and EPS is the value for this
+              property.
+            </remarks>
+        </member>
+        <member name="P:Accord.Math.Optimization.LBFGS.Precision">
+            <summary>
+              Gets or sets a tolerance value controlling the accuracy of the
+              line search routine. If the function and gradient evaluations are
+              inexpensive with respect to the cost of the iteration (which is
+              sometimes the case when solving very large problems) it may be
+              advantageous to set this to a small value. A typical small value
+              is 0.1. This value should be greater than 1e-4. Default is 0.9.
+            </summary>
         </member>
         <member name="T:Accord.Math.Decompositions.SingularValueDecomposition">
             <summary>
@@ -2703,71 +2561,6 @@
             <param name="covY">Covariance matrix for the second distribution.</param>
             <returns>The Bhattacharia distance between the two distributions.</returns>
         </member>
-        <member name="T:Accord.Math.Geometry.ConvexityDefect">
-            <summary>
-              Convexity defect.
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Math.Geometry.ConvexityDefect.#ctor(System.Int32,System.Int32,System.Int32,System.Double)">
-            <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Geometry.ConvexityDefect"/> class.
-            </summary>
-            <param name="point">The most distant point from the hull.</param>
-            <param name="start">The starting index of the defect in the contour.</param>
-            <param name="end">The ending index of the defect in the contour.</param>
-            <param name="depth">The depth of the defect (highest distance from the hull to
-            any of the contour points).</param>
-        </member>
-        <member name="P:Accord.Math.Geometry.ConvexityDefect.Start">
-            <summary>
-              Gets or sets the starting index of the defect in the contour.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Geometry.ConvexityDefect.End">
-            <summary>
-            Gets or sets the ending index of the defect in the contour.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Geometry.ConvexityDefect.Point">
-            <summary>
-            Gets or sets the most distant point from the hull characterizing the defect.
-            </summary>
-            <value>The point.</value>
-        </member>
-        <member name="P:Accord.Math.Geometry.ConvexityDefect.Depth">
-            <summary>
-            Gets or sets the depth of the defect (highest distance
-            from the hull to any of the points in the contour).
-            </summary>
-        </member>
-        <member name="T:Accord.Math.Geometry.ConvexHullDefects">
-            <summary>
-              Convex Hull Defects Extractor.
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Math.Geometry.ConvexHullDefects.#ctor(System.Double)">
-            <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Geometry.ConvexHullDefects"/> class.
-            </summary>
-            <param name="minDepth">The minimum depth which characterizes a convexity defect.</param>
-        </member>
-        <member name="M:Accord.Math.Geometry.ConvexHullDefects.FindDefects(System.Collections.Generic.List{AForge.IntPoint},System.Collections.Generic.List{AForge.IntPoint})">
-            <summary>
-              Finds the convexity defects in a contour given a convex hull.
-            </summary>
-            <param name="contour">The contour.</param>
-            <param name="convexHull">The convex hull of the contour.</param>
-            <returns>A list of <see cref="T:Accord.Math.Geometry.ConvexityDefect"/>s containing each of the
-            defects found considering the convex hull of the contour.</returns>
-        </member>
-        <member name="P:Accord.Math.Geometry.ConvexHullDefects.MinimumDepth">
-            <summary>
-            Gets or sets the minimum depth which characterizes a convexity defect.
-            </summary>
-            <value>The minimum depth.</value>
-        </member>
         <member name="T:Accord.Math.Formats.DefaultMatrixFormatProvider">
             <summary>
               Gets the default matrix representation, where each row
@@ -2780,13 +2573,13 @@
             Initializes a new instance of the <see cref="T:Accord.Math.Formats.DefaultMatrixFormatProvider"/> class.
             </summary>
         </member>
-        <member name="P:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture">
+        <member name="F:Accord.Math.Formats.DefaultMatrixFormatProvider.CurrentCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the CultureInfo used by the current thread.
             </summary>
             
         </member>
-        <member name="P:Accord.Math.Formats.DefaultMatrixFormatProvider.InvariantCulture">
+        <member name="F:Accord.Math.Formats.DefaultMatrixFormatProvider.InvariantCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the invariant system culture.
             </summary>
@@ -3002,7 +2795,7 @@
         </member>
         <member name="M:Accord.Math.Special.BSpline(System.Int32,System.Double)">
             <summary>
-              Computes the Basic Spline of order <c>n</c>
+              Computes the Basic Spline of order n
             </summary>
         </member>
         <member name="M:Accord.Math.Special.Binomial(System.Int32,System.Int32)">
@@ -3032,7 +2825,7 @@
         </member>
         <member name="M:Accord.Math.Special.BesselJ(System.Int32,System.Double)">
             <summary>
-            Returns the Bessel function of order <c>n</c> of the specified number.
+            Returns the Bessel function of order n of the specified number.
             </summary>
         </member>
         <member name="M:Accord.Math.Special.BesselY0(System.Double)">
@@ -3047,22 +2840,7 @@
         </member>
         <member name="M:Accord.Math.Special.BesselY(System.Int32,System.Double)">
             <summary>
-            Returns the Bessel function of the second kind, of order <c>n</c> of the specified number.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Special.BesselI0(System.Double)">
-            <summary>
-            Returns the modified Bessel function of the first kind, of order 0 of the specified number.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Special.BesselI1(System.Double)">
-            <summary>
-            Returns the modified Bessel function of the first kind, of order 1 of the specified number.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Special.BesselI(System.Int32,System.Double)">
-            <summary>
-            Returns the modified Bessel function of the first kind, of order <c>n</c> of the specified number.
+            Returns the Bessel function of the second kind, of order n of the specified number.
             </summary>
         </member>
         <member name="M:Accord.Math.Special.Log1p(System.Double)">
@@ -3286,7 +3064,7 @@
             <param name="value">The matrix to be decomposed.</param>
             <param name="robust">True to perform a square-root free LDLt decomposition,
             false otherwise.</param>
-            <param name="lowerTriangular">True to assume the <paramref name="value"/>value
+            <param name="lowerTriangular">True to assume the <typeparamref name="value"/>value
             matrix</param> as a lower triangular symmetric matrix, false otherwise.
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.Solve(System.Double[0:,0:])">
@@ -3295,50 +3073,41 @@
             <returns>Matrix <c>X</c> so that <c>L * L' * X = B</c>.</returns>
             <exception cref="T:System.ArgumentException">Matrix dimensions do not match.</exception>
             <exception cref="T:System.InvalidOperationException">Matrix is not symmetric and positive definite.</exception>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.Solve(System.Double[0:,0:],System.Boolean)">
             <summary>Solves a set of equation systems of type <c>A * X = B</c>.</summary>
             <param name="value">Right hand side matrix with as many rows as <c>A</c> and any number of columns.</param>
             <returns>Matrix <c>X</c> so that <c>L * L' * X = B</c>.</returns>
             <exception cref="T:System.ArgumentException">Matrix dimensions do not match.</exception>
-            <exception cref="T:System.NonSymmetricMatrixException">Matrix is not symmetric.</exception>
-            <exception cref="T:System.NonPositiveDefiniteMatrixException">Matrix is not positive-definite.</exception>
+            <exception cref="T:System.InvalidOperationException">Matrix is not symmetric and positive definite.</exception>
             <param name="inPlace">True to compute the solving in place, false otherwise.</param>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.Solve(System.Double[])">
             <summary>Solves a set of equation systems of type <c>A * X = B</c>.</summary>
             <param name="value">Right hand side matrix with as many rows as <c>A</c> and any number of columns.</param>
             <returns>Matrix <c>X</c> so that <c>L * L' * X = B</c>.</returns>
             <exception cref="T:System.ArgumentException">Matrix dimensions do not match.</exception>
-            <exception cref="T:System.NonSymmetricMatrixException">Matrix is not symmetric.</exception>
-            <exception cref="T:System.NonPositiveDefiniteMatrixException">Matrix is not positive-definite.</exception>
-            
+            <exception cref="T:System.InvalidOperationException">Matrix is not symmetric and positive definite.</exception>
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.Solve(System.Double[],System.Boolean)">
             <summary>Solves a set of equation systems of type <c>A * x = b</c>.</summary>
             <param name="value">Right hand side column vector with as many rows as <c>A</c>.</param>
             <returns>Vector <c>x</c> so that <c>L * L' * x = b</c>.</returns>
             <exception cref="T:System.ArgumentException">Matrix dimensions do not match.</exception>
-            <exception cref="T:System.NonSymmetricMatrixException">Matrix is not symmetric.</exception>
-            <exception cref="T:System.NonPositiveDefiniteMatrixException">Matrix is not positive-definite.</exception>
+            <exception cref="T:System.InvalidOperationException">Matrix is not symmetric and positive definite.</exception>
             <param name="inPlace">True to compute the solving in place, false otherwise.</param>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.Inverse">
             <summary>
-              Computes the inverse of the decomposed matrix.
+              Computes the inverse of the matrix given to the Cholesky decomposition.
             </summary>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.FromLeftTriangularMatrix(System.Double[0:,0:])">
             <summary>
               Creates a new Cholesky decomposition directly from
               an already computed left triangular matrix <c>L</c>.
             </summary>
-            <param name="leftTriangular">The left triangular matrix from a Cholesky decomposition.</param>
-            
+            <param name="L">The left triangular matrix from a Cholesky decomposition.</param>
         </member>
         <member name="M:Accord.Math.Decompositions.CholeskyDecomposition.Clone">
             <summary>
@@ -3347,7 +3116,6 @@
             <returns>
               A new object that is a copy of this instance.
             </returns>
-            
         </member>
         <member name="P:Accord.Math.Decompositions.CholeskyDecomposition.Symmetric">
             <summary>Returns <see langword="true"/> if the matrix is symmetric.</summary>
@@ -3367,104 +3135,6 @@
         <member name="P:Accord.Math.Decompositions.CholeskyDecomposition.Determinant">
             <summary>Returns the determinant of the matrix.</summary>
         </member>
-        <member name="P:Accord.Math.Decompositions.CholeskyDecomposition.LogDeterminant">
-            <summary>Returns the log-determinant of the matrix.</summary>
-        </member>
-        <member name="P:Accord.Math.Decompositions.CholeskyDecomposition.Nonsingular">
-            <summary>Returns if the matrix is non-singular (i.e. invertible).</summary>
-        </member>
-        <member name="T:Accord.Math.Wavelets.CDF97">
-            <summary>
-              Cohen-Daubechies-Feauveau Wavelet Transform
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.#ctor(System.Int32)">
-            <summary>
-              Constructs a new Cohen-Daubechies-Feauveau Wavelet Transform.
-            </summary>
-            <param name="levels">The number of iterations for the 2D transform.</param>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.Forward(System.Double[])">
-            <summary>
-              1-D Forward Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.Forward(System.Double[0:,0:])">
-            <summary>
-              2-D Forward Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.Backward(System.Double[])">
-            <summary>
-              1-D Backward (Inverse) Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.Backward(System.Double[0:,0:])">
-            <summary>
-              2-D Backward (Inverse) Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.FWT97(System.Double[])">
-            <summary>
-              Forward biorthogonal 9/7 wavelet transform
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.IWT97(System.Double[])">
-            <summary>
-              Inverse biorthogonal 9/7 wavelet transform
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.FWT97(System.Double[0:,0:],System.Int32)">
-            <summary>
-              Forward biorthogonal 9/7 2D wavelet transform
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.CDF97.IWT97(System.Double[0:,0:],System.Int32)">
-            <summary>
-              Inverse biorthogonal 9/7 2D wavelet transform
-            </summary>
-        </member>
-        <member name="T:Accord.Math.Geometry.KCurvature">
-            <summary>
-            K-curvatures algorithm for local contour extrema detection.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Geometry.KCurvature.#ctor(System.Int32,AForge.DoubleRange)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Accord.Math.Geometry.KCurvature"/> class.
-            </summary>
-            <param name="k">The number K of previous and posterior
-              points to consider when find local extremum points.</param>
-            <param name="theta">The theta angle range (in
-              degrees) used to define extremum points..</param>
-        </member>
-        <member name="M:Accord.Math.Geometry.KCurvature.FindPeaks(System.Collections.Generic.List{AForge.IntPoint})">
-            <summary>
-              Finds local extremum points in the contour.
-            </summary>
-            <param name="contour">A list of <see cref="T:AForge.IntPoint">
-            integer points</see> defining the contour.</param>
-            
-        </member>
-        <member name="P:Accord.Math.Geometry.KCurvature.K">
-            <summary>
-              Gets or sets the number K of previous and posterior
-              points to consider when find local extremum points.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Geometry.KCurvature.Theta">
-            <summary>
-              Gets or sets the theta angle range (in
-              degrees) used to define extremum points.
-            </summary>
-        </member>
-        <member name="P:Accord.Math.Geometry.KCurvature.Suppression">
-            <summary>
-              Gets or sets the suppression radius to
-              use during non-minimum suppression.
-            </summary>
-        </member>
         <member name="T:Accord.Math.Formats.OctaveMatrixFormatProvider">
             <summary>
               Format provider for the matrix format used by Octave (and MATLAB).
@@ -3476,13 +3146,13 @@
             Initializes a new instance of the <see cref="T:Accord.Math.Formats.OctaveMatrixFormatProvider"/> class.
             </summary>
         </member>
-        <member name="P:Accord.Math.Formats.OctaveMatrixFormatProvider.CurrentCulture">
+        <member name="F:Accord.Math.Formats.OctaveMatrixFormatProvider.CurrentCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the CultureInfo used by the current thread.
             </summary>
             
         </member>
-        <member name="P:Accord.Math.Formats.OctaveMatrixFormatProvider.InvariantCulture">
+        <member name="F:Accord.Math.Formats.OctaveMatrixFormatProvider.InvariantCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the invariant system culture.
             </summary>
@@ -3499,13 +3169,13 @@
             Initializes a new instance of the <see cref="T:Accord.Math.Formats.CSharpJaggedMatrixFormatProvider"/> class.
             </summary>
         </member>
-        <member name="P:Accord.Math.Formats.CSharpJaggedMatrixFormatProvider.CurrentCulture">
+        <member name="F:Accord.Math.Formats.CSharpJaggedMatrixFormatProvider.CurrentCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the CultureInfo used by the current thread.
             </summary>
             
         </member>
-        <member name="P:Accord.Math.Formats.CSharpJaggedMatrixFormatProvider.InvariantCulture">
+        <member name="F:Accord.Math.Formats.CSharpJaggedMatrixFormatProvider.InvariantCulture">
             <summary>
               Gets the IMatrixFormatProvider which uses the invariant system culture.
             </summary>
@@ -3584,63 +3254,6 @@
         <member name="P:Accord.Math.Decompositions.QrDecomposition.Diagonal">
             <summary>Returns the diagonal of <c>R</c>.</summary>
         </member>
-        <member name="T:Accord.Math.Wavelets.Haar">
-            <summary>
-              Haar Wavelet Transform
-            </summary>
-            <remarks>
-              References:
-              - http://www.cs.ucf.edu/~mali/haar/
-            </remarks>
-            
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.#ctor(System.Int32)">
-            <summary>
-              Constructs a new Haar Wavelet Transform.
-            </summary>
-            <param name="levels">The number of iterations for the 2D transform.</param>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.Forward(System.Double[])">
-            <summary>
-              1-D Forward Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.Backward(System.Double[])">
-            <summary>
-              1-D Backward (Inverse) Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.Forward(System.Double[0:,0:])">
-            <summary>
-              2-D Forward Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.Backward(System.Double[0:,0:])">
-            <summary>
-              2-D Backward (Inverse) Discrete Wavelet Transform.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.FWT(System.Double[])">
-            <summary>
-              Discrete Haar Wavelet Transform
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.IWT(System.Double[])">
-            <summary>
-              Inverse Haar Wavelet Transform
-            </summary>
-            <param name="data"></param>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.FWT(System.Double[0:,0:],System.Int32)">
-            <summary>
-              Discrete Haar Wavelet 2D Transform
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Wavelets.Haar.IWT(System.Double[0:,0:],System.Int32)">
-            <summary>
-              Inverse Haar Wavelet 2D Transform
-            </summary>
-        </member>
         <member name="T:Accord.Math.Tools">
             <summary>
               Set of mathematical tools.
@@ -3659,17 +3272,6 @@
         <member name="M:Accord.Math.Tools.Angle(System.Double,System.Double)">
             <summary>
               Gets the angle formed by the vector [x,y].
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Tools.Angle(AForge.IntPoint,AForge.IntPoint)">
-            <summary>
-              Gets the displacement angle between two points.
-            </summary>
-        </member>
-        <member name="M:Accord.Math.Tools.Direction(AForge.IntPoint,AForge.IntPoint)">
-            <summary>
-              Gets the displacement angle between two points, coded
-              as an integer varying from 0 to 20.
             </summary>
         </member>
         <member name="M:Accord.Math.Tools.NextPowerOf2(System.Int32)">
@@ -3766,12 +3368,6 @@
               'from') to another value measured in the scale 'to'.
             </summary>
         </member>
-        <member name="M:Accord.Math.Tools.Scale(AForge.IntRange,AForge.DoubleRange,System.Int32)">
-            <summary>
-              Converts the value x (which is measured in the scale
-              'from') to another value measured in the scale 'to'.
-            </summary>
-        </member>
         <member name="M:Accord.Math.Tools.Acosh(System.Double)">
             <summary>
               Returns the hyperbolic arc cosine of the specified value.
@@ -3849,69 +3445,6 @@
             </summary>
             <param name="x">The first object to compare.</param>
             <param name="y">The second object to compare.</param>
-        </member>
-        <member name="T:Accord.Math.Differentiation.FiniteDifferences">
-            <summary>
-              Derivative approximation by finite differences.
-            </summary>
-            <remarks>
-            <para>
-              Numerical differentiation is a technique of numerical analysis to
-              produce an estimate of the derivative of a mathematical function or
-              function subroutine using values from the function and perhaps other
-              knowledge about the function.</para>
-              
-            <para>
-              References:
-              <list type="bullet">
-                <item><description>
-                Trent F. Guidry, Calculating derivatives of a function numerically. Available on:
-                http://www.trentfguidry.net/post/2009/07/12/Calculate-derivatives-function-numerically.aspx
-                </description></item>
-                </list>
-             </para>
-            </remarks>
-            
-        </member>
-        <member name="M:Accord.Math.Differentiation.FiniteDifferences.#ctor(System.Int32)">
-            <summary>
-              Initializes a new instance of the <see cref="T:Accord.Math.Differentiation.FiniteDifferences"/> class.
-            </summary>
-            <param name="variables">The number of free parameters in the function.</param>
-            
-        </member>
-        <member name="M:Accord.Math.Differentiation.FiniteDifferences.Reset">
-            <summary>
-              Resets the relative step sizes of the approximation.
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Math.Differentiation.FiniteDifferences.Compute(System.Double[])">
-            <summary>
-              Computes the gradient at the given point <c>x</c>.
-            </summary>
-            <param name="x">The point where to compute the gradient.</param>
-            <returns>The gradient of the function evaluated at point <c>x</c>.</returns>
-            
-        </member>
-        <member name="M:Accord.Math.Differentiation.FiniteDifferences.derivative(System.Double[],System.Int32,System.Double)">
-            <summary>
-              Computes the derivative at point <c>x_i</c>.
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Math.Differentiation.FiniteDifferences.createInterpolationCoefficients(System.Int32)">
-            <summary>
-              Creates the interpolation coefficients.
-            </summary>
-            <param name="points">The number of points in the tableau.</param>
-            
-        </member>
-        <member name="P:Accord.Math.Differentiation.FiniteDifferences.Function">
-            <summary>
-              Gets or sets the function to be differentiated.
-            </summary>
-            
         </member>
         <member name="T:Accord.Math.ComplexMatrix">
             <summary>
@@ -3996,62 +3529,41 @@
             
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.#ctor(System.Double[0:,0:])">
-            <summary>
-              Constructs a new LU decomposition.
-            </summary>	
+            <summary>Construct a new LU decomposition.</summary>	
             <param name="value">The matrix A to be decomposed.</param>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.#ctor(System.Double[0:,0:],System.Boolean)">
-            <summary>
-              Constructs a new LU decomposition.
-            </summary>	
+            <summary>Construct a LU decomposition.</summary>	
             <param name="value">The matrix A to be decomposed.</param>
             <param name="transpose">True if the decomposition should be performed on
             the transpose of A rather than A itself, false otherwise. Default is false.</param>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.#ctor(System.Double[0:,0:],System.Boolean,System.Boolean)">
-            <summary>
-              Constructs a new LU decomposition.
-            </summary>	
+            <summary>Construct a LU decomposition.</summary>	
             <param name="value">The matrix A to be decomposed.</param>
             <param name="transpose">True if the decomposition should be performed on
             the transpose of A rather than A itself, false otherwise. Default is false.</param>
             <param name="inPlace">True if the decomposition should be performed over the
             <paramref name="value"/> matrix rather than on a copy of it. If true, the
             matrix will be destroyed during the decomposition. Default is false.</param>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.Inverse">
-            <summary>
-              Solves a set of equation systems of type <c>A * X = I</c>.
-            </summary>
-            
+            <summary>Solves a set of equation systems of type <c>A * X = I</c>.</summary>
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.Solve(System.Double[0:,0:])">
-            <summary>
-              Solves a set of equation systems of type <c>A * X = B</c>.
-            </summary>
+            <summary>Solves a set of equation systems of type <c>A * X = B</c>.</summary>
             <param name="value">Right hand side matrix with as many rows as <c>A</c> and any number of columns.</param>
             <returns>Matrix <c>X</c> so that <c>L * U * X = B</c>.</returns>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.SolveTranspose(System.Double[0:,0:])">
-            <summary>
-              Solves a set of equation systems of type <c>X * A = B</c>.
-            </summary>
+            <summary>Solves a set of equation systems of type <c>X * A = B</c>.</summary>
             <param name="value">Right hand side matrix with as many columns as <c>A</c> and any number of rows.</param>
             <returns>Matrix <c>X</c> so that <c>X * L * U = A</c>.</returns>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.Solve(System.Double[])">
-            <summary>
-              Solves a set of equation systems of type <c>A * X = B</c>.
-            </summary>
-            <param name="value">Right hand side column vector with as many rows as <c>A</c>.</param>
+            <summary>Solves a set of equation systems of type <c>A * X = B</c>.</summary>
+            <param name="value">Right hand side matrix with as many rows as <c>A</c> and any number of columns.</param>
             <returns>Matrix <c>X</c> so that <c>L * U * X = B</c>.</returns>
-            
         </member>
         <member name="M:Accord.Math.Decompositions.LuDecomposition.Clone">
             <summary>
@@ -4060,43 +3572,21 @@
             <returns>
             A new object that is a copy of this instance.
             </returns>
-            
         </member>
         <member name="P:Accord.Math.Decompositions.LuDecomposition.Nonsingular">
-            <summary>
-              Returns if the matrix is non-singular (i.e. invertible).
-            </summary>
-            
+            <summary>Returns if the matrix is non-singular.</summary>
         </member>
         <member name="P:Accord.Math.Decompositions.LuDecomposition.Determinant">
-            <summary>
-              Returns the determinant of the matrix.
-            </summary>
-            
-        </member>
-        <member name="P:Accord.Math.Decompositions.LuDecomposition.LogDeterminant">
-            <summary>
-              Returns the log-determinant of the matrix.
-            </summary>
-            
+            <summary>Returns the determinant of the matrix.</summary>
         </member>
         <member name="P:Accord.Math.Decompositions.LuDecomposition.LowerTriangularFactor">
-            <summary>
-              Returns the lower triangular factor <c>L</c> with <c>A=LU</c>.
-            </summary>
-            
+            <summary>Returns the lower triangular factor <c>L</c> with <c>A=LU</c>.</summary>
         </member>
         <member name="P:Accord.Math.Decompositions.LuDecomposition.UpperTriangularFactor">
-            <summary>
-              Returns the lower triangular factor <c>L</c> with <c>A=LU</c>.
-            </summary>
-            
+            <summary>Returns the lower triangular factor <c>L</c> with <c>A=LU</c>.</summary>
         </member>
         <member name="P:Accord.Math.Decompositions.LuDecomposition.PivotPermutationVector">
-            <summary>
-              Returns the pivot permutation vector.
-            </summary>
-            
+            <summary>Returns the pivot permuation vector.</summary>
         </member>
         <member name="T:Accord.Math.Formats.MatrixFormatter">
             <summary>
