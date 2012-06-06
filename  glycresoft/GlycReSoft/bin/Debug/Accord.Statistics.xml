@@ -13,6 +13,7 @@
         <member name="T:Accord.Statistics.Models.Markov.Learning.BaumWelchLearningBase">
             <summary>
               Base class for implementations of the Baum-Welch learning algorithm.
+              This class cannot be instantiated.
             </summary>
             
         </member>
@@ -195,6 +196,20 @@
               during learning.
             </summary>
             <value>The distribution fitting options.</value>
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Learning.IConditionalRandomFieldLearning">
+            <summary>
+              Common interface for Conditional Random Fields learning algorithms.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Learning.IConditionalRandomFieldLearning.Run(System.Int32[][],System.Int32[][])">
+            <summary>
+              Runs the learning algorithm with the specified input
+              training observations and corresponding output labels.
+            </summary>
+            <param name="observations">The training observations.</param>
+            <param name="labels">The observation's labels.</param>
         </member>
         <member name="T:Accord.Statistics.Filters.ProjectionFilter">
             <summary>
@@ -1161,6 +1176,82 @@
             Gets the entropy for this distribution.
             </summary>
         </member>
+        <member name="T:Accord.Statistics.Distributions.Fitting.VonMisesOptions">
+            <summary>
+              Von-Mises distribution estimation options.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Distributions.Fitting.IFittingOptions">
+            <summary>
+              Common interface for distribution fitting option objects.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Fitting.VonMisesOptions.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Accord.Statistics.Distributions.Fitting.VonMisesOptions"/> class.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Distributions.Fitting.VonMisesOptions.UseBiasCorrection">
+            <summary>
+            Gets or sets a value indicating whether to use bias correction
+            when estimating the concentration parameter of the von-Mises
+            distribution.
+            </summary>
+            <value><c>true</c> to use bias correction; otherwise, <c>false</c>.</value>
+            <remarks>
+            For more information, see: Best, D. and Fisher N. (1981). The bias
+            of the maximum likelihood estimators of the von Mises-Fisher concentration
+            parameters. Communications in Statistics - Simulation and Computation, B10(5),
+            493-502.
+            </remarks>
+            
+        </member>
+        <member name="T:Accord.Statistics.Analysis.IMultipleRegressionAnalysis">
+            <summary>
+              Common interface for multiple regression analysis.
+            </summary>
+            
+            <remarks>
+            <para>
+              Regression analysis attempt to express many numerical dependent
+              variables as a combinations of other features or measurements.</para>
+            </remarks>
+            
+        </member>
+        <member name="T:Accord.Statistics.Analysis.IMultivariateAnalysis">
+            <summary>
+              Common interface for multivariate statistical analysis.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Analysis.IAnalysis">
+            <summary>
+              Common interface for statistical analysis.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.IAnalysis.Compute">
+            <summary>
+              Computes the analysis using given source data and parameters.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.IMultivariateAnalysis.Source">
+            <summary>
+              Source data used in the analysis.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.IMultipleRegressionAnalysis.Output">
+            <summary>
+              Gets the the dependent variables' values
+              for each of the source input points.
+            </summary>
+            
+        </member>
         <member name="T:Accord.Statistics.Models.Markov.Learning.ISupervisedLearning">
             <summary>
               Common interface for supervised learning algorithms for
@@ -1195,12 +1286,14 @@
               Markov sequence classifier using the specified configuration
               function.
             </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.Run``1(``0[],System.Int32[])">
             <summary>
               Trains each model to recognize each of the output labels.
             </summary>
             <returns>The sum log-likelihood for all models after training.</returns>
+            
         </member>
         <member name="M:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.Threshold">
             <summary>
@@ -1208,12 +1301,14 @@
               for the current set of Markov models in this sequence classifier.
             </summary>
             <returns>A <see cref="M:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.Threshold">threshold Markov model</see>.</returns>
+            
         </member>
         <member name="P:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.Classifier">
             <summary>
               Gets the classifier being trained by this instance.
             </summary>
             <value>The classifier being trained by this instance.</value>
+            
         </member>
         <member name="P:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.Algorithm">
             <summary>
@@ -1221,14 +1316,16 @@
               training algorithm should be used for each of the models
               in the hidden Markov model set.
             </summary>
+            
         </member>
-        <member name="P:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.UpdateThreshold">
+        <member name="P:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearningBase`2.Rejection">
             <summary>
-              Gets or sets a value indicating whether the threshold
-              model should be updated (or created) after training.
+              Gets or sets a value indicating whether a threshold
+              model should be created after training to support rejection.
             </summary>
             <value><c>true</c> to update the threshold model after training;
             otherwise, <c>false</c>.</value>
+            
         </member>
         <member name="T:Accord.Statistics.Distributions.Univariate.Mixture`1">
             <summary>
@@ -1460,6 +1557,25 @@
             </example>
             
         </member>
+        <member name="T:Accord.Statistics.Analysis.IProjectionAnalysis">
+            <summary>
+              Common interface for projective statistical analysis.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.IProjectionAnalysis.Transform(System.Double[0:,0:])">
+            <summary>
+              Projects new data into latent space.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.IProjectionAnalysis.Transform(System.Double[0:,0:],System.Int32)">
+            <summary>
+              Projects new data into latent space with
+              given number of dimensions.
+            </summary>
+            
+        </member>
         <member name="M:Accord.Statistics.Analysis.PrincipalComponentAnalysis.#ctor(System.Double[0:,0:],Accord.Statistics.Analysis.AnalysisMethod)">
             <summary>Constructs a new Principal Component Analysis.</summary>
             <param name="data">The source data to perform analysis. The matrix should contain
@@ -1476,12 +1592,12 @@
         </member>
         <member name="M:Accord.Statistics.Analysis.PrincipalComponentAnalysis.Transform(System.Double[0:,0:])">
             <summary>Projects a given matrix into principal component space.</summary>
-            <param name="matrix">The matrix to be projected.</param>
+            <param name="data">The matrix to be projected.</param>
         </member>
         <member name="M:Accord.Statistics.Analysis.PrincipalComponentAnalysis.Transform(System.Double[0:,0:],System.Int32)">
             <summary>Projects a given matrix into principal component space.</summary>
-            <param name="matrix">The matrix to be projected.</param>
-            <param name="components">The number of components to consider.</param>
+            <param name="data">The matrix to be projected.</param>
+            <param name="dimensions">The number of components to consider.</param>
         </member>
         <member name="M:Accord.Statistics.Analysis.PrincipalComponentAnalysis.Revert(System.Double[0:,0:])">
             <summary>
@@ -1611,9 +1727,9 @@
         </member>
         <member name="M:Accord.Statistics.Analysis.KernelPrincipalComponentAnalysis.Transform(System.Double[0:,0:],System.Int32)">
             <summary>Projects a given matrix into the principal component space.</summary>
-            <param name="matrix">The matrix to be projected. The matrix should contain
+            <param name="data">The matrix to be projected. The matrix should contain
             variables as columns and observations of each variable as rows.</param>
-            <param name="components">The number of components to use in the transformation.</param>
+            <param name="dimensions">The number of components to use in the transformation.</param>
         </member>
         <member name="M:Accord.Statistics.Analysis.KernelPrincipalComponentAnalysis.Revert(System.Double[0:,0:])">
             <summary>
@@ -1636,12 +1752,15 @@
               transformation is not always possible and is not even guaranteed to exist.
             </summary>
             <remarks>
+            <para>
               This method works using a closed-form MDS approach as suggested by
               Kwok and Tsang. It is currently a direct implementation of the algorithm
               without any kind of optimization.
-              
+            </para>
+            <para>
               Reference:
               - http://cmp.felk.cvut.cz/cmp/software/stprtool/manual/kernels/preimage/list/rbfpreimg3.html
+            </para>
             </remarks>
             <param name="data">The kpca-transformed data.</param>
             <param name="neighbors">The number of nearest neighbors to use while constructing the pre-image.</param>
@@ -1915,6 +2034,162 @@
             <param name="y">Vector <c>y</c> in input space.</param>
             <returns>Dot product in feature (kernel) space.</returns>
         </member>
+        <member name="T:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction">
+            <summary>
+              Potential function modeling Hidden Markov Models.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Functions.IPotentialFunction">
+            <summary>
+              Common interface for CRF's Potential functions.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Functions.IPotentialFunction.Compute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+              Computes the potential function given the specified parameters.
+            </summary>
+            <param name="previous">Previous state.</param>
+            <param name="state">Current state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Functions.IPotentialFunction.LogCompute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+              Computes the log of the potential function given the specified parameters.
+            </summary>
+            <param name="previous">Previous state.</param>
+            <param name="state">Current state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.IPotentialFunction.States">
+            <summary>
+              Gets the number of model states
+              assumed by this function.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.IPotentialFunction.Weights">
+            <summary>
+              Gets or sets the set of weights for each feature function.
+            </summary>
+            <value>The weights for each of the feature functions.</value>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.IPotentialFunction.Features">
+            <summary>
+              Gets the feature functions composing this potential function.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.#ctor(System.Int32,System.Int32)">
+            <summary>
+              Constructs a new potential function modeling Hidden Markov Models.
+            </summary>
+            <param name="states">The number of states.</param>
+            <param name="symbols">The number of symbols.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.#ctor(Accord.Statistics.Models.Markov.HiddenMarkovModel)">
+            <summary>
+              Constructs a new potential function modeling Hidden Markov Models.
+            </summary>
+            <param name="model">The hidden Markov model.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.Compute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Computes the potential function given the specified parameters.
+            </summary>
+            <param name="previous"></param>
+            <param name="state"></param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.LogCompute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Computes the log of the potential function given the specified parameters.
+            </summary>
+            <param name="previous"></param>
+            <param name="state"></param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.States">
+            <summary>
+              Gets the number of model states assumed by this function.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.Symbols">
+            <summary>
+              Gets the number of symbols assumed by this function.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.Weights">
+            <summary>
+              Gets or sets the set of weights for each feature function.
+            </summary>
+            <value>The weights for each of the feature functions.</value>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.Functions.HiddenMarkovModelPotentialFunction.Features">
+            <summary>
+            Gets the feature functions composing this potential function.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Features.TransitionFeature">
+            <summary>
+              Edge feature for Hidden Markov Model state transition probabilities.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Features.EdgeFeature">
+            <summary>
+              Abstract class for CRF's Edge features.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Features.IFeature">
+            <summary>
+              Common interface for CRF feature functions.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.IFeature.Compute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+              Computes the feature for the given parameters.
+            </summary>
+            <param name="previous">The previous state.</param>
+            <param name="current">The current state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index of the current observation.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.EdgeFeature.Compute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+              Computes the edge feature for the given edge parameters.
+            </summary>
+            <param name="previous">The originating state.</param>
+            <param name="current">The destination state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.TransitionFeature.#ctor(System.Int32)">
+            <summary>
+              Constructs a initial state transition feature.
+            </summary>
+            <param name="state">The destination state.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.TransitionFeature.#ctor(System.Int32,System.Int32)">
+            <summary>
+              Constructs a state transition feature.
+            </summary>
+            <param name="previous">The previous state.</param>
+            <param name="next">The next state.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.TransitionFeature.Compute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Computes the state transition feature for the given edge parameters.
+            </summary>
+            <param name="previous">The originating state.</param>
+            <param name="current">The destination state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
         <member name="T:Accord.Statistics.Filters.LinearScalingFilter">
             <summary>
               Linear Scaling Filter
@@ -2041,6 +2316,33 @@
               Target range of the output values after scaling.
             </summary>
         </member>
+        <member name="T:Accord.Statistics.Analysis.AnalysisMethod">
+            <summary>
+              Determines the method to be used in a statistical analysis.
+            </summary>
+        </member>
+        <member name="F:Accord.Statistics.Analysis.AnalysisMethod.Center">
+            <summary>
+              By choosing Center, the method will be run on the mean-centered data.
+            </summary>
+            <remarks>
+              In Principal Component Analysis this means the method will operate
+              on the Covariance matrix of the given data.
+            </remarks>
+             
+        </member>
+        <member name="F:Accord.Statistics.Analysis.AnalysisMethod.Standardize">
+            <summary>
+               By choosing Standardize, the method will be run on the mean-centered and
+               standardized data.
+            </summary>
+            <remarks>
+               In Principal Component Analysis this means the method
+               will operate on the Correlation matrix of the given data. One should always
+               choose to standardize when dealing with different units of variables.
+            </remarks>
+            
+        </member>
         <member name="T:Accord.Statistics.Testing.Hypothesis">
             <summary>
               Test type
@@ -2125,9 +2427,49 @@
             </summary>
             
         </member>
-        <member name="T:Accord.Statistics.Kernels.Polynomial">
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.#ctor(System.Int32,System.Double)">
             <summary>
-              Polynomial Kernel.
+              Constructs a new Sparse Polynomial kernel of a given degree.
+            </summary>
+            <param name="degree">The polynomial degree for this kernel.</param>
+            <param name="constant">The polynomial constant for this kernel. Default is 1.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.#ctor(System.Int32)">
+            <summary>
+              Constructs a new Polynomial kernel of a given degree.
+            </summary>
+            <param name="degree">The polynomial degree for this kernel.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.Function(System.Double[],System.Double[])">
+            <summary>
+              Polynomial kernel function.
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.Distance(System.Double[],System.Double[])">
+            <summary>
+              Computes the distance in input space
+              between two points given in feature space.
+            </summary>
+            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
+            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
+            <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparsePolynomial.Degree">
+            <summary>
+              Gets or sets the kernel's polynomial degree.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparsePolynomial.Constant">
+            <summary>
+              Gets or sets the kernel's polynomial constant term.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Kernels.Linear">
+            <summary>
+              Linear Kernel.
             </summary>
             
         </member>
@@ -2153,73 +2495,6 @@
             <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
             <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
             <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Polynomial.#ctor(System.Int32,System.Double)">
-            <summary>
-              Constructs a new Polynomial kernel of a given degree.
-            </summary>
-            <param name="degree">The polynomial degree for this kernel.</param>
-            <param name="constant">The polynomial constant for this kernel. Default is 1.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Polynomial.#ctor(System.Int32)">
-            <summary>
-              Constructs a new Polynomial kernel of a given degree.
-            </summary>
-            <param name="degree">The polynomial degree for this kernel.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Polynomial.Function(System.Double[],System.Double[])">
-            <summary>
-              Polynomial kernel function.
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Polynomial.Distance(System.Double[],System.Double[])">
-            <summary>
-              Computes the distance in input space
-              between two points given in feature space.
-            </summary>
-            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
-            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
-            <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Polynomial.Degree">
-            <summary>
-              Gets or sets the kernel's polynomial degree.
-            </summary>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Polynomial.Constant">
-            <summary>
-              Gets or sets the kernel's polynomial constant term.
-            </summary>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.#ctor(System.Int32,System.Double)">
-            <summary>
-              Constructs a new Polynomial kernel of a given degree.
-            </summary>
-            <param name="degree">The polynomial degree for this kernel.</param>
-            <param name="constant">The polynomial constant for this kernel. Default is 1.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.#ctor(System.Int32)">
-            <summary>
-              Constructs a new Polynomial kernel of a given degree.
-            </summary>
-            <param name="degree">The polynomial degree for this kernel.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sparse.SparsePolynomial.Function(System.Double[],System.Double[])">
-            <summary>
-              Polynomial kernel function.
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="T:Accord.Statistics.Kernels.Linear">
-            <summary>
-              Linear Kernel.
-            </summary>
-            
         </member>
         <member name="M:Accord.Statistics.Kernels.Linear.#ctor(System.Double)">
             <summary>
@@ -2252,6 +2527,122 @@
         <member name="P:Accord.Statistics.Kernels.Linear.Constant">
             <summary>
               Gets or sets the kernel's intercept term.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Features.EmissionFeature">
+            <summary>
+              State feature for Hidden Markov Model symbol emission probabilities.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.Features.StateFeature">
+            <summary>
+              Abstract class for CRF's State features.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.StateFeature.Accord#Statistics#Models#Fields#Features#IFeature#Compute(System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Computes the feature for the given parameters.
+            </summary>
+            <param name="previous">The previous state.</param>
+            <param name="current">The current state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index of the current observation.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.StateFeature.Compute(System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Computes the state feature for the given state parameters.
+            </summary>
+            <param name="currentState">The current state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.EmissionFeature.#ctor(System.Int32,System.Int32)">
+            <summary>
+              Constructs a new symbol emission feature.
+            </summary>
+            <param name="state">The state for the emission.</param>
+            <param name="symbol">The emission symbol.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Features.EmissionFeature.Compute(System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            Computes the state feature for the given state parameters.
+            </summary>
+            <param name="currentState">The current state.</param>
+            <param name="observations">The observations.</param>
+            <param name="index">The index for the current observation.</param>
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.ConditionalRandomField">
+            <summary>
+              Linear-Chain Conditional Random Field (experimental).
+            </summary>
+            <remarks>
+              <para>A conditional random field (CRF) is a type of discriminative undirected
+              probabilistic graphical model. It is most often used for labeling or parsing
+              of sequential data, such as natural language text or biological sequences
+              and computer vision.</para>
+              
+              <para>This implementation is currently experimental.</para>
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.#ctor(System.Int32,Accord.Statistics.Models.Fields.Functions.IPotentialFunction)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Accord.Statistics.Models.Fields.ConditionalRandomField"/> class.
+            </summary>
+            <param name="states">The number of states for the model.</param>
+            <param name="function">The potential function to be used by the model.</param>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.Partition(System.Int32[])">
+            <summary>
+              Computes the partition function, as known as Z(x),
+              for the specified observations.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.LogPartition(System.Int32[])">
+            <summary>
+              Computes the Log of the partition function.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.Likelihood(System.Int32[],System.Int32[])">
+            <summary>
+              Computes the likelihood of the model for the given observations.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.LogLikelihood(System.Int32[],System.Int32[])">
+            <summary>
+              Computes the log-likelihood of the model for the given observations.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.Compute(System.Int32[],System.Double@)">
+            <summary>
+              Computes the most likely state labels for the given observations,
+              returning the overall sequence probability for this model.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.Likelihood(System.Int32[][],System.Int32[][])">
+            <summary>
+              Computes the most likely state labels for the given observations,
+              returning the overall sequence probability for this model.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ConditionalRandomField.LogLikelihood(System.Int32[][],System.Int32[][])">
+            <summary>
+              Computes the most likely state labels for the given observations,
+              returning the overall sequence log-likelihood for this model.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.ConditionalRandomField.States">
+            <summary>
+              Gets the number of states in this
+              linear-chain Conditional Random Field.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Models.Fields.ConditionalRandomField.Function">
+            <summary>
+              Gets the potential function encompassing
+              all feature functions for this model.
             </summary>
         </member>
         <member name="T:Accord.Statistics.Filters.SelectionFilter">
@@ -2514,6 +2905,28 @@
             </remarks>
             
         </member>
+        <member name="T:Accord.Statistics.Analysis.IRegressionAnalysis">
+            <summary>
+              Common interface for regression analysis.
+            </summary>
+            
+            <remarks>
+            <para>
+              Regression analysis attempt to express one numerical dependent variable
+              as a combinations of other features or measurements.</para>
+            <para>
+              When the dependent variable is a category label, the class of analysis methods
+              is known as <see cref="T:Accord.Statistics.Analysis.IDiscriminantAnalysis">discriminant analysis</see>.</para>  
+            </remarks>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.IRegressionAnalysis.Outputs">
+            <summary>
+              Gets the the dependent variable value
+              for each of the source input points.
+            </summary>
+            
+        </member>
         <member name="M:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.#ctor(System.Double[][],System.Double[],System.String[],System.String)">
             <summary>
               Constructs a Stepwise Logistic Regression Analysis.
@@ -2522,15 +2935,12 @@
             <param name="outputs">The output data for the analysis.</param>
             <param name="inputNames">The names for the input variables.</param>
             <param name="outputName">The name for the output variable.</param>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Compute">
             <summary>
               Computes the Stepwise Logistic Regression.
             </summary>
-            <returns>
-              Returns the final set of input variables indices
-              as selected by the stepwise procedure.
-            </returns>
         </member>
         <member name="M:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.DoStep">
             <summary>
@@ -2546,32 +2956,64 @@
               Fits a logistic regression model to data until convergence.
             </summary>
         </member>
+        <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Source">
+            <summary>
+            Source data used in the analysis.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Outputs">
+            <summary>
+            Gets the the dependent variable value
+            for each of the source input points.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Result">
+            <summary>
+              Gets the resulting probabilities obtained
+              by the most likely logistic regression model.
+            </summary>
+            
+        </member>
         <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Current">
             <summary>
               Gets the current nested model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Nested">
             <summary>
               Gets the collection of nested models obtained after 
               a step of the backward stepwise procedure.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Inputs">
             <summary>
               Gets the name of the input variables.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Output">
             <summary>
               Gets the name of the output variables.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Threshold">
             <summary>
               Gets or sets the significance threshold used to
               determine if a nested model is significant or not.
             </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.StepwiseLogisticRegressionAnalysis.Variables">
+            <summary>
+              Gets the final set of input variables indices
+              as selected by the stepwise procedure.
+            </summary>
+            
         </member>
         <member name="T:Accord.Statistics.Analysis.StepwiseLogisticRegressionModel">
             <summary>
@@ -2643,6 +3085,12 @@
             </summary>
             <param name="data">The source data to perform analysis.</param>
             <param name="columnNames">Names for the analyzed variables.</param>
+        </member>
+        <member name="M:Accord.Statistics.Analysis.DescriptiveAnalysis.Compute">
+            <summary>
+              Computes the analysis using given source data and parameters.
+            </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.DescriptiveAnalysis.Source">
             <summary>
@@ -3099,39 +3547,9 @@
             </remarks>
             
         </member>
-        <member name="T:Accord.Statistics.Kernels.Cauchy">
-            <summary>
-              Cauchy Kernel.
-            </summary>
-            <remarks>
-              The Cauchy kernel comes from the Cauchy distribution (Basak, 2008). It is a
-              long-tailed kernel and can be used to give long-range influence and sensitivity
-              over the high dimension space.
-            </remarks>
-            
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Cauchy.#ctor(System.Double)">
-            <summary>
-              Constructs a new Cauchy Kernel.
-            </summary>
-            <param name="sigma">The value for sigma.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Cauchy.Function(System.Double[],System.Double[])">
-            <summary>
-              Cauchy Kernel Function
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Cauchy.Sigma">
-            <summary>
-              Gets or sets the kernel's sigma value.
-            </summary>
-        </member>
         <member name="M:Accord.Statistics.Kernels.Sparse.SparseCauchy.#ctor(System.Double)">
             <summary>
-              Constructs a new Cauchy Kernel.
+              Constructs a new Sparse Cauchy Kernel.
             </summary>
             <param name="sigma">The value for sigma.</param>
         </member>
@@ -3142,6 +3560,11 @@
             <param name="x">Vector <c>x</c> in input space.</param>
             <param name="y">Vector <c>y</c> in input space.</param>
             <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseCauchy.Sigma">
+            <summary>
+              Gets or sets the kernel's sigma value.
+            </summary>
         </member>
         <member name="T:Accord.Statistics.Kernels.RationalQuadratic">
             <summary>
@@ -3172,6 +3595,24 @@
             <summary>
               Gets or sets the kernel's constant term.
             </summary>
+        </member>
+        <member name="T:Accord.Statistics.Models.Fields.ForwardBackwardAlgorithm">
+            <summary>
+              Forward-Backward algorithms for Conditional Random Fields.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ForwardBackwardAlgorithm.Forward(Accord.Statistics.Models.Fields.Functions.IPotentialFunction,System.Int32[])">
+            <summary>
+              Computes Forward probabilities for a given potential function and a set of observations.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.ForwardBackwardAlgorithm.Backward(Accord.Statistics.Models.Fields.Functions.IPotentialFunction,System.Int32[])">
+            <summary>
+              Computes Backward probabilities for a given potential function and a set of observations.
+            </summary>
+            
         </member>
         <member name="T:Accord.Statistics.Distributions.Multivariate.NormalDistribution">
             <summary>
@@ -3259,6 +3700,7 @@
             <summary>
               Constructs a new MultivariateDistribution class.
             </summary>
+            <param name="dimension">The number of dimensions in the distribution.</param>
         </member>
         <member name="M:Accord.Statistics.Distributions.Multivariate.MultivariateContinuousDistribution.Accord#Statistics#Distributions#IDistribution#ProbabilityFunction(System.Double[])">
             <summary>
@@ -3500,12 +3942,15 @@
               Constructs a multivariate Gaussian distribution
               with zero mean vector and unitary variance matrix.
             </summary>
+            <param name="dimension">The number of dimensions in the distribution.</param>
         </member>
         <member name="M:Accord.Statistics.Distributions.Multivariate.NormalDistribution.#ctor(System.Double[],System.Double[0:,0:])">
             <summary>
               Constructs a multivariate Gaussian distribution
               with given mean vector and covariance matrix.
             </summary>
+            <param name="mean">The mean of the distribution.</param>
+            <param name="covariance">The covariance for the distribution.</param>
         </member>
         <member name="M:Accord.Statistics.Distributions.Multivariate.NormalDistribution.DistributionFunction(System.Double[])">
             <summary>
@@ -3546,6 +3991,24 @@
             double[][] for a univariate distribution may have a negative
             impact in performance.
             </remarks>
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Multivariate.NormalDistribution.Estimate(System.Double[][])">
+            <summary>
+              Estimates a new Normal distribution from a given set of observations.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Multivariate.NormalDistribution.Estimate(System.Double[][],Accord.Statistics.Distributions.Fitting.NormalOptions)">
+            <summary>
+              Estimates a new Normal distribution from a given set of observations.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Multivariate.NormalDistribution.Estimate(System.Double[][],System.Double[],Accord.Statistics.Distributions.Fitting.NormalOptions)">
+            <summary>
+              Estimates a new Normal distribution from a given set of observations.
+            </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Distributions.Multivariate.NormalDistribution.Clone">
             <summary>
@@ -3718,6 +4181,83 @@
             </remarks>
             
         </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparseGaussian.#ctor(System.Double)">
+            <summary>
+              Constructs a new Sparse Gaussian Kernel
+            </summary>
+            <param name="sigma">The standard deviation for the Gaussian distribution.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparseGaussian.Function(System.Double[],System.Double[])">
+            <summary>
+            Gaussian Kernel function.
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparseGaussian.Distance(System.Double[],System.Double[])">
+            <summary>
+            Computes the distance in input space
+            between two points given in feature space.
+            </summary>
+            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
+            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
+            <returns>
+            Distance between <c>x</c> and <c>y</c> in input space.
+            </returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseGaussian.Sigma">
+            <summary>
+              Gets or sets the sigma value for the kernel. When setting
+              sigma, gamma gets updated accordingly (gamma = 0.5*/sigma^2).
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseGaussian.Gamma">
+            <summary>
+              Gets or sets the gamma value for the kernel. When setting
+              gamma, sigma gets updated accordingly (gamma = 0.5*/sigma^2).
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Kernels.Multiquadric">
+            <summary>
+              Multiquadric (and inverse multiquadric) Kernel.
+            </summary>
+            <remarks>
+              The multiquadric kernel is only positive semi-definite.
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Multiquadric.#ctor(System.Boolean,System.Double)">
+            <summary>
+              Constructs a new Multiquadric Kernel.
+            </summary>
+            <param name="inverse">True for the Inverse Multiquadric Kernel, false otherwise.</param>
+            <param name="constant">The constant term theta.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Multiquadric.#ctor">
+            <summary>
+              Constructs a new Multiquadric Kernel.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Multiquadric.Function(System.Double[],System.Double[])">
+            <summary>
+              (Inverse) Multiquadric Kernel function.
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Multiquadric.Constant">
+            <summary>
+              Gets or sets the kernel's constant value.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Multiquadric.Inverse">
+            <summary>
+              Gets or sets whether this is a standard
+              or inverse multi-quadric kernel.
+            </summary>
+        </member>
         <member name="T:Accord.Statistics.Kernels.Gaussian">
             <summary>
               Gaussian Kernel.
@@ -3786,80 +4326,9 @@
               gamma, sigma gets updated accordingly (gamma = 0.5*/sigma^2).
             </summary>
         </member>
-        <member name="M:Accord.Statistics.Kernels.Sparse.SparseGaussian.#ctor(System.Double)">
-            <summary>
-            Constructs a new Sparse Gaussian Kernel
-            </summary>
-            <param name="sigma">The standard deviation for the Gaussian distribution.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sparse.SparseGaussian.Function(System.Double[],System.Double[])">
-            <summary>
-            Gaussian Kernel function.
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sparse.SparseGaussian.Distance(System.Double[],System.Double[])">
-            <summary>
-            Computes the distance in input space
-            between two points given in feature space.
-            </summary>
-            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
-            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
-            <returns>
-            Distance between <c>x</c> and <c>y</c> in input space.
-            </returns>
-        </member>
-        <member name="T:Accord.Statistics.Kernels.Multiquadric">
-            <summary>
-              Multiquadric (and inverse multiquadric) Kernel.
-            </summary>
-            <remarks>
-              The multiquadric kernel is only positive semi-definite.
-            </remarks>
-            
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Multiquadric.#ctor(System.Boolean,System.Double)">
-            <summary>
-              Constructs a new Multiquadric Kernel.
-            </summary>
-            <param name="inverse">True for the Inverse Multiquadric Kernel, false otherwise.</param>
-            <param name="constant">The constant term theta.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Multiquadric.#ctor">
-            <summary>
-              Constructs a new Multiquadric Kernel.
-            </summary>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Multiquadric.Function(System.Double[],System.Double[])">
-            <summary>
-              (Inverse) Multiquadric Kernel function.
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Multiquadric.Constant">
-            <summary>
-              Gets or sets the kernel's constant value.
-            </summary>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Multiquadric.Inverse">
-            <summary>
-              Gets or sets whether this is a standard
-              or inverse multi-quadric kernel.
-            </summary>
-        </member>
         <member name="T:Accord.Statistics.Distributions.Fitting.NormalOptions">
             <summary>
               Normal distribution estimation options.
-            </summary>
-            
-        </member>
-        <member name="T:Accord.Statistics.Distributions.Fitting.IFittingOptions">
-            <summary>
-              Common interface for distribution fitting option objects.
             </summary>
             
         </member>
@@ -4395,6 +4864,28 @@
             </example>
             
         </member>
+        <member name="T:Accord.Statistics.Analysis.IDiscriminantAnalysis">
+            <summary>
+              Common interface for discriminant analysis.
+            </summary>
+            
+            <remarks>
+            <para>
+              Discriminant analysis attempt to express one categorical dependent variable
+              as a combinations of other features or measurements.</para>
+            <para>
+              When the dependent variable is a numerical quantity, the class of analysis methods
+              is known as <see cref="T:Accord.Statistics.Analysis.IRegressionAnalysis">regression analysis</see>.</para>  
+            </remarks>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.IDiscriminantAnalysis.Classifications">
+            <summary>
+              Gets the classification labels (the dependent variable)
+              for each of the source input points.
+            </summary>
+            
+        </member>
         <member name="M:Accord.Statistics.Analysis.LinearDiscriminantAnalysis.#ctor(System.Double[0:,0:],System.Int32[])">
             <summary>
               Constructs a new Linear Discriminant Analysis object.
@@ -4417,7 +4908,7 @@
               Projects a given matrix into latent discriminant variable space.
             </summary>
             <param name="data">The matrix to be projected.</param>
-            <param name="discriminants">
+            <param name="dimensions">
               The number of discriminants to use in the projection.
             </param>
         </member>
@@ -4520,8 +5011,10 @@
             <summary>Gets the discriminant factors in a object-oriented fashion.</summary>
         </member>
         <member name="P:Accord.Statistics.Analysis.LinearDiscriminantAnalysis.Classes">
-            <summary>Gets the different Classes contained in the
-            analyzed data set in a object-oriented fashion.</summary>
+            <summary>
+              Gets information about the distinct classes in the analyzed data.
+            </summary>
+              
         </member>
         <member name="P:Accord.Statistics.Analysis.LinearDiscriminantAnalysis.ClassScatter">
             <summary>
@@ -4711,8 +5204,15 @@
               An important note to consider is that if N sources are present, at least N
               observations (e.g. microphones) are needed to get the original signals.</para>
               
-            Hyvärinen,A (1999). Fast and Robust Fixed-Point Algorithms for Independent Component Analysis. IEEE Transactions on Neural Networks, 10(3),626-634.
-            http://cran.r-project.org/web/packages/fastICA/index.html
+            <para>
+              References:
+              <list type="bullet">
+                <item><description>
+                  Hyvärinen,A (1999). Fast and Robust Fixed-Point Algorithms for Independent Component
+                  Analysis. IEEE Transactions on Neural Networks, 10(3),626-634. Available on: 
+                  <a href="http://cran.r-project.org/web/packages/fastICA/index.html">
+                  http://cran.r-project.org/web/packages/fastICA/index.html</a></description></item>
+             </list></para>  
             </remarks>
             
         </member>
@@ -4788,6 +5288,12 @@
               using the already computed column's means and standard deviations.
             </summary>
         </member>
+        <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Source">
+            <summary>
+              Source data used in the analysis.
+            </summary>
+            
+        </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Iterations">
             <summary>
               Gets or sets the maximum number of iterations 
@@ -4795,6 +5301,7 @@
               convergence.
             </summary>
             <value>The iterations.</value>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Tolerance">
             <summary>
@@ -4802,6 +5309,7 @@
               parameters between iterations that determine
               convergence.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Result">
             <summary>
@@ -4810,6 +5318,7 @@
               into the space spawned by independent components.
             </summary>
             <value>The resulting projection in independent component space.</value>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.MixingMatrix">
             <summary>
@@ -4817,6 +5326,7 @@
               the original source data being analyzed. Each column
               corresponds to an independent component.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.DemixingMatrix">
             <summary>
@@ -4824,6 +5334,7 @@
               the original source data being analyzed. Each column
               corresponds to an independent component.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.WhiteningMatrix">
             <summary>
@@ -4836,24 +5347,28 @@
               Gets the Independent Components in a object-oriented structure.
             </summary>
             <value>The collection of independent components.</value>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Overwrite">
             <summary>
               Gets or sets whether calculations will be performed overwriting
               data in the original source matrix, using less memory.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Algorithm">
             <summary>
              Gets or sets the <see cref="T:Accord.Statistics.Analysis.IndependentComponentAlgorithm">
              FastICA</see> algorithm used by the analysis.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.IndependentComponentAnalysis.Contrast">
             <summary>
               Gets or sets the <see cref="T:Accord.Statistics.Analysis.ContrastFunctions.IContrastFunction">
               Contrast function</see> to be used by the analysis.
             </summary>
+            
         </member>
         <member name="T:Accord.Statistics.Analysis.IndependentComponent">
             <summary>
@@ -5012,6 +5527,154 @@
             should contain the evaluation of function derivative over
             the vector of observations <paramref name="x"/>.</param>
         </member>
+        <member name="T:Accord.Statistics.Moving.MovingNormalStatistics">
+            <summary>
+              Moving-window statistics.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Moving.IMovingStatistics">
+            <summary>
+              Common interface for moving-window statistics.
+            </summary>
+            <remarks>
+              Moving-window statistics such as moving average and moving variance,
+              are a type of finite impulse response filters used to analyze a set
+              of data points by creating a series of averages of different subsets
+              of the full data set.
+            </remarks>
+            
+        </member>
+        <member name="T:Accord.Statistics.Running.IRunningStatistics">
+            <summary>
+              Common interface for running statistics.
+            </summary>
+            <remarks>
+              Running statistics are measures computed as data becomes available.
+              When using running statistics, there is no need to know the number of
+              samples a priori, such as in the case of the direct <see cref="M:Accord.Statistics.Tools.Mean(System.Double[])"/>.
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Running.IRunningStatistics.Push(System.Double)">
+            <summary>
+              Registers the occurance of a value.
+            </summary>
+            <param name="value">The value to be registered.</param>
+            
+        </member>
+        <member name="M:Accord.Statistics.Running.IRunningStatistics.Clear">
+            <summary>
+              Clears all measures previously computed.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Running.IRunningStatistics.Mean">
+            <summary>
+              Gets the current mean of the gathered values.
+            </summary>
+            <value>The mean of the values.</value>
+            
+        </member>
+        <member name="P:Accord.Statistics.Running.IRunningStatistics.Variance">
+            <summary>
+              Gets the current variance of the gathered values.
+            </summary>
+            <value>The variance of the values.</value>
+            
+        </member>
+        <member name="P:Accord.Statistics.Running.IRunningStatistics.StandardDeviation">
+            <summary>
+              Gets the current standard deviation of the gathered values.
+            </summary>
+            <value>The standard deviation of the values.</value>
+            
+        </member>
+        <member name="P:Accord.Statistics.Moving.IMovingStatistics.Window">
+            <summary>
+              Gets the size of the window.
+            </summary>
+            <value>The window's size.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.IMovingStatistics.Count">
+            <summary>
+              Gets the number of samples within the window.
+            </summary>
+            <value>The number of samples within the window.</value>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingNormalStatistics.#ctor(System.Int32)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Accord.Statistics.Moving.MovingNormalStatistics"/> class.
+            </summary>
+            <param name="windowSize">The size of the moving window.</param>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingNormalStatistics.Push(System.Double)">
+            <summary>
+              Pushes a value into the window.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingNormalStatistics.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingNormalStatistics.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingNormalStatistics.Clear">
+            <summary>
+              Removes all elements from the window and resets statistics.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.Sum">
+            <summary>
+            Gets the sum the values within the window.
+            </summary>
+            <value>The sum of values within the window.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.SumOfSquares">
+            <summary>
+            Gets the sum of squared values within the window.
+            </summary>
+            <value>The sum of squared values.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.Window">
+            <summary>
+            Gets the size of the window.
+            </summary>
+            <value>The window's size.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.Count">
+            <summary>
+            Gets the number of samples within the window.
+            </summary>
+            <value>The number of samples within the window.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.Mean">
+            <summary>
+            Gets the mean of the values within the window.
+            </summary>
+            <value>The mean of the values.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.Variance">
+            <summary>
+            Gets the variance of the values within the window.
+            </summary>
+            <value>The variance of the values.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingNormalStatistics.StandardDeviation">
+            <summary>
+            Gets the standard deviation of the values within the window.
+            </summary>
+            <value>The standard deviation of the values.</value>
+        </member>
         <member name="T:Accord.Statistics.Models.Markov.ForwardBackwardAlgorithm">
             <summary>
               Forward-Backward algorithms for Hidden Markov Models.
@@ -5038,6 +5701,11 @@
               Computes Forward probabilities for a given hidden Markov model and a set of observations.
             </summary>
         </member>
+        <member name="M:Accord.Statistics.Models.Markov.ForwardBackwardAlgorithm.Forward(Accord.Statistics.Models.Markov.HiddenMarkovModel,System.Int32[])">
+            <summary>
+              Computes Forward probabilities for a given hidden Markov model and a set of observations (no scaling).
+            </summary>
+        </member>
         <member name="M:Accord.Statistics.Models.Markov.ForwardBackwardAlgorithm.Backward(Accord.Statistics.Models.Markov.HiddenMarkovModel,System.Int32[],System.Double[])">
             <summary>
               Computes Backward probabilities for a given hidden Markov model and a set of observations.
@@ -5046,6 +5714,11 @@
         <member name="M:Accord.Statistics.Models.Markov.ForwardBackwardAlgorithm.Backward(Accord.Statistics.Models.Markov.ContinuousHiddenMarkovModel,System.Double[][],System.Double[])">
             <summary>
               Computes Backward probabilities for a given hidden Markov model and a set of observations.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Markov.ForwardBackwardAlgorithm.Backward(Accord.Statistics.Models.Markov.HiddenMarkovModel,System.Int32[])">
+            <summary>
+              Computes Backward probabilities for a given hidden Markov model and a set of observations (no scaling).
             </summary>
         </member>
         <member name="T:Accord.Statistics.Kernels.Wave">
@@ -5483,6 +6156,87 @@
             Gets the variance-covariance matrix for this distribution.
             </summary>
         </member>
+        <member name="T:Accord.Statistics.Circular">
+            <summary>
+              Set of statistics functions operating over a circular space.
+            </summary>
+            
+            <remarks>
+              This class represents collection of common functions used in
+              statistics. The values are handled as belonging to a distribution
+              defined over a circle, such as the <see cref="T:Accord.Statistics.Distributions.Univariate.VonMisesDistribution"/>.
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Circular.Mean(System.Double[])">
+            <summary>
+              Computes the Mean of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <returns>The mean of the given angles.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.Variance(System.Double[])">
+            <summary>
+              Computes the Variance of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <returns>The variance of the given angles.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.Concentration(System.Double[])">
+            <summary>
+              Concentrations the Concentration of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <returns>
+              The concentration (kappa) parameter of the <see cref="T:Accord.Statistics.Distributions.Univariate.VonMisesDistribution"/>
+              for the given data.
+            </returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.Concentration(System.Double[],System.Double)">
+            <summary>
+              Concentrations the Concentration of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <param name="mean">The mean of the angles, if already known.</param>
+            <returns>
+              The concentration (kappa) parameter of the <see cref="T:Accord.Statistics.Distributions.Univariate.VonMisesDistribution"/>
+              for the given data.
+            </returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.WeightedMean(System.Double[],System.Double[])">
+            <summary>
+              Computes the Weighted Mean of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <param name="weights">An unit vector containing the importance of each angle
+            in <see param="values"/>. The sum of this array elements should add up to 1.</param>
+            <returns>The mean of the given angles.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.WeightedConcentration(System.Double[],System.Double[])">
+            <summary>
+              Computes the Weighted Concentration of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <param name="weights">An unit vector containing the importance of each angle
+            in <see param="values"/>. The sum of this array elements should add up to 1.</param>
+            <returns>The mean of the given angles.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.WeightedConcentration(System.Double[],System.Double[],System.Double)">
+            <summary>
+              Computes the Weighted Concentration of the given angles.
+            </summary>
+            <param name="angles">A double array containing the angles in radians.</param>
+            <param name="weights">An unit vector containing the importance of each angle
+            in <see param="values"/>. The sum of this array elements should add up to 1.</param>
+            <param name="mean">The mean of the angles, if already known.</param>
+            <returns>The mean of the given angles.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Circular.a1inv(System.Double)">
+            <summary>
+             Computes an approximation of the inverse modified Bessel
+             function ratio <c>A(x) = I1(x)/I0(x)</c>.
+            </summary>
+        </member>
         <member name="T:Accord.Statistics.Analysis.LogisticRegressionAnalysis">
             <summary>
               Logistic Regression Analysis
@@ -5529,16 +6283,19 @@
             </summary>
             <param name="model">Another logistic regression model.</param>
             <returns>The Likelihood-Ratio between the two models.</returns>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Compute">
             <summary>
               Computes the Logistic Regression Analysis.
             </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Compute(System.Double)">
             <summary>
               Computes the Logistic Regression Analysis.
             </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Compute(System.Double,System.Int32)">
             <summary>
@@ -5561,75 +6318,109 @@
             <returns>
               True if the model converged, false otherwise.
             </returns>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Source">
+            <summary>
+            Source data used in the analysis.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Outputs">
+            <summary>
+            Gets the the dependent variable value
+            for each of the source input points.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Result">
+            <summary>
+              Gets the resulting probabilities obtained
+              by the logistic regression model.
+            </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Regression">
             <summary>
               Gets the Logistic Regression model created
               and evaluated by this analysis.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Coefficients">
             <summary>
               Gets the collection of coefficients of the model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.LogLikelihood">
             <summary>
               Gets the Log-Likelihood for the model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.ChiSquare">
             <summary>
               Gets the Chi-Square (Likelihood Ratio) Test for the model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Deviance">
             <summary>
               Gets the Deviance of the model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Inputs">
             <summary>
               Gets the name of the input variables for the model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Output">
             <summary>
               Gets the name of the output variable for the model.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.OddsRatios">
             <summary>
               Gets the Odds Ratio for each coefficient
               found during the logistic regression.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.StandardErrors">
             <summary>
               Gets the Standard Error for each coefficient
               found during the logistic regression.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.WaldTests">
             <summary>
               Gets the Wald Tests for each coefficient.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.LikelihoodRatioTests">
             <summary>
               Gets the Likelihood-Ratio Tests for each coefficient.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.CoefficientValues">
             <summary>
               Gets the value of each coefficient.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.LogisticRegressionAnalysis.Confidences">
             <summary>
               Gets the 95% Confidence Intervals (C.I.)
               for each coefficient found in the regression.
             </summary>
+            
         </member>
         <member name="T:Accord.Statistics.Analysis.LogisticCoefficient">
             <summary>
@@ -5982,40 +6773,6 @@
             </summary>
             
         </member>
-        <member name="T:Accord.Statistics.Kernels.Laplacian">
-            <summary>
-              Laplacian Kernel.
-            </summary>
-            
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Laplacian.#ctor(System.Double)">
-            <summary>
-              Constructs a new Laplacian Kernel
-            </summary>
-            <param name="sigma">The sigma slope value.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Laplacian.Function(System.Double[],System.Double[])">
-            <summary>
-              Laplacian Kernel function.
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Laplacian.Distance(System.Double[],System.Double[])">
-            <summary>
-              Computes the distance in input space
-              between two points given in feature space.
-            </summary>
-            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
-            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
-            <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Laplacian.Sigma">
-            <summary>
-              Gets or sets the sigma value for the kernel.
-            </summary>
-        </member>
         <member name="M:Accord.Statistics.Kernels.Sparse.SparseLaplacian.#ctor(System.Double)">
             <summary>
               Constructs a new Sparse Laplacian Kernel
@@ -6038,6 +6795,11 @@
             <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
             <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
             <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseLaplacian.Sigma">
+            <summary>
+              Gets or sets the sigma value for the kernel.
+            </summary>
         </member>
         <member name="T:Accord.Statistics.Models.Markov.SequenceClassifier">
              <summary>
@@ -6104,7 +6866,8 @@
         </member>
         <member name="T:Accord.Statistics.Models.Markov.SequenceClassifierBase`1">
             <summary>
-              Base class for (HMM) Sequence Classifiers.
+              Base class for (HMM) Sequence Classifiers. This class cannot
+              be instantiated.
             </summary>
             
         </member>
@@ -6347,49 +7110,9 @@
             </remarks>
             
         </member>
-        <member name="T:Accord.Statistics.Kernels.Sigmoid">
-            <summary>
-              Sigmoid Kernel.
-            </summary>
-            <remarks>
-              Sigmoid kernels are not positive definite and therefore do not induce
-              a reproducing kernel Hilbert space. However, they have been successfully
-              used in practice (Scholkopf and Smola, 2002).
-            </remarks>
-            
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sigmoid.#ctor(System.Double,System.Double)">
-            <summary>
-              Constructs a Sigmoid kernel.
-            </summary>
-            <param name="alpha">Alpha parameter.</param>
-            <param name="constant">Constant parameter.</param>
-        </member>
-        <member name="M:Accord.Statistics.Kernels.Sigmoid.Function(System.Double[],System.Double[])">
-            <summary>
-              Sigmoid kernel function.
-            </summary>
-            <param name="x">Vector <c>x</c> in input space.</param>
-            <param name="y">Vector <c>y</c> in input space.</param>
-            <returns>Dot product in feature (kernel) space.</returns>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Sigmoid.Gamma">
-            <summary>
-              Gets or sets the kernel's gamma parameter.
-            </summary>
-            <remarks>
-              In a sigmoid kernel, gamma is a inner product
-              coefficient for the hyperbolic tangent function.
-            </remarks>
-        </member>
-        <member name="P:Accord.Statistics.Kernels.Sigmoid.Constant">
-            <summary>
-              Gets or sets the kernel's constant term.
-            </summary>
-        </member>
         <member name="M:Accord.Statistics.Kernels.Sparse.SparseSigmoid.#ctor(System.Double,System.Double)">
             <summary>
-              Constructs a Sigmoid kernel.
+              Constructs a Sparse Sigmoid kernel.
             </summary>
             <param name="alpha">Alpha parameter.</param>
             <param name="constant">Constant parameter.</param>
@@ -6401,6 +7124,130 @@
             <param name="x">Vector <c>x</c> in input space.</param>
             <param name="y">Vector <c>y</c> in input space.</param>
             <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseSigmoid.Gamma">
+            <summary>
+              Gets or sets the kernel's gamma parameter.
+            </summary>
+            <remarks>
+              In a sigmoid kernel, gamma is a inner product
+              coefficient for the hyperbolic tangent function.
+            </remarks>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseSigmoid.Constant">
+            <summary>
+              Gets or sets the kernel's constant term.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Kernels.Polynomial">
+            <summary>
+              Polynomial Kernel.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Polynomial.#ctor(System.Int32,System.Double)">
+            <summary>
+              Constructs a new Polynomial kernel of a given degree.
+            </summary>
+            <param name="degree">The polynomial degree for this kernel.</param>
+            <param name="constant">The polynomial constant for this kernel. Default is 1.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Polynomial.#ctor(System.Int32)">
+            <summary>
+              Constructs a new Polynomial kernel of a given degree.
+            </summary>
+            <param name="degree">The polynomial degree for this kernel.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Polynomial.Function(System.Double[],System.Double[])">
+            <summary>
+              Polynomial kernel function.
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Polynomial.Distance(System.Double[],System.Double[])">
+            <summary>
+              Computes the distance in input space
+              between two points given in feature space.
+            </summary>
+            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
+            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
+            <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Polynomial.Degree">
+            <summary>
+              Gets or sets the kernel's polynomial degree.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Polynomial.Constant">
+            <summary>
+              Gets or sets the kernel's polynomial constant term.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Kernels.Laplacian">
+            <summary>
+              Laplacian Kernel.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Laplacian.#ctor(System.Double)">
+            <summary>
+              Constructs a new Laplacian Kernel
+            </summary>
+            <param name="sigma">The sigma slope value.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Laplacian.Function(System.Double[],System.Double[])">
+            <summary>
+              Laplacian Kernel function.
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Laplacian.Distance(System.Double[],System.Double[])">
+            <summary>
+              Computes the distance in input space
+              between two points given in feature space.
+            </summary>
+            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
+            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
+            <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Laplacian.Sigma">
+            <summary>
+              Gets or sets the sigma value for the kernel.
+            </summary>
+        </member>
+        <member name="T:Accord.Statistics.Kernels.Cauchy">
+            <summary>
+              Cauchy Kernel.
+            </summary>
+            <remarks>
+              The Cauchy kernel comes from the Cauchy distribution (Basak, 2008). It is a
+              long-tailed kernel and can be used to give long-range influence and sensitivity
+              over the high dimension space.
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Cauchy.#ctor(System.Double)">
+            <summary>
+              Constructs a new Cauchy Kernel.
+            </summary>
+            <param name="sigma">The value for sigma.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Cauchy.Function(System.Double[],System.Double[])">
+            <summary>
+              Cauchy Kernel Function
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Cauchy.Sigma">
+            <summary>
+              Gets or sets the kernel's sigma value.
+            </summary>
         </member>
         <member name="T:Accord.Statistics.Filters.NormalizationFilter">
             <summary>
@@ -6484,6 +7331,67 @@
             </summary>
             <param name="item"></param>
             <returns></returns>
+        </member>
+        <member name="T:Accord.Statistics.Moving.MovingCircularStatistics">
+            <summary>
+              Moving-window circular statistics.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingCircularStatistics.#ctor(System.Int32)">
+            <summary>
+              Initializes a new instance of the <see cref="T:Accord.Statistics.Moving.MovingCircularStatistics"/> class.
+            </summary>
+            <param name="windowSize">The size of the moving window.</param>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingCircularStatistics.Push(System.Double)">
+            <summary>
+            Registers the occurance of a value.
+            </summary>
+            <param name="value">The value to be registered.</param>
+        </member>
+        <member name="M:Accord.Statistics.Moving.MovingCircularStatistics.Clear">
+            <summary>
+            Clears all measures previously computed.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.SumOfSines">
+            <summary>
+              Gets the sum of the sines of the angles within the window.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.SumOfCosines">
+            <summary>
+              Gets the sum of the cosines of the angles within the window.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.Window">
+            <summary>
+            Gets the size of the window.
+            </summary>
+            <value>The window's size.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.Count">
+            <summary>
+            Gets the number of samples within the window.
+            </summary>
+            <value>The number of samples within the window.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.Mean">
+            <summary>
+              Gets the mean of the angles within the window.
+            </summary>
+            <value>The mean.</value>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.Variance">
+            <summary>
+              Gets the variance of the angles within the window.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Moving.MovingCircularStatistics.StandardDeviation">
+            <summary>
+              Gets the standard deviation of the angles within the window.
+            </summary>
         </member>
         <member name="T:Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression">
             <summary>
@@ -6698,7 +7606,8 @@
         </member>
         <member name="T:Accord.Statistics.Models.Markov.HiddenMarkovModelBase">
             <summary>
-              Base class for Hidden Markov Models.
+              Base class for Hidden Markov Models. This class cannot
+              be instantiated.
             </summary>
             
         </member>
@@ -7501,6 +8410,7 @@
             <summary>
               ANOVA (ANalysis Of VAriance) Kernel.
             </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Kernels.Anova.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -7519,14 +8429,14 @@
         </member>
         <member name="T:Accord.Statistics.Tools">
             <summary>
-                Set of statistics functions
+              Set of statistics functions.
             </summary>
             
             <remarks>
-                This class represents collection of functions used in statistics.
-                Every Matrix function assumes data is organized in a table-like
-                model, where Columns represents variables and Rows represents a
-                observation of each variable.
+              This class represents collection of common functions used in statistics.
+              Every Matrix function assumes data is organized in a table-like model,
+              where Columns represents variables and Rows represents a observation of
+              each variable.
             </remarks>
             
         </member>
@@ -7537,7 +8447,21 @@
             <param name="values">A double array containing the vector members.</param>
             <returns>The mean of the given data.</returns>
         </member>
+        <member name="M:Accord.Statistics.Tools.Mean(System.Single[])">
+            <summary>
+              Computes the Mean of the given values.
+            </summary>
+            <param name="values">A float array containing the vector members.</param>
+            <returns>The mean of the given data.</returns>
+        </member>
         <member name="M:Accord.Statistics.Tools.StandardDeviation(System.Double[])">
+            <summary>
+              Computes the Standard Deviation of the given values.
+            </summary>
+            <param name="values">A double array containing the vector members.</param>
+            <returns>The standard deviation of the given data.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Tools.StandardDeviation(System.Single[])">
             <summary>
               Computes the Standard Deviation of the given values.
             </summary>
@@ -7549,6 +8473,14 @@
               Computes the Standard Deviation of the given values.
             </summary>
             <param name="values">A double array containing the vector members.</param>
+            <param name="mean">The mean of the vector, if already known.</param>
+            <returns>The standard deviation of the given data.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Tools.StandardDeviation(System.Single[],System.Single)">
+            <summary>
+              Computes the Standard Deviation of the given values.
+            </summary>
+            <param name="values">A float array containing the vector members.</param>
             <param name="mean">The mean of the vector, if already known.</param>
             <returns>The standard deviation of the given data.</returns>
         </member>
@@ -7591,7 +8523,22 @@
             <param name="values">A double precision number array containing the vector members.</param>
             <returns>The variance of the given data.</returns>
         </member>
+        <member name="M:Accord.Statistics.Tools.Variance(System.Single[])">
+            <summary>
+              Computes the Variance of the given values.
+            </summary>
+            <param name="values">A single precision number array containing the vector members.</param>
+            <returns>The variance of the given data.</returns>
+        </member>
         <member name="M:Accord.Statistics.Tools.Variance(System.Double[],System.Double)">
+            <summary>
+              Computes the Variance of the given values.
+            </summary>
+            <param name="values">A number array containing the vector members.</param>
+            <param name="mean">The mean of the array, if already known.</param>
+            <returns>The variance of the given data.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Tools.Variance(System.Single[],System.Single)">
             <summary>
               Computes the Variance of the given values.
             </summary>
@@ -7678,6 +8625,15 @@
             in <see param="values"/>. The sum of this array elements should add up to 1.</param>
             <param name="mean">The mean of the vector, if already known.</param>
             <returns>The standard deviation of the given data.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Tools.WeightedVariance(System.Double[],System.Double[])">
+            <summary>
+              Computes the weighted Variance of the given values.
+            </summary>
+            <param name="values">A number array containing the vector members.</param>
+            <param name="weights">An unit vector containing the importance of each sample
+            in <see param="values"/>. The sum of this array elements should add up to 1.</param>
+            <returns>The variance of the given data.</returns>
         </member>
         <member name="M:Accord.Statistics.Tools.WeightedVariance(System.Double[],System.Double[],System.Double)">
             <summary>
@@ -8696,6 +9652,128 @@
             <param name="y">Vector <c>y</c> in input space.</param>
             <returns>Dot product in feature (kernel) space.</returns>
         </member>
+        <member name="T:Accord.Statistics.Distributions.Univariate.VonMisesDistribution">
+            <summary>
+              von-Mises (Circular Normal) distribution.
+            </summary>
+            <remarks>
+              <para>The von Mises distribution (also known as the circular normal distribution
+              or Tikhonov distribution) is a continuous probability distribution on the circle.
+              It may be thought of as a close approximation to the wrapped normal distribution,
+              which is the circular analogue of the normal distribution.</para>
+              
+              <para>The wrapped normal distribution describes the distribution of an angle that
+              is the result of the addition of many small independent angular deviations, such as
+              target sensing, or grain orientation in a granular material. The von Mises distribution
+              is more mathematically tractable than the wrapped normal distribution and is the
+              preferred distribution for many applications.</para>
+              
+            <para>    
+              References:
+              <list type="bullet">
+                <item><description><a href="http://en.wikipedia.org/wiki/Von_Mises_distribution">
+                  http://en.wikipedia.org/wiki/Von_Mises_distribution</a></description></item>
+                <item><description><a href="http://cran.r-project.org/web/packages/CircStats/CircStats.pdf">
+                  C. Agostinelli. Circular Statistics Reference Manual. 2009. Available on:
+                  http://cran.r-project.org/web/packages/CircStats/CircStats.pdf</a></description></item>
+              </list></para>
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.#ctor(System.Double,System.Double)">
+            <summary>
+              Constructs a multivariate Gaussian distribution
+              with zero mean vector and unitary variance matrix.
+            </summary>
+            <param name="mean">The mean of the distribution.</param>
+            <param name="concentration">The concentration value (kappa) for the distribution.</param>
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.DistributionFunction(System.Double)">
+            <summary>
+              Not supported. The distribution function for the
+              von-Mises distribution is not analytic and no
+              approximation has been provided yet.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.ProbabilityDensityFunction(System.Double)">
+            <summary>
+              Gets the probability density function (pdf) for
+              this distribution evaluated at point <c>x</c>.
+            </summary>
+            <param name="x">A single point in the distribution range.</param>
+            <returns>
+              The probability of <c>x</c> occurring
+              in the current distribution.
+            </returns>
+            <remarks>
+              The Probability Density Function (PDF) describes the
+              probability that a given value <c>x</c> will occur.
+            </remarks>
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Fit(System.Double[],System.Double[],Accord.Statistics.Distributions.Fitting.IFittingOptions)">
+            <summary>
+            Fits the underlying distribution to a given set of observations.
+            </summary>
+            <param name="observations">The array of observations to fit the model against. The array
+            elements can be either of type double (for univariate data) or
+            type double[] (for multivariate data).</param>
+            <param name="weights">The weight vector containing the weight for each of the samples.</param>
+            <param name="options">Optional arguments which may be used during fitting, such
+            as regularization constants and additional parameters.</param>
+            <remarks>
+            Although both double[] and double[][] arrays are supported,
+            providing a double[] for a multivariate distribution or a
+            double[][] for a univariate distribution may have a negative
+            impact in performance.
+            </remarks>
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Clone">
+            <summary>
+            Creates a new object that is a copy of the current instance.
+            </summary>
+            <returns>
+            A new object that is a copy of this instance.
+            </returns>
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Estimate(System.Double[])">
+            <summary>
+              Estimates a new von-Mises distribution from a given set of angles.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Estimate(System.Double[],Accord.Statistics.Distributions.Fitting.VonMisesOptions)">
+            <summary>
+              Estimates a new von-Mises distribution from a given set of angles.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Estimate(System.Double[],System.Double[],Accord.Statistics.Distributions.Fitting.VonMisesOptions)">
+            <summary>
+              Estimates a new von-Mises distribution from a given set of angles.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Mean">
+            <summary>
+              Gets the mean for this distribution.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Concentration">
+            <summary>
+              Gets the concentration (the kappa value) for this distribution.
+            </summary>
+            <value>The concentration.</value>
+        </member>
+        <member name="P:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Variance">
+            <summary>
+              Gets the variance for this distribution.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Distributions.Univariate.VonMisesDistribution.Entropy">
+            <summary>
+              Gets the entropy for this distribution.
+            </summary>
+        </member>
         <member name="T:Accord.Statistics.Distributions.Univariate.FDistribution">
             <summary>
               F (Fisher-Snedecor) distribution.
@@ -8819,7 +9897,7 @@
               Projects a given matrix into discriminant space.
             </summary>
             <param name="data">The matrix to be projected.</param>
-            <param name="discriminants">
+            <param name="dimensions">
               The number of discriminant dimensions to use in the projection.
             </param>
         </member>
@@ -9345,6 +10423,25 @@
               Gets or sets the sigma constant for this kernel.
             </summary>
         </member>
+        <member name="T:Accord.Statistics.Models.Fields.Learning.QuasiNewtonLearning">
+            <summary>
+              Quasi-Newton Learning (L-BFGS) learning algorithm for Conditional Random Fields.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Learning.QuasiNewtonLearning.#ctor(Accord.Statistics.Models.Fields.ConditionalRandomField)">
+            <summary>
+              Constructs a new L-BFGS learning algorithm.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Models.Fields.Learning.QuasiNewtonLearning.Run(System.Int32[][],System.Int32[][])">
+            <summary>
+            Runs the learning algorithm with the specified input
+            training observations and corresponding output labels.
+            </summary>
+            <param name="observations">The training observations.</param>
+            <param name="labels">The observation's labels.</param>
+        </member>
         <member name="T:Accord.Statistics.Distributions.Univariate.NormalDistribution">
             <summary>
               Normal (Gaussian) distribution.
@@ -9621,26 +10718,6 @@
               Gets the entropy for this distribution.
             </summary>
         </member>
-        <member name="T:Accord.Statistics.Analysis.AnalysisMethod">
-            <summary>
-              Determines the method to be used in a Component Analysis.
-            </summary>
-        </member>
-        <member name="F:Accord.Statistics.Analysis.AnalysisMethod.Center">
-            <summary>
-             By choosing Center, the method will be run on the mean-centered data.
-             In Principal Component Analysis this means the method will operate
-             on the Covariance matrix of the given data.
-            </summary>
-        </member>
-        <member name="F:Accord.Statistics.Analysis.AnalysisMethod.Standardize">
-            <summary>
-             By choosing Standardize, the method will be run on the mean-centered and
-             standardized data. In Principal Component Analysis this means the method
-             will operate on the Correlation matrix of the given data. One should always
-             choose to standardize when dealing with different units of variables.
-            </summary>
-        </member>
         <member name="T:Accord.Statistics.Analysis.PrincipalComponent">
             <summary>
               Represents a Principal Component found in the Principal Component Analysis,
@@ -9683,6 +10760,46 @@
               This class cannot be instantiated.
             </summary>
             
+        </member>
+        <member name="T:Accord.Statistics.Kernels.Sigmoid">
+            <summary>
+              Sigmoid Kernel.
+            </summary>
+            <remarks>
+              Sigmoid kernels are not positive definite and therefore do not induce
+              a reproducing kernel Hilbert space. However, they have been successfully
+              used in practice (Scholkopf and Smola, 2002).
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sigmoid.#ctor(System.Double,System.Double)">
+            <summary>
+              Constructs a Sigmoid kernel.
+            </summary>
+            <param name="alpha">Alpha parameter.</param>
+            <param name="constant">Constant parameter.</param>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sigmoid.Function(System.Double[],System.Double[])">
+            <summary>
+              Sigmoid kernel function.
+            </summary>
+            <param name="x">Vector <c>x</c> in input space.</param>
+            <param name="y">Vector <c>y</c> in input space.</param>
+            <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sigmoid.Gamma">
+            <summary>
+              Gets or sets the kernel's gamma parameter.
+            </summary>
+            <remarks>
+              In a sigmoid kernel, gamma is a inner product
+              coefficient for the hyperbolic tangent function.
+            </remarks>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sigmoid.Constant">
+            <summary>
+              Gets or sets the kernel's constant term.
+            </summary>
         </member>
         <member name="T:Accord.Statistics.Filters.CodificationFilter">
             <summary>
@@ -9858,6 +10975,7 @@
             <summary>Constructs a new Partial Least Squares Analysis.</summary>
             <param name="inputs">The input source data to perform analysis.</param>
             <param name="outputs">The output source data to perform analysis.</param>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.#ctor(System.Double[0:,0:],System.Double[0:,0:],Accord.Statistics.Analysis.AnalysisMethod,Accord.Statistics.Analysis.PartialLeastSquaresAlgorithm)">
             <summary>Constructs a new Partial Least Squares Analysis.</summary>
@@ -9865,6 +10983,7 @@
             <param name="outputs">The output source data to perform analysis.</param>
             <param name="method">The analysis method to perform. Default is <see cref="F:Accord.Statistics.Analysis.AnalysisMethod.Center"/>.</param>
             <param name="algorithm">The PLS algorithm to use in the analysis. Default is <see cref="F:Accord.Statistics.Analysis.PartialLeastSquaresAlgorithm.NIPALS"/>.</param>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Compute">
             <summary>
@@ -9881,27 +11000,43 @@
               rows and columns are the number of observations and
               variables in the input source data matrix. </param>
         </member>
-        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.ProjectX(System.Double[0:,0:],System.Int32)">
+        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Transform(System.Double[0:,0:])">
             <summary>
-              Projects a given set of inputs into Latent space.
+              Projects a given set of inputs into latent space.
             </summary>
+            
         </member>
-        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.ProjectY(System.Double[0:,0:],System.Int32)">
+        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Transform(System.Double[0:,0:],System.Int32)">
             <summary>
-              Projects a given set of outputs into Latent space.
+              Projects a given set of inputs into latent space.
             </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.TransformOutput(System.Double[0:,0:])">
+            <summary>
+              Projects a given set of outputs into latent space.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.TransformOutput(System.Double[0:,0:],System.Int32)">
+            <summary>
+              Projects a given set of outputs into latent space.
+            </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.CreateRegression">
             <summary>
               Creates a Multivariate Linear Regression model using
               coefficients obtained by the Partial Least Squares.
             </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.CreateRegression(System.Int32)">
             <summary>
               Creates a Multivariate Linear Regression model using
               coefficients obtained by the Partial Least Squares.
             </summary>
+            
         </member>
         <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.nipals(System.Double[0:,0:],System.Double[0:,0:],System.Int32,System.Double)">
             <summary>
@@ -9939,78 +11074,58 @@
                - http://www.postech.ac.kr/~chjun/publication/Chemometrics/chemo05.pdf
             </remarks>
         </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Sources">
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Source">
             <summary>
-              Gets the original data supplied to be analyzied. The first position on the array
-              holds the sources for the X input variables, while the second position holds the
-              sources for the Y output variables.
+              Source data used in the analysis.
             </summary>
+            
         </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Projections">
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Output">
             <summary>
-              Gets the resulting projection (scores) of the source data into latent space. The
-              first position on the array holds the scores for the X input variables, while 
-              the second position holds the scores for the Y output variables.
+              Gets the the dependent variables' values
+              for each of the source input points.
             </summary>
+            
         </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Means">
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Predictors">
             <summary>
-              Gets the column means of the source data.  The first position on the array
-              holds the mean vector for the X input variables, while the second position
-              holds the mean vector for the Y output variables.
+              Gets information about independent (input) variables.
             </summary>
+            
         </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.StandardDeviations">
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Dependents">
             <summary>
-              Gets the column standard deviations of the source data.  The first position
-              on the array holds the standard deviation vector for the X input variables,
-              while the second position holds the standard deviations for the Y output variables.
+              Gets information about dependent (output) variables.
             </summary>
-        </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.FactorMatrix">
-            <summary>
-              Gets the loadings (a.k.a factors or components) obtained during the analysis.
-              The first position on the array holds the loadings for the X input variables,
-              while the second position holds the loadings for the Y output variables.
-            </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Weights">
             <summary>
               Gets the Weight matrix obtained during the analysis. For the NIPALS algorithm
               this is the W matrix. For the SIMPLS algorithm this is the R matrix.
             </summary>
-        </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.FactorProportions">
-            <summary>
-              Gets the ammount of variance explained by each of the PLS factors.
-              The first position on the array holds the proportions for the X input factors,
-              while the second position holds the proportions for the Y output factors.
-            </summary>
-        </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.CumulativeProportions">
-            <summary>
-              Gets the cumulative ammount of variance explained by each of the PLS factors.
-              The first position on the array holds the proportions for the X input factors,
-              while the second position holds the proportions for the Y output factors.
-            </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Factors">
             <summary>
               Gets information about the factors discovered during the analysis in a
               object-oriented structure which can be databound directly to many controls.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Algorithm">
             <summary>
               Gets the PLS algorithm used by the analysis.
             </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Method">
             <summary>
               Gets the method used by this analysis.
             </summary>
+            
         </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.VariableImportance">
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresAnalysis.Importance">
             <summary>
               Gets the Variable Importance in Projection (VIP).
             </summary>
@@ -10019,6 +11134,7 @@
               models fitted using the NIPALS algorithm containing a
               single response (output) variable.
             </remarks>
+            
         </member>
         <member name="T:Accord.Statistics.Analysis.PartialLeastSquaresFactor">
             <summary>
@@ -10068,12 +11184,17 @@
               variance explained by this factor.
             </summary>
         </member>
-        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresFactor.LatentVectors">
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresFactor.IndependentLatentVectors">
             <summary>
-              Gets the latent vectors for this factor. The first position
-              contains the independent (input) latent vector and the second
-              position contains the dependent (output) latent vector.
+              Gets the input variable's latent vectors for this factor.
             </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresFactor.DependentLatentVector">
+            <summary>
+              Gets the output variable's latent vectors for this factor.
+            </summary>
+            
         </member>
         <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresFactor.VariableImportance">
             <summary>
@@ -10086,6 +11207,154 @@
               the Partial Least Squares Analysis. This class cannot be instantiated.
             </summary>
             
+        </member>
+        <member name="T:Accord.Statistics.Analysis.PartialLeastSquaresVariables">
+            <summary>
+              Represents source variables used in Partial Least Squares Analysis. Can represent either
+              input variables (predictor variables) or output variables (independent variables or regressors).
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresVariables.Transform(System.Double[0:,0:])">
+            <summary>
+              Projects a given dataset into latent space. Can be either input variable's
+              latent space or output variable's latent space, depending if the variables
+              chosen are predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="M:Accord.Statistics.Analysis.PartialLeastSquaresVariables.Transform(System.Double[0:,0:],System.Int32)">
+            <summary>
+              Projects a given dataset into latent space. Can be either input variable's
+              latent space or output variable's latent space, depending if the variables
+              chosen are predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.Source">
+            <summary>
+              Source data used in the analysis. Can be either input data
+              or output data depending if the variables chosen are predictor
+              variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.Result">
+            <summary>
+              Gets the resulting projection (scores) of the source data
+              into latent space. Can be either from input data or output
+              data depending if the variables chosen are predictor variables
+              or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.Means">
+            <summary>
+              Gets the column means of the source data. Can be either from
+              input data or output data, depending if the variables chosen
+              are predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.StandardDeviations">
+            <summary>
+              Gets the column standard deviations of the source data. Can be either 
+              from input data or output data, depending if the variables chosen are
+              predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.FactorMatrix">
+            <summary>
+              Gets the loadings (a.k.a factors or components) for the 
+              variables obtained during the analysis. Can be either from
+              input data or output data, depending if the variables chosen
+              are predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.FactorProportions">
+            <summary>
+              Gets the amount of variance explained by each latent factor.
+              Can be either by input variables' latent factors or output
+              variables' latent factors, depending if the variables chosen
+              are predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="P:Accord.Statistics.Analysis.PartialLeastSquaresVariables.CumulativeProportions">
+            <summary>
+              Gets the cumulative variance explained by each latent factor.
+              Can be either by input variables' latent factors or output
+              variables' latent factors, depending if the variables chosen
+              are predictor variables or dependent variables, respectively.
+            </summary>
+            
+        </member>
+        <member name="T:Accord.Statistics.Running.RunningNormalStatistics">
+            <summary>
+              Running (normal) statistics.
+            </summary>
+            
+            <remarks>
+            
+            <para>
+              This class computes the running variance using Welford’s method. Running statistics 
+              need only one pass over the data, and do not require all data to be available prior
+              to computing.
+            </para>
+            
+            <para>    
+              References:
+              <list type="bullet">
+                <item><description><a href="http://www.johndcook.com/standard_deviation.html">
+                  John D. Cook. Accurately computing running variance. Available on:
+                  http://www.johndcook.com/standard_deviation.html</a></description></item>
+                <item><description>
+                  Chan, Tony F.; Golub, Gene H.; LeVeque, Randall J. (1983). Algorithms for 
+                  Computing the Sample Variance: Analysis and Recommendations. The American
+                  Statistician 37, 242-247.</description></item>
+                <item><description>
+                  Ling, Robert F. (1974). Comparison of Several Algorithms for Computing Sample
+                  Means and Variances. Journal of the American Statistical Association, Vol. 69,
+                  No. 348, 859-866.</description></item>
+              </list></para>
+            </remarks>
+            
+        </member>
+        <member name="M:Accord.Statistics.Running.RunningNormalStatistics.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Accord.Statistics.Running.RunningNormalStatistics"/> class.
+            </summary>
+        </member>
+        <member name="M:Accord.Statistics.Running.RunningNormalStatistics.Push(System.Double)">
+            <summary>
+            Registers the occurance of a value.
+            </summary>
+            <param name="value">The value to be registered.</param>
+        </member>
+        <member name="M:Accord.Statistics.Running.RunningNormalStatistics.Clear">
+            <summary>
+            Clears all measures previously computed.
+            </summary>
+        </member>
+        <member name="P:Accord.Statistics.Running.RunningNormalStatistics.Mean">
+            <summary>
+            Gets the current mean of the gathered values.
+            </summary>
+            <value>The mean of the values.</value>
+        </member>
+        <member name="P:Accord.Statistics.Running.RunningNormalStatistics.Variance">
+            <summary>
+            Gets the current variance of the gathered values.
+            </summary>
+            <value>The variance of the values.</value>
+        </member>
+        <member name="P:Accord.Statistics.Running.RunningNormalStatistics.StandardDeviation">
+            <summary>
+            Gets the current standard deviation of the gathered values.
+            </summary>
+            <value>The standard deviation of the values.</value>
         </member>
         <member name="T:Accord.Statistics.Models.Markov.Learning.BaumWelchLearning">
             <summary>
@@ -10239,6 +11508,13 @@
               A <see cref="M:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearning.Threshold">threshold Markov model</see>.
             </returns>
         </member>
+        <member name="P:Accord.Statistics.Models.Markov.Learning.SequenceClassifierLearning.Smoothing">
+            <summary>
+              Gets or sets the smoothing kernel's sigma
+              for the threshold model.
+            </summary>
+            <value>The smoothing kernel's sigma.</value>
+        </member>
         <member name="T:Accord.Statistics.Kernels.Sparse.SparseLinear">
             <summary>
               Sparse Linear Kernel.
@@ -10266,6 +11542,20 @@
             <param name="x">Sparse vector <c>x</c> in input space.</param>
             <param name="y">Sparse vector <c>y</c> in input space.</param>
             <returns>Dot product in feature (kernel) space.</returns>
+        </member>
+        <member name="M:Accord.Statistics.Kernels.Sparse.SparseLinear.Distance(System.Double[],System.Double[])">
+            <summary>
+              Computes the distance in input space
+              between two points given in feature space.
+            </summary>
+            <param name="x">Vector <c>x</c> in feature (kernel) space.</param>
+            <param name="y">Vector <c>y</c> in feature (kernel) space.</param>
+            <returns>Distance between <c>x</c> and <c>y</c> in input space.</returns>
+        </member>
+        <member name="P:Accord.Statistics.Kernels.Sparse.SparseLinear.Constant">
+            <summary>
+              Gets or sets the kernel's intercept term.
+            </summary>
         </member>
         <member name="T:Accord.Statistics.Kernels.Additive">
             <summary>
