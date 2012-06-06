@@ -32,7 +32,7 @@ namespace GlycreSoft
         public double GAG_TOLERANCE = 40.0 * 2.0;
         public double SHIFT_TOLERANCE = 5.0;
         public double SEARCH_TOLERANCE = 0.5;
-        
+
         public double ABUNDANCE_THRESHOLD = 1.0;
         public int NUM_SCANS_THRESHOLD = 1;
         public double MIN_MW_THRESHOLD = 500.0;
@@ -54,6 +54,7 @@ namespace GlycreSoft
         private bool bSum;
         private String massout = "";
         private int num_matches;
+        private static ToolTip toolTip;
 
         public Form1()
         {
@@ -61,14 +62,18 @@ namespace GlycreSoft
 
             //This table is used for displaying the composition of groups
             dataGridView1.DataSource = getTable();
-            
+
             //This table is used to display advanced rules;
             dataGridView2.DataSource = getRuleTable();
             //DataTable compositionTable = getTable();
+
+            toolTip = new ToolTip();
+            toolTip.SetToolTip(this.label11, "Click to see details.");
         }
 
         //The two function
-        private static DataTable getRuleTable(){
+        private static DataTable getRuleTable()
+        {
             DataTable table = new DataTable();
             table.Columns.Add("Formula", typeof(String));
             table.Columns.Add("Relationship", typeof(String));
@@ -76,25 +81,26 @@ namespace GlycreSoft
 
             //add rows 
             table.Rows.Add("A+B+C", "=", "2n");
-            return table; 
-        
+            return table;
+
         }
 
-        private static DataTable getTable() 
+
+        private static DataTable getTable()
         {
             DataTable table = new DataTable();
-	        table.Columns.Add("MonoSacc", typeof(string));
-	        table.Columns.Add("C", typeof(int));
-	        table.Columns.Add("H", typeof(int));
-	        table.Columns.Add("N", typeof(int));
+            table.Columns.Add("MonoSacc", typeof(string));
+            table.Columns.Add("C", typeof(int));
+            table.Columns.Add("H", typeof(int));
+            table.Columns.Add("N", typeof(int));
             table.Columns.Add("O", typeof(int));
             table.Columns.Add("S", typeof(int));
             table.Columns.Add("P", typeof(int));
-	        //
-	        // Here we add DataRows.
-	        //
-            
-            table.Rows.Add("Pentose (Xyl)", 5, 8, 0, 4, 0, 0);
+            //
+            // Here we add DataRows.
+            //
+
+            table.Rows.Add("Pentose(Xyl)", 5, 8, 0, 4, 0, 0);
             table.Rows.Add("Deoxyhexose (Fuc)", 6, 10, 0, 4, 0, 0);
             table.Rows.Add(Convert.ToChar(916) + "HexA", 6, 6, 0, 5, 0, 0);
             table.Rows.Add("HexN", 6, 11, 1, 4, 0, 0);
@@ -108,12 +114,12 @@ namespace GlycreSoft
             table.Rows.Add("QuiNAc", 8, 13, 1, 4, 0, 0);
             table.Rows.Add("Kdo", 8, 12, 0, 7, 0, 0);
             table.Rows.Add("Ac", 2, 2, 0, 1, 0, 0);
-            table.Rows.Add("phosphate", 0, 1, 0, 3, 0, 1);
+            table.Rows.Add("Phosphate", 0, 1, 0, 3, 0, 1);
             table.Rows.Add("SO3", 0, 0, 0, 3, 1, 0);
             table.Rows.Add("Water", 0, 2, 0, 1, 0, 0);
-	        return table; 
+            return table;
         }
-        
+
         //Open the file from Decon2LS
         //variable indicate the mode
         public bool batchOpt;
@@ -126,7 +132,7 @@ namespace GlycreSoft
 
             if (!paraInput)
             {
-                return;    
+                return;
             }
 
             OpenFileDialog fDialog = new OpenFileDialog();
@@ -145,12 +151,12 @@ namespace GlycreSoft
             {
                 try
                 {
-                    MessageBox.Show("Processing\n"+FileName);
+                    MessageBox.Show("Processing\n" + FileName);
                     this.fsInputLCMSFile = new FileStream(FileName, FileMode.Open, FileAccess.Read);
                     parameterInfo = string.Format("Minimum Abundance:    {0}\n" +
-                        "Minimum Number of Scans:    {1}\n" + 
+                        "Minimum Number of Scans:    {1}\n" +
                         "Molecular Weight Lower Boundary:    {2}\n" +
-                        "Molecular Weight Upper Boundary:    {3}\n" + 
+                        "Molecular Weight Upper Boundary:    {3}\n" +
                         "Mass Shift:    {4}\n" +
                         "Mass Shift Compound:    {5}\n", ABUNDANCE_THRESHOLD, NUM_SCANS_THRESHOLD,
                         MIN_MW_THRESHOLD, MAX_MW_THRESHOLD, inputShiftMass.ToString("#0.00000000"), inputShiftStr == "" ? "No shift formula inputed" : inputShiftStr);
@@ -189,12 +195,14 @@ namespace GlycreSoft
                 return;
 
             int errorIdx = 0;
-            this.hypList = new SortedList<GAG, List<string>>();
+            hypList = new SortedList<GAG, List<string>>();
             string[] parts;
             string[] parts2;
             string str;
             string key;
             int position;
+
+            hypList.Clear();
 
             String[] path = fDialog.FileName.Split('\\');
             String name = path[path.Count() - 1];
@@ -210,34 +218,34 @@ namespace GlycreSoft
                 {
                     //string str = rdr.ReadLine();
                     str = rdr.ReadLine();
-                    
+
                     parts = str.Split('"');
                     parts2 = parts[0].Split(',');
-                    GAG compound = new GAG(Convert.ToDouble(parts2[1]),MATCH_TOLERANCE);
+                    GAG compound = new GAG(Convert.ToDouble(parts2[1]), MATCH_TOLERANCE);
                     //string key = parts[1];
                     key = parts[1];
-                    int idx = this.hypList.IndexOfKey(compound);
+                    int idx = hypList.IndexOfKey(compound);
                     if (idx >= 0)
                     {
                         position = 0;
-                        foreach (string item in this.hypList.ElementAt(idx).Value)
+                        foreach (string item in hypList.ElementAt(idx).Value)
                         {
                             position++;
                             if ((this.getSortString(item)).CompareTo(this.getSortString(key)) > 0)
                                 break;
                         }
-                        this.hypList.ElementAt(idx).Value.Insert(position, key);
+                        hypList.ElementAt(idx).Value.Insert(position, key);
                     }
                     else
                     {
                         List<string> li = new List<String>();
                         li.Add(key);
-                        this.hypList.Add(compound, li);
+                        hypList.Add(compound, li);
                     }
                     errorIdx++;
                 }
                 MessageBox.Show(Convert.ToString(errorIdx) + " hypothetical compounds have been loaded!\n");
-                this.saveOutputAsToolStripMenuItem1.Enabled = true;             
+                this.saveOutputAsToolStripMenuItem1.Enabled = true;
             }
             catch (Exception)
             {
@@ -398,7 +406,7 @@ namespace GlycreSoft
                             rep.mDensity = (double)rep.mElutionTimes.Count / (double)RangeofElution;
                         }
                     }
-                }    
+                }
             }
         }
 
@@ -413,7 +421,7 @@ namespace GlycreSoft
                 string hdr = rdr.ReadLine();
                 this.sUnknownGAG.Clear();
 
-                SortedList<double, List<string[]>> buffer = new SortedList<double,List<string[]>>();
+                SortedList<double, List<string[]>> buffer = new SortedList<double, List<string[]>>();
                 while (rdr.Peek() >= 0)
                 {
                     string str = rdr.ReadLine();
@@ -478,8 +486,8 @@ namespace GlycreSoft
                             ((GAG)this.sUnknownGAG.Keys[index_unknown]).mAvgMW.Add(Convert.ToDouble(parts[5]));
                         }
                         continue;
-                        }
                     }
+                }
                 return true;
             }
             catch (Exception e)
@@ -498,103 +506,103 @@ namespace GlycreSoft
 
 
         //write the files that grouped by time
-        private void writeFiles(SaveFileDialog dialog, SortedList<GAG,double> myWriteGAG,int reIdx)
+        private void writeFiles(SaveFileDialog dialog, SortedList<GAG, double> myWriteGAG, int reIdx)
         {
             //MessageBox.Show(dialog.FileName);
-            StreamWriter unknowns = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "_"+Convert.ToString(reIdx)+"_time"));
-                //unknowns.WriteLine("AvgMonoMW\tAvgMassDiffAvgMonoMW\tVarAvgMW\tElution Time\tMinError\tAvgFitError\tMaxError\tMinfwhm\tAvgfwhm\tMaxfwhm\tMinPlus2Ratio\t" +
-                  //"AvgPlus2Ratio\tMaxPlus2Ratio\tVarPlus2Ratio\tMinSignalNoise\tAvgSignalNoise\tTotalSignalNoise\tMaxSignalNoise\tNumCharges\tNumScans\tMinVolume\tAvgVolume\tTotalVolume\tMaxVolume\t");
+            StreamWriter unknowns = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "_" + Convert.ToString(reIdx) + "_time"));
+            //unknowns.WriteLine("AvgMonoMW\tAvgMassDiffAvgMonoMW\tVarAvgMW\tElution Time\tMinError\tAvgFitError\tMaxError\tMinfwhm\tAvgfwhm\tMaxfwhm\tMinPlus2Ratio\t" +
+            //"AvgPlus2Ratio\tMaxPlus2Ratio\tVarPlus2Ratio\tMinSignalNoise\tAvgSignalNoise\tTotalSignalNoise\tMaxSignalNoise\tNumCharges\tNumScans\tMinVolume\tAvgVolume\tTotalVolume\tMaxVolume\t");
 
-                unknowns.WriteLine("avgMonoMW\tNumMod\tNumCharges\tNumScans\tDensity\tAvgPlus2Ratio\tTotalVolume\tCentroidScan");
+            unknowns.WriteLine("avgMonoMW\tNumMod\tNumCharges\tNumScans\tDensity\tAvgPlus2Ratio\tTotalVolume\tCentroidScan");
 
-                List<double> bad_scans = new List<double>();
-                foreach (DictionaryEntry de in (IDictionary)myWriteGAG)
+            List<double> bad_scans = new List<double>();
+            foreach (DictionaryEntry de in (IDictionary)myWriteGAG)
+            {
+                double denom = 0.0;
+                double num = 0.0;
+                for (int i = 0; i < ((GAG)de.Key).mMW.Count; i++)
                 {
-                    double denom = 0.0;
-                    double num = 0.0;
-                    for (int i = 0; i < ((GAG)de.Key).mMW.Count; i++)
-                    {
-                        double mw = ((GAG)de.Key).mMW.ElementAt(i);
-                        double vol = ((GAG)de.Key).mVolume.ElementAt(i);
-                        num += (mw * vol);
-                        denom += vol;
-                    }
-                    double avgMonoMW = num / denom;
-                    ((GAG)de.Key).mMolecularWeight = avgMonoMW;
-                    int NumScans = ((GAG)de.Key).mElutionTimes.Count();
-                    if (NumScans < NUM_SCANS_THRESHOLD)
-                    {
-                        bad_scans.Add(((GAG)de.Key).mMolecularWeight);
-                    }
+                    double mw = ((GAG)de.Key).mMW.ElementAt(i);
+                    double vol = ((GAG)de.Key).mVolume.ElementAt(i);
+                    num += (mw * vol);
+                    denom += vol;
                 }
-                foreach (var val in bad_scans)
-	            {
-                    GAG del = new GAG((double)val,SEARCH_TOLERANCE);
-		            //this.sUnknownGAG.Remove(del);
-                    myWriteGAG.Remove(del);
-	            }
-                foreach (DictionaryEntry de in (IDictionary)myWriteGAG)
+                double avgMonoMW = num / denom;
+                ((GAG)de.Key).mMolecularWeight = avgMonoMW;
+                int NumScans = ((GAG)de.Key).mElutionTimes.Count();
+                if (NumScans < NUM_SCANS_THRESHOLD)
                 {
-                    double denom = 0.0;
-                    double num = 0.0;
-                    for (int i = 0; i < ((GAG)de.Key).mMW.Count; i++)
-                    {
-                        double mw = ((GAG)de.Key).mMW.ElementAt(i);
-                        double vol = ((GAG)de.Key).mVolume.ElementAt(i);
-                        num += (mw * vol);
-                        denom += vol;
-                    }
-                    double avgMonoMW = num / denom;
-                    denom = 0.0;
-                    num = 0.0;
-                    for (int i = 0; i < ((GAG)de.Key).mElutionTimes.Count; i++)
-                    {
-                        double scan = (double) ((GAG)de.Key).mElutionTimes.ElementAt(i);
-                        double vol = ((GAG)de.Key).mVolume.ElementAt(i);
-                        num += (scan * vol);
-                        denom += vol;
-                    }
-                    double CentroidScan = num / denom;
-                    int NumScans = ((GAG)de.Key).mElutionTimes.Count();
-                    ((GAG)de.Key).mMolecularWeight = avgMonoMW;
-                    double avgavgMW = ((GAG)de.Key).mAvgMW.Average();
-                    int RangeofElution = ((GAG)de.Key).mElutionTimes.Max() - ((GAG)de.Key).mElutionTimes.Min();
-                    double AvgError = ((GAG)de.Key).mFit.Average();
-                    double Avgfwhm = ((GAG)de.Key).mWidth.Average();
-                    double AvgPlus2Ratio = ((GAG)de.Key).mPlus2Regular.Average();
-                    double AvgSignalNoise = ((GAG)de.Key).mSignalNoise.Average();
-                    int NumCharges = ((GAG)de.Key).mChargeState.Count();
-                    double TotalSignalNoise = AvgSignalNoise * NumScans;
-                    double TotalVolume = (double)de.Value;
-                    int NumMod = 0;
-                    for (int mods = 0; mods < ((GAG)de.Key).mModStates.Count(); mods++)
-                    {
-                        NumMod += ((GAG)de.Key).mModStates.ElementAt(mods).Value;
-                    }
-                    if (NumMod == 0) NumMod = 1;
-                    // calculate and set density
-                    if (((GAG)de.Key).mDensity <= 0.0)
-                    {
-                        double density = ((double)NumScans) / ((double)(RangeofElution + 1));
-                        ((GAG)de.Key).mDensity = density;
-                    }
-                    double Density = ((GAG)de.Key).mDensity;
+                    bad_scans.Add(((GAG)de.Key).mMolecularWeight);
+                }
+            }
+            foreach (var val in bad_scans)
+            {
+                GAG del = new GAG((double)val, SEARCH_TOLERANCE);
+                //this.sUnknownGAG.Remove(del);
+                myWriteGAG.Remove(del);
+            }
+            foreach (DictionaryEntry de in (IDictionary)myWriteGAG)
+            {
+                double denom = 0.0;
+                double num = 0.0;
+                for (int i = 0; i < ((GAG)de.Key).mMW.Count; i++)
+                {
+                    double mw = ((GAG)de.Key).mMW.ElementAt(i);
+                    double vol = ((GAG)de.Key).mVolume.ElementAt(i);
+                    num += (mw * vol);
+                    denom += vol;
+                }
+                double avgMonoMW = num / denom;
+                denom = 0.0;
+                num = 0.0;
+                for (int i = 0; i < ((GAG)de.Key).mElutionTimes.Count; i++)
+                {
+                    double scan = (double)((GAG)de.Key).mElutionTimes.ElementAt(i);
+                    double vol = ((GAG)de.Key).mVolume.ElementAt(i);
+                    num += (scan * vol);
+                    denom += vol;
+                }
+                double CentroidScan = num / denom;
+                int NumScans = ((GAG)de.Key).mElutionTimes.Count();
+                ((GAG)de.Key).mMolecularWeight = avgMonoMW;
+                double avgavgMW = ((GAG)de.Key).mAvgMW.Average();
+                int RangeofElution = ((GAG)de.Key).mElutionTimes.Max() - ((GAG)de.Key).mElutionTimes.Min();
+                double AvgError = ((GAG)de.Key).mFit.Average();
+                double Avgfwhm = ((GAG)de.Key).mWidth.Average();
+                double AvgPlus2Ratio = ((GAG)de.Key).mPlus2Regular.Average();
+                double AvgSignalNoise = ((GAG)de.Key).mSignalNoise.Average();
+                int NumCharges = ((GAG)de.Key).mChargeState.Count();
+                double TotalSignalNoise = AvgSignalNoise * NumScans;
+                double TotalVolume = (double)de.Value;
+                int NumMod = 0;
+                for (int mods = 0; mods < ((GAG)de.Key).mModStates.Count(); mods++)
+                {
+                    NumMod += ((GAG)de.Key).mModStates.ElementAt(mods).Value;
+                }
+                if (NumMod == 0) NumMod = 1;
+                // calculate and set density
+                if (((GAG)de.Key).mDensity <= 0.0)
+                {
+                    double density = ((double)NumScans) / ((double)(RangeofElution + 1));
+                    ((GAG)de.Key).mDensity = density;
+                }
+                double Density = ((GAG)de.Key).mDensity;
 
-                    String output = "";
-                    //int features = 8;
-                    for (int i = 0; i < features; i++)
-                    {
-                        output += "{";
-                        output += i;
-                        output += "}";
-                        if (i != features-1)
-                            output += "\t";
-                    }
-
-                    unknowns.WriteLine(output, avgMonoMW, NumMod, NumCharges, NumScans, Density, AvgPlus2Ratio, TotalVolume, CentroidScan);
+                String output = "";
+                //int features = 8;
+                for (int i = 0; i < features; i++)
+                {
+                    output += "{";
+                    output += i;
+                    output += "}";
+                    if (i != features - 1)
+                        output += "\t";
                 }
 
-                unknowns.Close();
+                unknowns.WriteLine(output, avgMonoMW, NumMod, NumCharges, NumScans, Density, AvgPlus2Ratio, TotalVolume, CentroidScan);
+            }
+
+            unknowns.Close();
         }
 
         //Group by time function
@@ -619,7 +627,8 @@ namespace GlycreSoft
         //matrix used to store the weight of each feature
         public double[] featureWeight;
         // Add the unsupervised learning function here
-        private void scoreGAGs_unsupervised(object sender, EventArgs e) {
+        private void scoreGAGs_unsupervised(object sender, EventArgs e)
+        {
 
             //get the customized weight of features
             FeatureWeight featureWeightForm = new FeatureWeight();
@@ -631,7 +640,7 @@ namespace GlycreSoft
                 {
                     if (featureWeightForm.checkInput)
                     {
-                        featureWeight = new double[8];
+                        featureWeight = new double[features];
                         featureWeight[0] = Convert.ToDouble(featureWeightForm.textBox1.Text);
                         featureWeight[1] = Convert.ToDouble(featureWeightForm.textBox2.Text);
                         featureWeight[2] = Convert.ToDouble(featureWeightForm.textBox3.Text);
@@ -639,7 +648,7 @@ namespace GlycreSoft
                         featureWeight[4] = Convert.ToDouble(featureWeightForm.textBox5.Text);
                         featureWeight[5] = Convert.ToDouble(featureWeightForm.textBox6.Text);
                         featureWeight[6] = Convert.ToDouble(featureWeightForm.textBox7.Text);
-                        featureWeight[7] = Convert.ToDouble(featureWeightForm.textBox8.Text);
+                        featureWeight[7] = Convert.ToDouble(featureWeightForm.textBox7.Text);
                     }
                 }
 
@@ -648,7 +657,7 @@ namespace GlycreSoft
                     featureWeight = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
                 }
 
-                
+
             } while (featureWeightForm.checkInput == false);
 
             featureWeightForm.Dispose();
@@ -656,8 +665,7 @@ namespace GlycreSoft
             SortedList<double, int> shifts = new SortedList<double, int>();
             //eventually we need the user to add the shift
             //get the inputShiftMass from the parameter table
-            shifts.Add(inputShiftMass,1);
-            //shifts.Add(21.98194, 1);
+            shifts.Add(inputShiftMass, 1);
 
             //Group by shifts for each data in the replicateGAG
 
@@ -945,9 +953,8 @@ namespace GlycreSoft
         {
             SortedList<double, int> shifts = new SortedList<double, int>();
             //eventually we need the user to add the shift
-            shifts.Add(17.02655,1);
-            //shifts.Add(21.98194, 1);
-            //Group by shifts for each data in the replicateGAG
+            //get the inputShiftMass from the parameter table
+            shifts.Add(inputShiftMass, 1);
 
             if (firstTime)
             {
@@ -980,7 +987,7 @@ namespace GlycreSoft
                     this.num_matches = 0;
                     this.sUnknownGAG = myTargetGAG;
                     StreamWriter unknowns = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_grouped"));
-                    StreamWriter scored = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_unsupervised"));
+                    StreamWriter scored = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_unsupervised_comparison"));
                     StreamWriter learned = new StreamWriter(dialog.FileName.Insert(dialog.FileName.LastIndexOf('.'), "-" + Convert.ToString(replicatesIdx) + "_supervised"));
                     replicatesIdx++;
                     unknowns.WriteLine("avgMonoMW\tNumAdductStates\tNumCharges\tNumScans\tDensity\tAvgA:A+2Ratio\tTotalVolume\tAvgSignalNoise\tCentroidScan");
@@ -1039,6 +1046,8 @@ namespace GlycreSoft
 
                         GAG match_gag = new GAG(avgMonoMW, MATCH_TOLERANCE);
                         int idx = this.hypList.IndexOfKey(match_gag);
+                        ((GAG)de.Key).match_mw = -1.0;
+                        ((GAG)de.Key).match_string = "";
                         if (idx >= 0)
                         {
                             this.num_matches++;
@@ -1100,16 +1109,28 @@ namespace GlycreSoft
 
                     // Create a RANSAC algorithm to fit a simple linear regression for plus2ratio
                     int minSamples = 50;
-                    var p2ransac = new RANSAC<SimpleLinearRegression>(minSamples);
-                    p2ransac.Probability = 0.80;
-                    p2ransac.Threshold = 0.25;
-                    p2ransac.MaxEvaluations = 2000;
-
                     DataTable datatable = this.data;
                     if (this.matched_data.Rows.Count > minSamples)
                     {
                         datatable = this.matched_data;
                     }
+                    else
+                    {
+                        minSamples = 10;
+                        if (this.matched_data.Rows.Count > minSamples)
+                        {
+                            datatable = this.matched_data;
+                        }
+                        else
+                        {
+                            MessageBox.Show("WARNING: Fewer than " + minSamples + " compounds were matched. Trying to perform a regression on this few samples will not work. Regression will be attempted on the full data set, however this has been known to fail in the past. If you experience a failure, try using a hypothesis list that matches more data.");
+                            minSamples = Convert.ToInt32(Math.Floor((double)this.data.Rows.Count * 0.5));
+                        }
+                    }
+                    var p2ransac = new RANSAC<SimpleLinearRegression>(minSamples);
+                    p2ransac.Probability = 0.80;
+                    p2ransac.Threshold = 0.25;
+                    p2ransac.MaxEvaluations = 2000;
 
                     p2ransac.Fitting = // Define a fitting function
                         delegate(int[] sample)
@@ -1233,6 +1254,8 @@ namespace GlycreSoft
                             this.sUnknownGAG.Keys[idx].mCentroidScanError = (double)this.data.Rows[j].ItemArray[col_cent];
                         }
                     }
+                    // For the unsupervised comparison, need to make sure feature weights are set (to all 1s)
+                    featureWeight = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 };
                     this.scoreGAGs(scored, learned);
                     unknowns.Close();
                     scored.Close();
@@ -1255,7 +1278,7 @@ namespace GlycreSoft
                 Quan.WriteLine(massout);
                 Quan.Close();
             }
-         }
+        }
 
         //this is the function that write the output of scored results and machine learning results
         private bool scoreGAGs(StreamWriter sw, StreamWriter swml)
@@ -1264,7 +1287,7 @@ namespace GlycreSoft
             if (swml == null)
                 supervised = false;
 
-            Dictionary<double, int> scores = new Dictionary<double, int>();
+            Dictionary<double, double> scores = new Dictionary<double, double>();
             Dictionary<double, int> index = new Dictionary<double, int>();
 
             //List<double> outputs_list = new List<double>();
@@ -1277,7 +1300,7 @@ namespace GlycreSoft
             double[][] inputs = new double[N][];
             for (int x = 0; x < N; x++)
                 inputs[x] = new double[M];
-            
+
             double[] outputs = new double[N];
 
             int cidx = 0;
@@ -1285,7 +1308,7 @@ namespace GlycreSoft
             {
                 GAG g = (GAG)item.Key;
                 double mw = g.mMolecularWeight;
-                scores[mw] = 0;
+                scores[mw] = 0.0;
                 index[mw] = cidx;
                 if (supervised)
                 {
@@ -1309,10 +1332,12 @@ namespace GlycreSoft
             for (int i = 1; i < this.data.Columns.Count; i++)
             {
                 DataRow[] sortedrows;
-                if (i == 7 || i == 8) { //column #s for errors
+                if (i == 7 || i == 8)
+                { //column #s for errors
                     sortedrows = this.data.Select("", i + " ASC");
                 }
-                else {
+                else
+                {
                     sortedrows = this.data.Select("", i + " DESC");
                 }
                 int cur_pos = 0;
@@ -1329,7 +1354,7 @@ namespace GlycreSoft
                         cur_score = cur_pos + 1;
                     }
 
-                    scores[(double)row[0]] += max_score - cur_score;
+                    scores[(double)row[0]] += featureWeight[i - 1] * Convert.ToDouble(max_score - cur_score);
                     int idx = -1;
                     if (index.ContainsKey((double)row[0]))
                         idx = index[(double)row[0]];
@@ -1341,16 +1366,16 @@ namespace GlycreSoft
                     cur_pos++;
                 }
             }
-            List<KeyValuePair<double, int>> scoresList = new List<KeyValuePair<double, int>>(scores);
+            List<KeyValuePair<double, double>> scoresList = new List<KeyValuePair<double, double>>(scores);
             scoresList.Sort(
-                delegate(KeyValuePair<double, int> firstPair,
-                KeyValuePair<double, int> nextPair)
+                delegate(KeyValuePair<double, double> firstPair,
+                KeyValuePair<double, double> nextPair)
                 {
                     return nextPair.Value.CompareTo(firstPair.Value);
                 }
             );
             sw.WriteLine("Score\tMW\tCompound Key\tPPM Error\tTheoretical MW\tNumAdductStates\tNumCharges\tNumScans\tDensity\tAvgA:A+2Error\tAvgA:A+2Ratio\tTotal Volume\tAvgSignalNoise\tCentroidScanError\tCentroidScan");
-            
+
             //after printing the header, traverse scoresList, printing relative information retrieved by looking back at sUnknownGAG
             foreach (var val in scoresList)
             {
@@ -1393,7 +1418,7 @@ namespace GlycreSoft
                 }
                 if (NumMod == 0) NumMod = 1;
                 // calculate and set density
-                
+
                 double Density = lookback.mDensity;
 
                 String output = "";
@@ -1418,9 +1443,12 @@ namespace GlycreSoft
                     Hyp_MW = "NA";
                 }
                 string Match = lookback.match_string;
-                double Score = val.Value / (double)(max_score * (this.data.Columns.Count - 1));
+                double weights_summation = 0.0;
+                foreach (var w in featureWeight)
+                    weights_summation += w;
+                double Score = val.Value / (double)(max_score * weights_summation);
                 double avgSignalNoise = lookback.mSignalNoise.Average();
-                sw.WriteLine(output, String.Format("{0:0.0000}",Score), avgMonoMW, Match, ppm, Hyp_MW, NumMod, NumCharges, NumScans, Density, String.Format("{0:0.0000}", Plus2Error), AvgPlus2Ratio, TotalVolume, avgSignalNoise, String.Format("{0:0.0000}",CentroidScanError), CentroidScan);
+                sw.WriteLine(output, String.Format("{0:0.0000}", Score), avgMonoMW, Match, ppm, Hyp_MW, NumMod, NumCharges, NumScans, Density, String.Format("{0:0.0000}", Plus2Error), AvgPlus2Ratio, TotalVolume, avgSignalNoise, String.Format("{0:0.0000}", CentroidScanError), CentroidScan);
             }
 
             if (!supervised)
@@ -1521,7 +1549,7 @@ namespace GlycreSoft
         /// <summary>
         /// the part below is for compound list generator
         /// </summary>
-       
+
         private Hashtable compGroup = new Hashtable();
         private Hashtable compMass = new Hashtable();
         private Hashtable modGroup = new Hashtable();
@@ -1533,48 +1561,74 @@ namespace GlycreSoft
 
         private void groupMassCal(Object g1, Object g2, Object g3, Object g4, Object g5, TextBox m1, TextBox m2)
         {
-        		DataTable residueTable = new DataTable();
-                periodicTable pTable = new periodicTable();
-        		string[] groups = new string[] { g1.ToString(),g2.ToString(),g3.ToString(),g4.ToString(),g5.ToString()};
-        		string[] elements = new string[] {"C", "H", "N", "O", "S", "P"};
-                int listInd = 0;
+            DataTable residueTable = new DataTable();
+            periodicTable pTable = new periodicTable();
+            string[] groups = new string[] { g1.ToString(), g2.ToString(), g3.ToString(), g4.ToString(), g5.ToString() };
+            string[] elements = new string[] { "C", "H", "N", "O", "S", "P" };
+            int listInd = 0;
 
-                residueTable = getTable();
-                compMass.Clear();
-                foreach(var group in groups){
-                    DataRow[] selectedRow = residueTable.Select(string.Format("{0} LIKE '%{1}%'", "MonoSacc", group));
-                    double mass = 0.0;
-                    string groupStr = "";
+            residueTable = (DataTable)dataGridView1.DataSource;
+            compMass.Clear();
+            foreach (var group in groups)
+            {
+                DataRow[] selectedRow = residueTable.Select(string.Format("{0} LIKE '{1}'", "MonoSacc", group));
+                double mass = 0.0;
+                string groupStr = "";
 
-                    for(int i=0; i < elements.Count(); i++)
+                for (int i = 0; i < elements.Count(); i++)
+                {
+                    double eMass = pTable.pTable[elements[i]];
+                    int eNum = Convert.ToInt16(selectedRow[0].ItemArray[i + 1]);
+                    if (i != 0)
                     {
-                        double eMass = pTable.pTable[elements[i]];
-                        int eNum = Convert.ToInt16(selectedRow[0].ItemArray[i+1]);
-                        if (i != 0) {
-                            groupStr += "_";
-                        }
-                        groupStr += elements[i] + "_" + Convert.ToString(eNum);
-                        mass += eMass * eNum;
+                        groupStr += "_";
                     }
+                    groupStr += elements[i] + "_" + Convert.ToString(eNum);
+                    mass += eMass * eNum;
+                }
+                try
+                {
                     compMass.Add(groupStr, mass);
                     compIndList[listInd++] = groupStr;
-                    
-                    //MessageBox.Show(Convert.ToString(mass));
                 }
+                catch (ArgumentException e) {
+                    MessageBox.Show("Duplicate residues are selected, please check your selection!");
+                    return;
+                }
+                //MessageBox.Show(Convert.ToString(mass));
+            }
 
-                //parse modification string 
-                string elementRegex = "([A-Z][a-z]*)([0-9]*)";
-                string validateRegex = "^(" + elementRegex + ")+$";
-                string formula = Convert.ToString(m1.Text);
-                string formulaSub = Convert.ToString(m2.Text);
-                //MessageBox.Show(formula + "\n");
-                if (!Regex.IsMatch(formula, validateRegex))
-                    throw new FormatException("Input string was in an incorrect format.");
+            //parse modification string 
+            string elementRegex = "([A-Z][a-z]*)([0-9]*)";
+            string validateRegex = "^(" + elementRegex + ")+$";
+            string formula = Convert.ToString(m1.Text);
+            string formulaSub = Convert.ToString(m2.Text);
+            //MessageBox.Show(formula + "\n");
+            if (!Regex.IsMatch(formula, validateRegex))
+                throw new FormatException("Input string was in an incorrect format.");
 
-                string modStr = "";
-                double modMass = 0.0;
-                listInd = 0;
-                foreach (Match match in Regex.Matches(formula, elementRegex))
+            string modStr = "";
+            double modMass = 0.0;
+            listInd = 0;
+            foreach (Match match in Regex.Matches(formula, elementRegex))
+            {
+                string name = match.Groups[1].Value;
+
+                int count =
+                    match.Groups[2].Value != "" ?
+                    int.Parse(match.Groups[2].Value) :
+                    1;
+                modStr += name + "_" + Convert.ToString(count);
+                modMass += pTable.pTable[name] * count;
+                //MessageBox.Show(Convert.ToString(name) + ":" + Convert.ToString(count) + "\n");
+            }
+            this.modMass[modStr] = modMass;
+            if (formulaSub != "")
+            {
+
+                string subStr = "";
+                double subMass = 0.0;
+                foreach (Match match in Regex.Matches(formulaSub, elementRegex))
                 {
                     string name = match.Groups[1].Value;
 
@@ -1582,67 +1636,64 @@ namespace GlycreSoft
                         match.Groups[2].Value != "" ?
                         int.Parse(match.Groups[2].Value) :
                         1;
-                    modStr += name + "_" + Convert.ToString(count);
-                    modMass += pTable.pTable[name] * count;
+                    subStr += name + "_" + Convert.ToString(count);
+                    subMass += pTable.pTable[name] * count;
                     //MessageBox.Show(Convert.ToString(name) + ":" + Convert.ToString(count) + "\n");
                 }
-                this.modMass[modStr] = modMass;
-                if (formulaSub != "")
-                {
+                this.modMass[modStr] = modMass - subMass;
+            }
+            modIndList[listInd++] = modStr;
+            MessageBox.Show(String.Format("The modification is: {0}\n" + "Mass of modification is: {1:0.00000000}.\n", modStr, this.modMass[modStr]));
+            //parameterInfo += String.Format("Modification:    {0}\n", modStr.Replace("_",""));
 
-                    string subStr = "";
-                    double subMass = 0.0;
-                    foreach (Match match in Regex.Matches(formulaSub, elementRegex))
-                    {
-                        string name = match.Groups[1].Value;
-
-                        int count =
-                            match.Groups[2].Value != "" ?
-                            int.Parse(match.Groups[2].Value) :
-                            1;
-                        subStr += name + "_" + Convert.ToString(count);
-                        subMass += pTable.pTable[name] * count;
-                        //MessageBox.Show(Convert.ToString(name) + ":" + Convert.ToString(count) + "\n");
-                    }
-                    this.modMass[modStr] = modMass - subMass;
-                }
-                modIndList[listInd++] = modStr;
-                MessageBox.Show(String.Format("The modification is: {0}\n" +  "Mass of modification is: {1:0.00000000}.\n", modStr, this.modMass[modStr]));
-                //parameterInfo += String.Format("Modification:    {0}\n", modStr.Replace("_",""));
-
-                //richTextBox1.Font = new Font("Times New Roman", 12, FontStyle.Regular);
-                //richTextBox1.Text = parameterInfo;
-                //        compMass
-                //        modMass
-                //        compIndList
-                //        modIndList
+            //richTextBox1.Font = new Font("Times New Roman", 12, FontStyle.Regular);
+            //richTextBox1.Text = parameterInfo;
+            //        compMass
+            //        modMass
+            //        compIndList
+            //        modIndList
         }
 
         ///new compound generator based directly on the expression 
         ///new generator
-        private void compoundListToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void compoundListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = "Tab Separated Value (*.csv)|*.csv";
             dialog.ValidateNames = true;
-            
+            this.compoundListToolStripMenuItem.Enabled = false;
 
-            if (dialog.ShowDialog() == DialogResult.OK) {
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
                 StreamWriter listFile = new StreamWriter(dialog.FileName);
                 //generate composition list
                 List<List<int>> compList = new List<List<int>>();
                 List<List<int>> modList = new List<List<int>>();
                 int min, max;
-                string[] symArray = new string[]{"A", "B","C", "D","E"};
+                string[] symArray = new string[] { "A", "B", "C", "D", "E" };
                 double massWater = 0.0;
                 periodicTable massTable = new periodicTable();
-                massWater = 2*massTable.pTable["H"] + massTable.pTable["O"];
+                massWater = 2 * massTable.pTable["H"] + massTable.pTable["O"];
 
                 foreach (String compIndGroup in compIndList)
                 {
                     if (compList.Count() == 0)
                     {
-                        min = int.Parse(exprs[0]);
-                        max = int.Parse(exprs[1]);
+                        try
+                        {
+                            min = int.Parse(exprs[0]);
+                            max = int.Parse(exprs[1]);
+                        }
+                        catch (Exception) { 
+                            MessageBox.Show(String.Format("There is a format error for the boundaries of {0}, please input the right boundary!", symArray[0]));
+                            listFile.Close();
+                            return;
+                        }
+                        if (min > max) { 
+                            MessageBox.Show(String.Format("There is an error for the boundaries of {0}, please try again!",symArray[0]));
+                            listFile.Close();
+                            return;
+                        }
 
                         for (int i = min; i <= max; i++)
                         {
@@ -1671,9 +1722,16 @@ namespace GlycreSoft
                                 int value = compList[j][ind];
                                 symVal.Add(symbol, value);
                             }
-                            min = Convert.ToInt16(mathParse(exprLow));
-                            max = Convert.ToInt16(mathParse(exprHigh));
 
+                            try{
+                                min = Convert.ToInt16(mathParse(exprLow));
+                                max = Convert.ToInt16(mathParse(exprHigh));
+                            }
+                            catch (Exception) { 
+                                MessageBox.Show(String.Format("There is a format error for the boundaries of {0}, please input the right boundary!", symArray[position]));
+                                listFile.Close();
+                                return;
+                            }
                             if (min < 0) { min = 0; }
 
                             //MessageBox.Show(Convert.ToString(min) + "\t" + Convert.ToString(max));
@@ -1691,16 +1749,26 @@ namespace GlycreSoft
                             //compList.Clear();
                             //compList = tempList;
                         }
+
+                        int parseCompInd = compList[0].Count();
+                        if (tempList.Count == 0) {
+                            MessageBox.Show(String.Format("There is an error for the boundaries of {0}, please try again!", symArray[parseCompInd]));
+                            listFile.Close();
+                            return;
+                        }
                         compList = tempList;
                     }
 
                 }
 
                 //generate modification list
-                List<List<int>> tempAll = new List<List<int>>(); 
+                List<List<int>> tempAll = new List<List<int>>();
+
+                //only print out the error msg the first time getting problem parsing it
+                Boolean errorAdvRuleShowed = false;
                 for (int j = 0; j < compList.Count(); j++)
                 {
-                     //here parse the expression for the modification
+                    //here parse the expression for the modification
 
                     //get the expression index
                     string exprLow = exprs[10], exprHigh = exprs[11];
@@ -1712,61 +1780,131 @@ namespace GlycreSoft
                         int value = compList[j][ind];
                         symVal.Add(symbol, value);
                     }
-                    
-                    min = Convert.ToInt16(mathParse(exprLow));
-                    max = Convert.ToInt16(mathParse(exprHigh));
+
+                    try
+                    {
+                        min = Convert.ToInt16(mathParse(exprLow));
+                        max = Convert.ToInt16(mathParse(exprHigh));
+                    }catch (Exception) { 
+                            MessageBox.Show(String.Format("There is a format error for the boundaries of modification, please input the right boundary!"));
+                            listFile.Close();
+                            return;
+                    }
 
                     DataTable ruleTable = new DataTable();
                     int checkRule = 1;
                     ruleTable = (DataTable)dataGridView2.DataSource;
-                    foreach (DataRow row in ruleTable.Rows)
-                    {
-                        String rule, relationship;
-                        int constrain;
-                        rule = (String)row.ItemArray[0];
-                        //renew symVal
-                        symVal.Clear();
-                        for (int ind = 0; ind < symArray.Count(); ind++)
-                        {
-                            symVal.Add(symArray[ind], compList[j][ind]);
-                        }
-                        double num = mathParse(rule);
-                        relationship = (String)row.ItemArray[1];
-                        bool res = int.TryParse((String)row.ItemArray[2], out constrain);
-                        if (!res)
-                        {
-                            if ((String)row.ItemArray[2] == "2n")
-                            {
-                                if (num % 2 == 0)
-                                {
-                                    checkRule *= 1;
-                                }
-                                else
-                                {
-                                    checkRule *= 0;
-                                }
-                            }
-                            else if ((String)row.ItemArray[2] == "2n + 1" || (String)row.ItemArray[2] == "2n - 1")
-                            {
-                                if (num % 2 != 0)
-                                {
-                                    checkRule *= 1;
-                                }
-                                else
-                                {
-                                    checkRule *= 0;
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show("Rules Can not be recognized, thus be ingnored!");
-                            }
-                        }
 
-                        else { 
-                          //will develop later if user input a number here.
+                    if (ruleTable.Rows.Count != 0)
+                    {
+                        foreach (DataRow row in ruleTable.Rows)
+                        {
+                            String rule, relationship;
+                            int constrain;
+
+                            //check whether the rule table is empty
+                            if (ruleTable.Rows[0].IsNull(0) || ruleTable.Rows[0].IsNull(1) || ruleTable.Rows[0].IsNull(2))
+                            {
+                                break;
+                            }
+
+                            rule = (String)row.ItemArray[0];
+                            //renew symVal
+                            symVal.Clear();
+                            for (int ind = 0; ind < symArray.Count(); ind++)
+                            {
+                                symVal.Add(symArray[ind], compList[j][ind]);
+                            }
+                            try
+                            {
+                                double num = mathParse(rule);
+                                relationship = (String)row.ItemArray[1];
+
+                                if (relationship != "=" && relationship != "<" && relationship != ">" && relationship != ">=" && relationship != "<=") {
+                                    MessageBox.Show("The format of the relationship is wrong, generator terminated!");
+                                    listFile.Close();
+                                    return;
+                                }
+
+                                bool res = int.TryParse((String)row.ItemArray[2], out constrain);
+
+                                if (Double.IsNaN(num))
+                                {
+                                    MessageBox.Show("The format of the other rule is wrong, generator terminated!");
+                                    listFile.Close();
+                                    return;
+                                }
+
+                                if (!res)
+                                {
+                                    if ((String)row.ItemArray[2] == "2n")
+                                    {
+                                        if (num % 2 == 0)
+                                        {
+                                            checkRule *= 1;
+                                        }
+                                        else
+                                        {
+                                            checkRule *= 0;
+                                        }
+                                    }
+                                    else if ((String)row.ItemArray[2] == "2n+1" || (String)row.ItemArray[2] == "2n-1")
+                                    {
+                                        if (num % 2 != 0)
+                                        {
+                                            checkRule *= 1;
+                                        }
+                                        else
+                                        {
+                                            checkRule *= 0;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!errorAdvRuleShowed)
+                                        {
+                                            MessageBox.Show("The constrain in other rules can not be recognized, thus be ingnored! \nDouble click on \"Other Rules\" to see help!");
+                                            errorAdvRuleShowed = true;
+                                        }
+                                    }
+                                }
+
+                                else
+                                {
+                                    //will develop later if user input a number here.
+                                    if ((String)row.ItemArray[1] == "=")
+                                    {
+                                        checkRule *= num == constrain ? 1 : 0;
+                                    }
+                                    else if ((String)row.ItemArray[1] == ">=" || (String)row.ItemArray[1] == "<=") {
+                                        Boolean check = (String)row.ItemArray[1] == ">=" ? num >= constrain : num <= constrain;
+                                        checkRule *= check ? 1 : 0;
+                                    }
+                                    else if ((String)row.ItemArray[1] == ">" || (String)row.ItemArray[1] == "<")
+                                    {
+                                        Boolean check = (String)row.ItemArray[1] == ">" ? num > constrain : num < constrain;
+                                        checkRule *= check ? 1 : 0;
+                                    }
+                                    else
+                                    {
+                                        if (!errorAdvRuleShowed)
+                                        {
+                                            MessageBox.Show("The relationship in other rules can not be recognized, generator terminated.");
+                                            listFile.Close();
+                                            return;
+                                        }
+                                    }
+
+                                }
+                            }
+                            catch (Exception) {
+                                MessageBox.Show("Can not recognize the advanced rules, please double check the format!");
+                                listFile.Close();
+                                return;
+                            }
+
+
                         }
-                            
                     }
 
                     if (min < 0) { min = 0; }
@@ -1787,42 +1925,54 @@ namespace GlycreSoft
                         }
                     }
                 }
+
+                int parseModInd = compList[0].Count();
+                if (tempAll.Count == 0)
+                {
+                    MessageBox.Show(String.Format("There is an error for the boundaries of modification, please try again!"));
+                    listFile.Close();
+                    return;
+                }
                 compList = tempAll;
-              
+
                 //combine the compList and the modList and calculate the MW
 
                 //C H N O S P
                 //DataTable residueTable = getTable();
                 DataTable residueTable = (DataTable)dataGridView1.DataSource;
 
-                Char[] elemList = new Char[6] {'C', 'H', 'N', 'O', 'S', 'P'};
-                foreach (var comp in compList) {
+                Char[] elemList = new Char[6] { 'C', 'H', 'N', 'O', 'S', 'P' };
+                foreach (var comp in compList)
+                {
                     int checkSum = 0;
-                    double mass = 0.0; 
+                    double mass = 0.0;
                     String formulaStr = "";
                     String bracketRep = "";
                     int[] formulaCof = new int[6] { 0, 0, 0, 0, 0, 0 };
                     //assemble fomula
-                    for (int i = 0; i < comp.Count() - 4; i++) {
+                    for (int i = 0; i < comp.Count() - 4; i++)
+                    {
                         String groupStr = compIndList[i];
                         double groupMass = Convert.ToDouble(compMass[groupStr]);
                         int cof = comp[i];
 
                         if (i == 0)
-                        {      
+                        {
                             bracketRep += "[" + Convert.ToString(cof);
                         }
 
-                        else {
-                            bracketRep += "," + Convert.ToString(cof);      
+                        else
+                        {
+                            bracketRep += "," + Convert.ToString(cof);
                         }
 
                         string[] groupInfo = groupStr.Split('_');
-                        for (int ind = 0; ind < formulaCof.Count(); ind++) { 
-                            formulaCof[ind] += cof*int.Parse(groupInfo[2*ind + 1]);
+                        for (int ind = 0; ind < formulaCof.Count(); ind++)
+                        {
+                            formulaCof[ind] += cof * int.Parse(groupInfo[2 * ind + 1]);
                         }
                         //formulaStr += "(" + groupStr + ")" + Convert.ToString(cof);
-                        
+
                         mass += groupMass * cof;
                         checkSum += cof;
                     }
@@ -1835,18 +1985,19 @@ namespace GlycreSoft
                     }
 
                     double modmass = 0.0;
-                    String modStr = ""; 
+                    String modStr = "";
                     String bracket2 = "";
-                    
-                    modStr += "(" + modIndList[0].Replace("_","") + ")" + Convert.ToString(comp[5]);
+
+                    modStr += "(" + modIndList[0].Replace("_", "") + ")" + Convert.ToString(comp[5]);
                     modmass += Convert.ToDouble(this.modMass[modIndList[0]]) * comp[5];
                     bracket2 = "]-[" + Convert.ToString(comp[5]) + ",0," + "0," + "0" + "]";
-                    if(checkSum != 0){
+                    if (checkSum != 0)
+                    {
                         double massAdj = mass + modmass + massWater;
                         //double massAdj = mass + modmass;
-                        listFile.WriteLine(formulaStr + modStr + "," + "{0}" + "," + "\"" + bracketRep + bracket2 + "\"",massAdj.ToString("#0.00000000"));
+                        listFile.WriteLine(formulaStr + modStr + "," + "{0}" + "," + "\"" + bracketRep + bracket2 + "\"", massAdj.ToString("#0.00000000"));
                     }
-                    
+
                 }
                 listFile.Close();
             }
@@ -1973,7 +2124,7 @@ namespace GlycreSoft
                             formular1 += "(" + groupKey + ")" + Convert.ToString(num);
                             compMW += mass * Convert.ToInt16(num);
                         }
-                        if(idx != 1)
+                        if (idx != 1)
                         {
                             fstr += "," + Convert.ToString(num);
                         }
@@ -2001,7 +2152,7 @@ namespace GlycreSoft
                             {
                                 symVal[modSymList[idx]] = num1;
                             }
-                            string groupKey = Convert.ToString(modIndList[idx ++]);
+                            string groupKey = Convert.ToString(modIndList[idx++]);
                             double mass = Convert.ToDouble(modMass[groupKey]);
                             if (num1 != 0)
                             {
@@ -2021,38 +2172,45 @@ namespace GlycreSoft
 
                         //first check the algebraic rule
                         bool check = false;
-                        foreach (string comp in compSymList) {
+                        foreach (string comp in compSymList)
+                        {
                             //List<String> testList = exprList[comp];
                             //MessageBox.Show(testList[0]);
-                            if (exprList.ContainsKey(comp)) { 
+                            if (exprList.ContainsKey(comp))
+                            {
                                 //get bound
                                 List<String> boundList = exprList[comp];
                                 double lowerBound = mathParse(boundList[0]);
                                 double upperBound = mathParse(boundList[1]);
-                                if (lowerBound > upperBound) {
+                                if (lowerBound > upperBound)
+                                {
                                     lowerBound = (lowerBound + upperBound) / 2 - (lowerBound - upperBound) / 2;
                                     upperBound = (lowerBound + upperBound) / 2 + (lowerBound - upperBound) / 2;
                                 }
                                 int val = symVal[comp];
-                                if(val <= lowerBound || val >= upperBound){
+                                if (val <= lowerBound || val >= upperBound)
+                                {
                                     check = true;
                                 }
-                            }    
+                            }
                         }
 
-                        foreach (string mod in modSymList) { 
-                           if (exprList.ContainsKey(mod)) { 
+                        foreach (string mod in modSymList)
+                        {
+                            if (exprList.ContainsKey(mod))
+                            {
                                 //get bound
                                 List<String> boundList = exprList[mod];
                                 double lowerBound = mathParse(boundList[0]);
                                 double upperBound = mathParse(boundList[1]);
                                 int val = symVal[mod];
-                                if(val <= lowerBound || val >= upperBound){
+                                if (val <= lowerBound || val >= upperBound)
+                                {
                                     check = true;
                                 }
-                            }                            
+                            }
                         }
-                        
+
                         if (formular1 + formular2 != "" && check == false)
                         {
                             listFile.WriteLine(formular1 + formular2 + "," + Convert.ToString(modMW) + "," + "\"" + fstr + sstr + "\"");
@@ -2063,7 +2221,7 @@ namespace GlycreSoft
                 //MessageBox.Show(Convert.ToString(compKey.Count()));
                 listFile.Close();
 
-            }           
+            }
         }
 
         private string getSortString(string compound_key)
@@ -2071,20 +2229,20 @@ namespace GlycreSoft
             string ret_key = "";
             string[] parts = compound_key.Split('-');
             string modStr = parts[1];
-            modStr = modStr.TrimStart('[',']').TrimEnd('[',']');
-            string[]  mods = modStr.Split(',');
+            modStr = modStr.TrimStart('[', ']').TrimEnd('[', ']');
+            string[] mods = modStr.Split(',');
             foreach (var mod in mods)
             {
                 ret_key += mod;
             }
-            
+
             return ret_key;
         }
 
 
         //expression parser here 
         //each group has a list of two rules
-        SortedList<String,List<String>> exprList = new SortedList<String,List<String>>();
+        SortedList<String, List<String>> exprList = new SortedList<String, List<String>>();
         List<String> compSymList = new List<String>();
         List<String> modSymList = new List<String>();
         private void algebraicRulesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2101,7 +2259,7 @@ namespace GlycreSoft
             OpenFileDialog fDialog = new OpenFileDialog();
             fDialog.Title = "Open Algebraic Rules";
             fDialog.Filter = "TXT Files|*.txt";
-           
+
             if (fDialog.ShowDialog() == DialogResult.Cancel)
                 return;
 
@@ -2153,10 +2311,12 @@ namespace GlycreSoft
                         string[] comps = parts[0].TrimStart('\t').TrimStart('[').TrimEnd(']').Split(',');
                         string[] mods = parts[1].TrimStart('\t').TrimStart('[').TrimEnd(']').Split(',');
 
-                        foreach (string comp in comps) {
+                        foreach (string comp in comps)
+                        {
                             compSymList.Add(comp);
                         }
-                        foreach (string mod in mods) {
+                        foreach (string mod in mods)
+                        {
                             modSymList.Add(mod);
                         }
                     }
@@ -2191,7 +2351,7 @@ namespace GlycreSoft
             }
             double r = 0;
             //foreach (Match m in Regex.Matches("+" + expr, @"\D ?-?[\d.]+"))
-            foreach (Match m in Regex.Matches("+" + expr, @"[^A-Z\d] ?-?[A-Z|\d]+"))
+            foreach (Match m in Regex.Matches("+" + expr, @"[^A-Za-z\d] ?-?[a-zA-Z|\d]+"))
             {
                 var o = m.Value[0];
                 String v = m.Value.Substring(1).Trim();
@@ -2199,14 +2359,16 @@ namespace GlycreSoft
                 double num;
                 bool isNum = double.TryParse(v, out num);
 
-                if(!isNum){
+                if (!isNum)
+                {
                     try
                     {
                         num = Convert.ToDouble(symVal[v]);
                     }
                     catch
                     {
-                        return 0;
+                        throw new Exception();
+                        //return 0;
                     }
                 }
                 //var v = float.Parse(m.Value.Substring(1));
@@ -2228,7 +2390,7 @@ namespace GlycreSoft
             selectedItem4 = comboBox4.SelectedItem;
             selectedItem5 = comboBox5.SelectedItem;
             //selectedItem5 = comboBox5.SelectedItem;
-            
+
             string low1 = Convert.ToString(textBox2.Text), up1 = Convert.ToString(textBox3.Text);
             string low2 = Convert.ToString(textBox4.Text), up2 = Convert.ToString(textBox5.Text);
             string low3 = Convert.ToString(textBox6.Text), up3 = Convert.ToString(textBox7.Text);
@@ -2236,9 +2398,9 @@ namespace GlycreSoft
             string low5 = Convert.ToString(textBox10.Text), up5 = Convert.ToString(textBox11.Text);
             string low6 = Convert.ToString(textBox12.Text), up6 = Convert.ToString(textBox13.Text);
             //string low6 = Convert.ToString(textBox12.Text), up6 = Convert.ToString(textBox13.Text);
-            exprs = new string[]{low1,up1,low2,up2,low3,up3,low4,up4,low5,up5,low6,up6};
+            exprs = new string[] { low1, up1, low2, up2, low3, up3, low4, up4, low5, up5, low6, up6 };
 
-            if(comboBox1.SelectedIndex == -1)
+            if (comboBox1.SelectedIndex == -1)
             {
                 MessageBox.Show("group A is not defined!\n");
                 return;
@@ -2261,12 +2423,12 @@ namespace GlycreSoft
             else if (textBox1.Text == "")
             {
                 MessageBox.Show("modification is not defined!\n");
-                return;  
+                return;
             }
             // MessageBox.Show("Selected Item Text: " + selectedItem.ToString() + "\n" + "Index: " + selectedIndex.ToString());
             else
             {
-                groupMassCal(selectedItem1, selectedItem2, selectedItem3, selectedItem4, selectedItem5, textBox1,textBox14);
+                groupMassCal(selectedItem1, selectedItem2, selectedItem3, selectedItem4, selectedItem5, textBox1, textBox14);
             }
             this.compoundListToolStripMenuItem.Enabled = true;
             return;
@@ -2279,10 +2441,17 @@ namespace GlycreSoft
             comboBox3.Items.Clear();
             comboBox4.Items.Clear();
             comboBox5.Items.Clear();
+            comboBox1.Text = "";
+            comboBox2.Text = "";
+            comboBox3.Text = "";
+            comboBox4.Text = "";
+            comboBox5.Text = "";
+
             //get the column names from the datagridview
             DataTable residueTable = (DataTable)dataGridView1.DataSource;
             int range = residueTable.Rows.Count;
-            for(int i=0; i<range; i++){
+            for (int i = 0; i < range; i++)
+            {
                 try
                 {
                     String residueName = (String)residueTable.Rows[i][0];
@@ -2292,7 +2461,8 @@ namespace GlycreSoft
                     comboBox4.Items.Add(residueName);
                     comboBox5.Items.Add(residueName);
                 }
-                catch(Exception) {
+                catch (Exception)
+                {
                     MessageBox.Show("There is at least one residue without a name!");
                 }
             }
@@ -2312,7 +2482,13 @@ namespace GlycreSoft
 
         private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Application.StartupPath + "\\" + "test_help.chm");
+           // System.Diagnostics.Process.Start("Help.chm");
+            Help.ShowHelp(this,"Help.chm");
         }
-      }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(dataGridView2, "The \"Formula\" is a linear combination of composition, such as A+B+C(no space are allowed in between)\n\nThe \"Relationship\" should be =, > or <\n\nThe \"Constrain\" should be a number or a math linear expression\n\tTo represent all the even numbers type in 2n\n\tTo represent all the odd numbers type in 2n-1 or 2n+1 (no space are allowed in between)\n");
+        }
+    }
 }

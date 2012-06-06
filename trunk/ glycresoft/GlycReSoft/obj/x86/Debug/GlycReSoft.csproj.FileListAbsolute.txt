@@ -108,7 +108,6 @@ C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\Glyc
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\bin\Debug\ZedGraph.xml
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.advancedParameters.resources
-C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.advRules.resources
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.Expressions.resources
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.Form1.resources
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.parameters.resources
@@ -117,3 +116,40 @@ C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\Glyc
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\yantan\Desktop\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.FeatureWeight.resources
+C:\Documents and Settings\maxwelle\My Documents\Visual Studio 2010\Projects\GlycReSoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.FeatureWeight.resources
+<<<<<<< .mine
+C:\Users\yantan\Desktop\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.dll
+C:\Users\yantan\Desktop\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.pdb
+C:\Users\yantan\Desktop\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.xml
+=======
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.exe
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.pdb
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\GlycreSoft.exe
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\GlycreSoft.pdb
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.MachineLearning.dll
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.Math.dll
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.Statistics.dll
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\SlimDX.dll
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\ZedGraph.dll
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.dll
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.MachineLearning.pdb
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.MachineLearning.xml
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.Math.pdb
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.Math.xml
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.Statistics.pdb
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.Statistics.xml
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\SlimDX.xml
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\ZedGraph.xml
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.pdb
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\bin\Debug\Accord.xml
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.advancedParameters.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.Expressions.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.FeatureWeight.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.Form1.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.parameters.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.processMode.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GlycreSoft.Properties.Resources.resources
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Spring 2011\Challenge Project\glycresoft\trunk\GlycReSoft\obj\x86\Debug\GenerateResource.write.1.tlog
+>>>>>>> .r47

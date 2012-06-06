@@ -29,7 +29,7 @@ namespace GlycreSoft
             this.group_flag = -1;
             this.match_string = "";
             this.match_mw = -1.0;
-            this.score = -1;
+            this.score = -1.0;
             this.regressed_score = -1.0;
             this.mCentroidScan = -1.0;
             this.mCentroidScanError = -1.0;
@@ -132,7 +132,7 @@ namespace GlycreSoft
         public int group_flag;
         public string match_string;
         public double match_mw;
-        public int score;
+        public double score;
         public double regressed_score;
         public double mCentroidScan;
         public double mCentroidScanError;

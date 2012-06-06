@@ -109,6 +109,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -477,6 +478,7 @@
             this.label11.Size = new System.Drawing.Size(78, 16);
             this.label11.TabIndex = 36;
             this.label11.Text = "Other Rules";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // dataGridView2
             // 
@@ -541,7 +543,7 @@
             "QuiNAC",
             "Kdo",
             "Ac",
-            "Phoshpate",
+            "Phosphate",
             "SO3",
             "Water"});
             this.comboBox5.Location = new System.Drawing.Point(101, 198);
@@ -739,7 +741,7 @@
             "QuiNAC",
             "Kdo",
             "Ac",
-            "Phoshpate",
+            "Phosphate",
             "SO3",
             "Water"});
             this.comboBox4.Location = new System.Drawing.Point(99, 159);
@@ -766,7 +768,7 @@
             "QuiNAC",
             "Kdo",
             "Ac",
-            "Phoshpate",
+            "Phosphate",
             "SO3",
             "Water"});
             this.comboBox3.Location = new System.Drawing.Point(99, 124);
@@ -793,7 +795,7 @@
             "QuiNAC",
             "Kdo",
             "Ac",
-            "Phoshpate",
+            "Phosphate",
             "SO3",
             "Water"});
             this.comboBox2.Location = new System.Drawing.Point(101, 81);
@@ -847,7 +849,7 @@
             "QuiNAC",
             "Kdo",
             "Ac",
-            "Phoshpate",
+            "Phosphate",
             "SO3",
             "Water"});
             this.comboBox1.Location = new System.Drawing.Point(99, 46);
@@ -1014,6 +1016,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
 
     }
 }
